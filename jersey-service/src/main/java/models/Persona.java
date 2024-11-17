@@ -4,18 +4,18 @@ public class Persona {
     private int idPersona;
     private String nombre;
     private String apellido;
-    private String DNI;
-    private String celular;
+    // private String DNI;
+    private String apodo;
 
     public Persona() {
     }
     
-    public Persona(int idPersona, String nombre, String apellido, String DNI, String celular) {
+    public Persona(int idPersona, String nombre, String apellido, String DNI, String apodo) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.DNI = DNI;
-        this.celular = celular;
+        // this.DNI = DNI;
+        this.apodo = apodo;
     }
 
     // Getters and Setters
@@ -43,26 +43,26 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public String getDNI() {
-        return DNI;
+    // public String getDNI() {
+    //     return DNI;
+    // }
+
+    // public void setDNI(String DNI) {
+    //     this.DNI = DNI;
+    // }
+
+    public String getApodo() {
+        return apodo;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
     }
 
     //new
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", DNI=" + DNI + ", celular=" + celular + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", apodo=" + apodo + '}';
     }
 }

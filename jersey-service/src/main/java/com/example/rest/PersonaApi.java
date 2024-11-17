@@ -1,16 +1,16 @@
 package com.example.rest;
 
-import controller.Dao.servicies.PersonaServicies;
 import java.util.HashMap;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.Response.StatusType;
+
+import controller.Dao.servicies.PersonaServicies;
 
 @Path("person")
 public class PersonaApi {
@@ -38,8 +38,8 @@ public class PersonaApi {
             PersonaServicies ps = new PersonaServicies();
             ps.getPersona().setNombre(map.get("nombre").toString());
             ps.getPersona().setApellido(map.get("apellido").toString());
-            ps.getPersona().setDNI(map.get("dni").toString());
-            ps.getPersona().setCelular(map.get("celular").toString());
+            // ps.getPersona().setDNI(map.get("dni").toString());
+            ps.getPersona().setApodo(map.get("apodo").toString());
             HashMap res = new HashMap<>();
             try {
                 ps.save();

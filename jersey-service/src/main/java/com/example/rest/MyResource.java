@@ -30,14 +30,14 @@ public class MyResource {
     try{
         pd.getPersona().setNombre("Marco Antonio");
         pd.getPersona().setApellido("Caleb Jumbo");
-        pd.getPersona().setDNI("12345678");
-        pd.getPersona().setCelular("0989700888");
+        // pd.getPersona().setDNI("12345678");
+        pd.getPersona().setApodo("MarcAnto");
         pd.save();
         
         pd.getPersona().setNombre("Diana Joselin");
         pd.getPersona().setApellido("Gomez Paredes");
-        pd.getPersona().setDNI("1105765745");
-        pd.getPersona().setCelular("0997777985");
+        // pd.getPersona().setDNI("1105765745");
+        pd.getPersona().setApodo("Jossy");
         pd.save();
         aux = "La lista esta vacia"+pd.listAll().isEmpty();
     } catch (Exception e){
