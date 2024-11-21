@@ -8,6 +8,9 @@ public class Resenia {
     private float calificacion;
     private Date fecha;
 
+    public Resenia() {
+    }
+
     //Constructor
     public Resenia(int idResenia, String comentario, float calificacion, Date fecha) {
         this.idResenia = idResenia;
