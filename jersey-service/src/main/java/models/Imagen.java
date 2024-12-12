@@ -1,21 +1,19 @@
 package models;
 
 public class Imagen {
-    private int idImagen;
-    private int idReceta;
+    private Integer idImagen;
+    private Integer idReceta;
     private String imagen;
 
-    public Imagen(int idimagen, int idReceta, String imagen){
-        this.idImagen = idimagen;
-        this.idReceta = idReceta;
-        this.imagen = imagen;
+    public Imagen(){
+        
     }
 
-    public int getIdImagen() {
+    public Integer getIdImagen() {
         return idImagen;
     }
 
-    public void setIdImagen(int idImagen) {
+    public void setIdImagen(Integer idImagen) {
         this.idImagen = idImagen;
     }
 
@@ -23,7 +21,7 @@ public class Imagen {
         return idReceta;
     }
 
-    public void setIdReceta(int idReceta) {
+    public void setIdReceta(Integer idReceta) {
         this.idReceta = idReceta;
     }
 
