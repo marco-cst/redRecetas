@@ -3,17 +3,14 @@ package models;
 public class Cuenta {
     
     private String correo;
-    private int idCuenta;
+    private Integer idCuenta;
     private String clave;
-    private int idPersona;
+    private Integer idPersona;
     private boolean estado;
 
-    public Cuenta(String correo, int idCuenta, String clave, int idPersona, boolean estado) {
-        this.correo = correo;
-        this.idCuenta = idCuenta;
-        this.clave = clave;
-        this.idPersona = idPersona;
-        this.estado = estado;
+  
+
+    public Cuenta() {
     }
 
     public String getCorreo() {
@@ -40,7 +37,7 @@ public class Cuenta {
         this.correo = correo;
     }
 
-    public void setIdCuenta(int idCuenta) {
+    public void setIdCuenta(Integer idCuenta) {
         this.idCuenta = idCuenta;
     }
 
@@ -48,7 +45,7 @@ public class Cuenta {
         this.clave = clave;
     }
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
@@ -56,9 +53,6 @@ public class Cuenta {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return "Cuenta{" + "correo=" + correo + ", idCuenta=" + idCuenta + ", clave=" + clave + ", idPersona=" + idPersona + ", estado=" + estado + '}';
-    }
+   
     
 }
