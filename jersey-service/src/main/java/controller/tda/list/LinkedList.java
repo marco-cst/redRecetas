@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class LinkedList<E> {
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
@@ -172,6 +174,7 @@ public class LinkedList<E> {
     // esta bien
     public E[] toArray() {
         E[] matrix = null;
+//INICIO DE NEW ===========================================================
         if (!isEmpty()) {
             Class clazz = header.getInfo().getClass();
             matrix = (E[]) java.lang.reflect.Array.newInstance(clazz, size);
@@ -193,22 +196,6 @@ public class LinkedList<E> {
         return this; // Devuelve la instancia LinkedList
     }
 
-    // public void update(E object, Integer index) {
-    //     if (index < 0 || index >= size) { // Verifica el rango del índice
-    //         throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
-    //     }
-    
-    //     Node<E> current = header; // Comienza desde la cabecera
-    //     for (int i = 0; i < index; i++) {
-    //         current = current.getNext(); // Moverse al nodo en el índice deseado
-    //     }
-    
-    //     current.setInfo(object); // Actualizar el dato del nodo usando el setter
-    // }
-
-    //new
-
-    // public LinkedList<E> order() throws Exception {
     public void update(E data, Integer post) throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error la lista esta vacia");
@@ -228,7 +215,6 @@ public class LinkedList<E> {
             search.setInfo(data);
         }
     }
-
     // REMOVE AGREGADO 24/OCT/2024
 
     public int getLength() {
@@ -272,7 +258,7 @@ public class LinkedList<E> {
             return element;
         }
     }
-//removeId new
+
     public E remove(Integer post) throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacia");
@@ -294,8 +280,9 @@ public class LinkedList<E> {
 
         }
     }
- //Remove Element Original
-    public boolean removeElement(E element) {
+
+     //Remove Element Original
+     public boolean removeElement(E element) {
         if (isEmpty()) return false;
         
         if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
@@ -319,6 +306,7 @@ public class LinkedList<E> {
 
     public LinkedList<E> order(Integer type) throws Exception {
         if (!isEmpty()) {
+//FIN DE NEW ===================================================================================
             E data = this.header.getInfo();
             if (data instanceof Number || data instanceof String) {
                 E[] lista = this.toArray();
