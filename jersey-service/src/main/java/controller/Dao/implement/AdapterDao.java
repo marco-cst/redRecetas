@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
+
+import javax.ws.rs.core.Link;
+
 import com.google.gson.Gson;
 import controller.tda.list.LinkedList;
 
@@ -18,7 +21,12 @@ public class AdapterDao<T> implements InterfazDao<T> {
     }
 
     public T get(Integer id) throws Exception {
-        return null; // Implementar según sea necesario
+        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
+        if(!list.isEmpty()){
+            T [] matrix = list.toArray(); //Convierte la lista en un Array de objetos
+            return matrix[id - 1]; //Devuelve el objeto en la posición id-1
+        }
+        return null; //Devuelve null si la lista está vacía
     }
 
     public LinkedList<T> listAll() {  //Convierte el String con formato Json en un Array de objetos
@@ -34,7 +42,10 @@ public class AdapterDao<T> implements InterfazDao<T> {
     }
 
     public void merge(T object, Integer index) throws Exception {
-        // Implementación pendiente
+        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
+        list.update(object, index); //Actualiza el objeto en la posición index
+        String info = g.toJson(list.toArray()); //Convierte la lista en un String JSON
+        saveFile(info);
     }
 
     public void persist(T object) throws Exception {  //Guarda un objeto en un archivo JSON
@@ -83,4 +94,13 @@ public class AdapterDao<T> implements InterfazDao<T> {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
+
+    public Boolean supreme(int index) throws Exception {
+        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
+        list.remove(index); //Elimina el objeto en la posición index
+        String info = g.toJson(list.toArray()); //Convierte la lista en un String JSON
+        saveFile(info); //Guarda el String JSON en un archivo
+        return true; //Retorna verdadero si se eliminó correctamente
+    }
+
 }
