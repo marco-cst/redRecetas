@@ -31,7 +31,6 @@ public class ReseniaApi {
             rs.getResenia().setCalificacion(5f);
             rs.getResenia().setIdPersona(2);
             rs.getResenia().setIdReceta(1);
-            // rs.getResenia().setIdResenia(2);
             rs.getResenia().setFecha(new Date());
             rs.save();
 
@@ -137,17 +136,12 @@ public class ReseniaApi {
             ReseniaServices rs = new ReseniaServices();
             rs.setResenia(rs.get(Integer.parseInt(map.get("idResenia").toString())));
             rs.getResenia().setComentario(map.get("comentario").toString());
+            rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
+            rs.getResenia().setFecha(new Date());
+            // rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
             rs.getResenia().setIdResenia(1);
-            
-            // rs.getResenia().setIdPersona(1);
-            // rs.getResenia().setCalificacion(2.0f);
-
-
-            // rs.setInversionista(rs.get(Integer.parseInt(map.get("idInversionista").toString())));
-            // rs.getInversionista().setNombre(map.get("nombre").toString());
-            // rs.getInversionista().setApellido(map.get("apellido").toString());
-            // rs.getInversionista().setDNI(map.get("dni").toString());
             rs.update();
+
             res.put("msg", "Ok");
             res.put("data", "Guardado correctamente");
             return Response.ok(res).build();
