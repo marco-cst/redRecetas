@@ -1,1 +1,14 @@
-[{"idPersona":1,"nombre":"Marco Antonio","apellido":"Caleb Jumbo","apodo":"MarcAnto"},{"idPersona":2,"nombre":"Diana Joselin","apellido":"Gomez Paredes","apodo":"Jossy"}]
+[
+    {
+        "idPersona": 1,
+        "nombre": "Marco Antonio",
+        "apellido": "Caleb Jumbo",
+        "apodo": "MarcAnto"
+    },
+    {
+        "idPersona": 2,
+        "nombre": "Diana Joselin",
+        "apellido": "Gomez Paredes",
+        "apodo": "Jossy"
+    }
+]

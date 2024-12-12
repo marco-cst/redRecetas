@@ -253,18 +253,18 @@ public class LinkedList<E> {
         return this;
     }
 
-    public void update(E object, Integer index) {
-        if (index < 0 || index >= size) { // Verifica el rango del índice
-            throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
-        }
+    // public void update(E object, Integer index) {
+    //     if (index < 0 || index >= size) { // Verifica el rango del índice
+    //         throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
+    //     }
     
-        Node<E> current = header; // Comienza desde la cabecera
-        for (int i = 0; i < index; i++) {
-            current = current.getNext(); // Moverse al nodo en el índice deseado
-        }
+    //     Node<E> current = header; // Comienza desde la cabecera
+    //     for (int i = 0; i < index; i++) {
+    //         current = current.getNext(); // Moverse al nodo en el índice deseado
+    //     }
     
-        current.setInfo(object); // Actualizar el dato del nodo usando el setter
-    }
+    //     current.setInfo(object); // Actualizar el dato del nodo usando el setter
+    // }
 
     //new
 
@@ -297,6 +297,26 @@ public class LinkedList<E> {
             return a1.doubleValue() > b1.doubleValue();
         } else {
             return (a.toString().compareTo(b.toString()) > 0);
+        }
+    }
+
+    public void update(E data, Integer post) throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error la lista esta vacia");
+        } else if (post < 0 || post >= size) {
+            throw new IndexOutOfBoundsException("Error, esta fuera de los limites de la lista");
+        } else if (post == 0) {
+            header.setInfo(data);
+        } else if (post == (size - 1)) {
+            last.setInfo(data);
+        } else {
+            Node<E> search = header;
+            Integer cont = 0;
+            while (cont < post) {
+                cont++;
+                search = search.getNext();
+            }
+            search.setInfo(data);
         }
     }
 }
