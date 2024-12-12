@@ -144,7 +144,7 @@ public class ReseniaDao extends AdapterDao<Resenia> {
         LinkedList<Resenia> list = getListAll(); 
         Resenia resenia= get(id); 
         if (resenia != null) {
-            list.remove(resenia); 
+            list.removeElement(resenia); 
             String info = g.toJson(list.toArray());
             saveFile(info); 
             this.listAll = list;

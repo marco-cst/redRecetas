@@ -66,7 +66,7 @@ public class CategoriaDao extends AdapterDao<Categoria> {
         LinkedList<Categoria> list = getListAll(); 
         Categoria categoria= get(id); 
         if (categoria != null) {
-            list.remove(categoria); 
+            list.removeElement(categoria); 
             String info = g.toJson(list.toArray());
             saveFile(info); 
             this.listAll = list;

@@ -33,7 +33,7 @@ public class OperationStack<E> extends LinkedList<E> {
         if (isEmpty()) {
             throw new ListEmptyException("La pila está vacía");
         } else {
-            return deleteLast(); 
+            return removeLast(); 
         }
     }
 }

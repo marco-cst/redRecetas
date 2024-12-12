@@ -1,10 +1,8 @@
 package models;
-
-import java.sql.Date;
+import java.util.Date;
 
 public class Receta {
-
-    private Integer id_Receta;
+    private Integer idReceta;
     private String Nombre;
     private Date fecha_Publicacion;
     private String preparacion;
@@ -16,12 +14,12 @@ public class Receta {
     }
 
 
-    public Integer getId_Receta() {
-        return id_Receta;
+    public Integer getidReceta() {
+        return idReceta;
     }
 
-    public void setId_Receta(Integer id_Receta) {
-        this.id_Receta = id_Receta;
+    public void setidReceta(Integer idReceta) {
+        this.idReceta = idReceta;
     }
 
     public String getNombre() {
