@@ -14,7 +14,8 @@ public class AdapterDao<T> implements InterfazDao<T> {
     protected  Gson g;
     public static String filePath = "src/main/java/Data/"; // Ruta donde se guardan los archivos JSON
     private LinkedList<T> list;
-    
+
+
     public AdapterDao(Class<T> clazz) { // Constructor
         this.clazz = clazz;
         this.g = new Gson();
@@ -38,7 +39,6 @@ public class AdapterDao<T> implements InterfazDao<T> {
     }
 
     public void merge(T object, Integer index) throws Exception {
-        // Implementación pendiente
         LinkedList<T> list = listAll();
         list.update(object, index);
         String info = g.toJson(list.toArray());
@@ -75,7 +75,7 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return sb.toString().trim(); //Devuelve el contenido del archivo en formato String
     }
 
-    protected  void saveFile(String data) throws Exception { //Guarda el String en un archivo JSON
+    protected void saveFile(String data) throws Exception { //Guarda el String en un archivo JSON
         File file = new File(filePath + clazz.getSimpleName() + ".json");
         file.getParentFile().mkdirs(); //Crea los directorios necesarios para el archivo
 

@@ -11,6 +11,7 @@ public class PersonaDao extends AdapterDao<Persona> {
     public PersonaDao(){
         super(Persona.class);
     }
+    
     public Persona getPersona(){ //Obtiene la persona
         if (persona == null) {
             persona = new Persona(); //En caso de que la persona sea nula, crea una nueva instancia de Persona
