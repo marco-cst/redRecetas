@@ -1,19 +1,22 @@
 package models;
 
 public class Ingredientes {
-    private int idIngrediente;
+    private Integer idIngrediente;
     private String nombre;
     private float cantidad;
     private String unidadMedida;
 
-    public Ingredientes(int idIngrediente, String nombre, float cantidad, String unidadMedida) {
+    public Ingredientes(Integer idIngrediente, String nombre, float cantidad, String unidadMedida) {
         this.idIngrediente = idIngrediente;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.unidadMedida = unidadMedida;
     }
 
-    public int getIdIngrediente() {
+    public Ingredientes() {
+    }
+
+    public Integer getIdIngrediente() {
         return idIngrediente;
     }
 
