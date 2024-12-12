@@ -2,11 +2,43 @@ package controller.Dao.servicies;
 
 
 
+import java.util.HashMap;
+
 import controller.Dao.CuentaDao;
 import controller.tda.list.LinkedList;
 import models.Cuenta;
+import models.Persona;
 
 public class CuentaServices {
+
+    public Object [] listShowall()throws Exception {
+        if(!obj.getListAll().isEmpty()){
+            Cuenta[] lista  = (Cuenta[]) obj.getListAll().toArray();
+            Object[] respuesta = new Object[lista.length];
+            for (int i = 0; i < lista.length; i++) {
+                Persona p =  new PersonaServicies().get(lista[i].getIdPersona());
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("id", lista[i].getIdCuenta());
+                map.put("correo", lista[i].getCorreo());
+                map.put("clave", lista[i].getClave());
+                map.put("estado", lista[i].getEstado());
+                map.put("persona", p);
+                respuesta[i] = map;
+            }
+            return respuesta;
+         }
+         return new Object[]{};
+
+    }
+
+
+
+
+
+
+
+
+
     private CuentaDao obj;
 
     public CuentaServices(){

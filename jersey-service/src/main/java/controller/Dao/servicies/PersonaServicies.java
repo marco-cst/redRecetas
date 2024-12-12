@@ -17,6 +17,10 @@ public class PersonaServicies {
 
     }
 
+    public Persona get(Integer id) throws Exception{
+        return obj.get(id);
+    }
+
     public Persona getPersona(){ //Obtiene la persona
         return obj.getPersona(); //Invoca el método getPersona() de la clase PersonaDao
     }
