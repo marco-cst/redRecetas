@@ -4,25 +4,29 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
+
 import com.google.gson.Gson;
+
 import controller.tda.list.LinkedList;
 
 public class AdapterDao<T> implements InterfazDao<T> {
     private Class<T> clazz;
-    private Gson g;
+    protected  Gson g;
     public static String filePath = "src/main/java/Data/"; // Ruta donde se guardan los archivos JSON
-
+    private LinkedList<T> list;
+    
     public AdapterDao(Class<T> clazz) { // Constructor
         this.clazz = clazz;
         this.g = new Gson();
+        this.list = new LinkedList<>();
     }
 
-    public T get(Integer id) throws Exception {
-        return null; // Implementar según sea necesario
-    }
+    // public T get(Integer id) throws Exception {
+    //     return null; // Implementar según sea necesario
+    // }
 
     public LinkedList<T> listAll() {  //Convierte el String con formato Json en un Array de objetos
-        LinkedList<T> list = new LinkedList<>();
+        // LinkedList<T> list = new LinkedList<>();
         try {
             String data = readFile(); //Invoca el método readFile() para leer el archivo JSON y devolverlo en formato String
             T[] matrix = (T[]) g.fromJson(data, java.lang.reflect.Array.newInstance(clazz, 0).getClass()); //Deserializa el String JSON en un Array de objetos tipo T
@@ -35,6 +39,10 @@ public class AdapterDao<T> implements InterfazDao<T> {
 
     public void merge(T object, Integer index) throws Exception {
         // Implementación pendiente
+        LinkedList<T> list = listAll();
+        list.update(object, index);
+        String info = g.toJson(list.toArray());
+        saveFile(info);
     }
 
     public void persist(T object) throws Exception {  //Guarda un objeto en un archivo JSON
@@ -67,7 +75,7 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return sb.toString().trim(); //Devuelve el contenido del archivo en formato String
     }
 
-    private void saveFile(String data) throws Exception { //Guarda el String en un archivo JSON
+    protected  void saveFile(String data) throws Exception { //Guarda el String en un archivo JSON
         File file = new File(filePath + clazz.getSimpleName() + ".json");
         file.getParentFile().mkdirs(); //Crea los directorios necesarios para el archivo
 
@@ -82,5 +90,14 @@ public class AdapterDao<T> implements InterfazDao<T> {
         } catch (Exception e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
+    }
+
+    public T get(Integer id) throws Exception {
+        LinkedList<T> list = listAll();
+        if (!list.isEmpty()) {
+            T[] matriz = list.toArray();
+            return matriz[id - 1];
+        }
+        return null; 
     }
 }
