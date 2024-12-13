@@ -33,6 +33,41 @@ def admin_contact():
 def admin_template():
     return render_template('template.html')
 
+    #resenia
+
+@router.route('/admin/resenia/list')
+def admin_resenia_list():
+    r = requests.get("http://localhost:8086/api/resenia/list")
+    data = r.json()
+    return render_template('resenia/reseniaList.html', list=data["data"])
+
+@router.route('/admin/resenia/register')
+def view_register_resenia():
+    r = requests.get("http://localhost:8086/api/resenia/list")
+    data = r.json()
+    return render_template('resenia/nwResenia.html', list=data["data"])
+
+@router.route('/admin/resenia/save', methods=["POST"])
+def save_rssenia():
+    headers = {'Content-type': 'application/json'}
+    form = request.form
+    dataF = {
+        "comentario": form["comt"], #ape
+        "calificacion": form["calf"], #nom
+        # "fecha": form["fecha"],
+    }
+    
+    r = requests.post("http://localhost:8086/api/resenia/save", data=json.dumps(dataF), headers=headers)
+    dat = r.json()
+    
+    if r.status_code == 200:
+        flash("Resenia guardado correctamente", category='info')
+    else:
+        flash(str(dat["data"]), category='error')
+
+    return redirect("/admin/resenia/list")
+
+
 
     #EJEMPLO CRUD
 
@@ -41,7 +76,7 @@ def admin_template():
 #     r = requests.get("http://localhost:8020/api/inversionista/list")
 #     data = r.json()
 #     return render_template('fragmento/inversionista/lista.html', list=data["data"])
-
+ 
 # @router.route('/admin/inversionista/edit/<int:id>')
 # def view_edit_inversionista(id):
 #     r = requests.get("http://localhost:8020/api/inversionista/list")
