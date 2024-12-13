@@ -1,0 +1,37 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="pagetitle">
+    <h1>Editar resenia </h1>
+  </div>
+   
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-18">
+        <div class="card custom-card">
+          <div class="card-body custom-card-body">
+            <h5 class="card-title">Ingresa los datos del inversionista </h5>
+            <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/update" novalidate>
+              <input type="hidden" value="{{ resenia.idResenia }}" name="id" />
+              <div class="mb-3">
+                <label for="comt" class="form-label">Reseña</label>
+                <input type="text" class="form-control" name="comt" required value="{{resenia.comentario}}">
+              </div>
+              <div class="mb-3">
+                <label for="calf" class="form-label">Calificacion</label>
+                <input type="text" class="form-control" name="calf" required value="{{resenia.calificacion}}">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <a href="/admin/resenia/list" class="btn btn-custom btn-secondary">Cancelar</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
