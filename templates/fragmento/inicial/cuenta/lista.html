@@ -1,0 +1,114 @@
+{% extends "index.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Recetas</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Header Section Begin -->
+    <header class="header-section-other">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="./recipe.html">
+                    <img src="{{ url_for('static', filename='img/foto.png') }}" alt="" width="100" height="100">
+                </a>
+            </div>                     
+            <div class="nav-menu">
+                <nav class="main-menu mobile-menu">
+                    <ul class="d-flex justify-content-center">
+                        <li class="active"><a href="#">SABORES CONECTADOS</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-right search-switch">
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="container mt-5">
+        <div class="pagetitle text-center">
+            <h1>Recetas disponibles</h1>
+        </div>
+        <div class="text-end mb-3">
+            <a href="/admin/receta/register" class="btn btn-success">NUEVA RECETA</a>
+        </div>
+
+        <div class="recipe-list">
+            {% for item in lista_receta %}
+            <div class="card mb-4 shadow-sm border-0">
+              <div class="card-body p-4">
+                
+                <!-- Nombre de la receta -->
+                <h5 class="card-title text-uppercase text-primary fw-bold mb-3" style="font-size: 1.8rem;">{{ item.nombre }}</h5>
+                
+                <!-- Porciones -->
+                <p class="mb-2">
+                  <strong class="text-secondary">Porciones:</strong> 
+                  <span style="font-size: 1rem;">{{ item.porciones }}</span>
+                </p>
+                
+                <!-- Preparación -->
+                <p class="mb-2">
+                  <strong class="text-secondary">Preparación:</strong>
+                </p>
+                <ol class="mb-4" style="padding-left: 1.5rem;">
+                  {% for paso in item.preparacion.split('\n') %}
+                  {% if paso.strip() != '' %}
+                  <li>{{ paso.strip() }}</li>
+                  {% endif %}
+                  {% endfor %}
+                </ol>
+          
+                <!-- Botones -->
+                <div class="d-flex justify-content-between align-items-center">
+                  
+                  <!-- Botón favoritos -->
+                  <form action="/admin/receta/favoritos/{{ item.idReceta }}" method="post"
+                            style="display:inline;">
+                            <button type="submit"
+                                class="btn {{ 'btn-outline-warning' if item.favoritos else 'btn-outline-secondary' }} btn-sm">
+                                {% if item.favoritos %}
+                                Quitar de Favoritos
+                                {% else %}
+                                Añadir a Favoritos
+                                {% endif %}
+                            </button>
+                        </form>
+                        <div>
+                            <a href="/admin/receta/edit/{{ item.idReceta }}" class="btn btn-info">EDITAR</a>
+                            <form action="/admin/receta/eliminar/{{ item.idReceta }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta receta?');">ELIMINAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+{% endblock %}

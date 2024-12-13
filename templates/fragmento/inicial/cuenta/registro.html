@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block content %}
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title p-4">
+    <div class="container d-lg-flex justify-content-center align-items-center">
+      <h1 class="mb-2 mb-lg-0">Sign Up</h1>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h5 class="card-title text-center text-primary mb-4">¡Welcome!</h5>
+              <p class="text-center mb-4">Regístrate para gozar de todos los beneficios</p>
+              <form class="row g-3 needs-validation" method="POST" action="/admin/account/save" novalidate>
+                
+                <!-- Correo -->
+                <div class="col-12">
+                  <label for="correo" class="form-label fw-bold">Dirección de correo electrónico</label>
+                  <input type="email" class="form-control border-primary" id="correo" name="correo" placeholder="Ingrese su correo" required>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="col-12">
+                  <label for="clave" class="form-label fw-bold">Contraseña</label>
+                  <input type="password" class="form-control border-primary" id="clave" name="clave" placeholder="Introduce tu contraseña" required>
+                </div>
+
+                <!-- Botones -->
+                <div class="col-12 text-center mt-4">
+                  <button class="btn btn-success px-4 py-2" type="submit">
+                    <i class="fa fa-paper-plane"></i> Registrarse 
+                  </button>
+                  <a href="/admin/account/list" class="btn btn-danger px-4 py-2">
+                    <i class="fa fa-times"></i> Cancelar
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}
