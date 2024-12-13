@@ -79,8 +79,8 @@ public class ReseniaApi {
 
             
             rs.getResenia().setComentario(map.get("comentario").toString());
-            rs.getResenia().setIdPersona(Integer.parseInt(map.get("idPersona").toString()));
-            rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
+            // rs.getResenia().setIdPersona(Integer.parseInt(map.get("idPersona").toString()));
+            // rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
             rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
             rs.getResenia().setFecha(new Date());
             rs.getResenia().getCalificacion();
