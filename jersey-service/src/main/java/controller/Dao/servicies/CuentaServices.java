@@ -33,12 +33,6 @@ public class CuentaServices {
 
 
 
-
-
-
-
-
-
     private CuentaDao obj;
 
     public CuentaServices(){
