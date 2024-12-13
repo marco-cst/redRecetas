@@ -25,7 +25,7 @@ public class CuentaDao extends AdapterDao<Cuenta> {
 
     public LinkedList<Cuenta> getListAll() {
         if (listAll == null) {
-            listAll = new LinkedList<>();
+            listAll = listAll();
         }
         return this.listAll;
     }
