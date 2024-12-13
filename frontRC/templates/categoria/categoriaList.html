@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+{% block content %}
+
+<div class="pagetitle">
+    <div class="col-12 d-flex flex-column align-items-center">
+      <h2 class="mt-4 text-black">Categorias </h2>
+      <div class="d-flex justify-content-end w-100 mb-3">
+        <a href="/admin/categoria/register">Nuevo</a>
+      </div>
+      
+      <div class="table-responsive w-100">
+        <table class="table table-custom text-black custom-table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>categoria</th>
+              <th>Es salado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if list %}
+              {% for item in list %}
+              <tr id="row-{{ item.idcategoria }}">
+                <!-- <td>{{ loop.index }}</td> -->
+                 <td>{{ item.idCategoria}}</td>
+                <td>{{ item.tipo }}</td>
+                <td>{{ item.estado}}</td>
+                <td>
+                  <a href="/admin/categoria/edit" class="btn btn-custom">Modificar</a>
+                  <button class="btn btn-custom" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
+                </td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="4" class="text-center">No hay categoria.</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    function deleteRow(index) {
+      const row = document.getElementById(row-$,{index});
+      if (confirm("¿Deseaa eliminar cliente?")) {
+        row.remove(); 
+      }
+    }
+  </script>
+{% endblock %}

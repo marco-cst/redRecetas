@@ -12,6 +12,6 @@
     {
         "idCategoria": 3,
         "tipo": "Dulce",
-        "estado": true
+        "estado": false
     }
 ]
