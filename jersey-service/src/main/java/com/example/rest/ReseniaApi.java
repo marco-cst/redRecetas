@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.google.gson.Gson;
+
 import controller.Dao.servicies.ReseniaServices;
 
 
@@ -62,7 +64,7 @@ public class ReseniaApi {
         return Response.ok(map).build();
     }
 
-/*
+
     @Path("/save")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -75,8 +77,12 @@ public class ReseniaApi {
         try {
             ReseniaServices rs = new ReseniaServices();
 
-            // rs.getResenia().setIdResenia(1);
-            rs.getResenia().getComentario(map.get("Resenia").toString());
+            
+            rs.getResenia().setComentario(map.get("comentario").toString());
+            rs.getResenia().setIdPersona(Integer.parseInt(map.get("idPersona").toString()));
+            rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
+            rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
+            rs.getResenia().setFecha(new Date());
             rs.getResenia().getCalificacion();
 
             // ps.getInversionista().setNombre(map.get("nombre").toString());
@@ -95,7 +101,7 @@ public class ReseniaApi {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
- */
+ 
 
     @Path("/delete")
     @POST
