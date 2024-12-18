@@ -7,4 +7,5 @@ public interface InterfazDao<T> {
     public LinkedList listAll();
     public T get(Integer id) throws Exception;
     
+    
 }

@@ -83,4 +83,12 @@ public class AdapterDao<T> implements InterfazDao<T> {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
+
+    public boolean supreme(Integer id) throws Exception {
+        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
+        list.remove(id); //Elimina el objeto en la posición index
+        String info = g.toJson(list.toArray()); //Convierte la lista en un String JSON
+        saveFile(info); //Guarda el String JSON en un archivo
+        return true; //Retorna verdadero si se eliminó correctamente
+    }
 }

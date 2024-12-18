@@ -119,7 +119,7 @@ public class LinkedList<E> {
 
    
     
-   public E deleteFirst() throws ListEmptyException {
+   public E removeFirst() throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
         } else {
@@ -135,7 +135,7 @@ public class LinkedList<E> {
         }
         
         
-    public E deleteLast() throws ListEmptyException {
+    public E removeLast() throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
         } else{
@@ -158,48 +158,29 @@ public class LinkedList<E> {
         }
     }
 
-    public E delete(Integer post) throws ListEmptyException {
+    public E remove(Integer post) throws ListEmptyException {
         if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacía");
+            throw new ListEmptyException("Error, lista vacia");
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
-            return deleteFirst(); // Elimina el primer nodo
+            return removeFirst();
         } else if (post == (size - 1)) {
-            return deleteLast(); // Elimina el último nodo
+            return removeLast();
         } else {
-            Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
-            Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
-            E element = current.getInfo(); // Información del nodo a eliminar
-            Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
-    
-            previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
-            size--; // Disminuye el tamaño de la lista
-            return element; // Devuelve la información del nodo eliminado
-        }
-    }
-    
-    public boolean remove(E element) {
-        if (isEmpty()) return false;
-        
-        if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
-            header = header.getNext();
+            Node<E> preview = getNode(post - 1);
+            Node<E> actually = getNode(post);
+            E element = preview.getInfo();
+            Node<E> next = actually.getNext();
+            actually = null;
+            preview.setNext(next);
             size--;
-            return true;
+            return element;
+
         }
-        
-        Node<E> current = header;
-        while (current.getNext() != null) {
-            if (current.getNext().getInfo().equals(element)) {
-                current.setNext(current.getNext().getNext());
-                size--;
-                return true;
-            }
-            current = current.getNext();
-        }
-        
-        return false; // Elemento no encontrado
     }
+    
+   
     
 
     public void reset() {
@@ -299,6 +280,8 @@ public class LinkedList<E> {
             return (a.toString().compareTo(b.toString()) > 0);
         }
     }
+
+    
 }
 
 

@@ -30,22 +30,30 @@ public class CuentaDao extends AdapterDao<Cuenta> {
         return this.listAll;
     }
 
-   public Boolean update () throws Exception{
-        this.merge(getCuenta(),getCuenta().getIdCuenta()-1);
+    public Boolean update() throws Exception {
+        this.merge(getCuenta(), getCuenta().getIdCuenta() - 1);
         this.listAll = this.listAll();
         return true;
-   }
+    }
 
-   public Boolean save() throws Exception{
-    Integer id = listAll().getSize() + 1;
-    cuenta.setIdCuenta(id);
-    this.persist(this.cuenta);
-    this.listAll = listAll();
-    return true;
-}
+    public Boolean save() throws Exception {
+        Integer id = listAll().getSize() + 1;
+        cuenta.setIdCuenta(id);
+        this.persist(this.cuenta);
+        this.listAll = listAll();
+        return true;
+    }
 
-
-
-
+    public Boolean delete(int id) throws Exception {
+        LinkedList<Cuenta> list = getListAll();
+        for (int i = 0; i < list.getSize(); i++) {
+            if (list.get(i).getIdCuenta() == id) {
+                this.supreme(id);
+                this.listAll = listAll(); // Actualiza la lista de objetos
+                return true; // Retorna verdadero si se eliminó correctamente
+            }
+        }
+        return false; // Retorna falso si no se encontró el ID
+    }
 
 }
