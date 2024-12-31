@@ -3,6 +3,8 @@ package com.example.rest;
 import java.util.HashMap;
 
 import controller.Dao.servicies.RecetaServicies;
+import models.Receta;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -79,11 +81,12 @@ public class RecetaApi {
             ps.getReceta().setPreparacion(map.get("preparacion").toString());
             ps.getReceta().setPorciones(Integer.parseInt(map.get("porciones").toString()));
 
-
+            ps.validarReceta(ps.getReceta());
             ps.save();
 
             res.put("msg", "Ok");
             res.put("data", "Receta guardada exitosamente");
+            res.put("fecha", ps.getReceta().getFechaPublicacion());
             return Response.ok(res).build();
 
         } catch (Exception e) {
@@ -103,12 +106,20 @@ public class RecetaApi {
 
         try {
             RecetaServicies ps = new RecetaServicies();
+            Receta recetaExistente = ps.get(Integer.parseInt(map.get("idReceta").toString()));
+            ps.setReceta(recetaExistente);
             ps.setReceta(ps.get(Integer.parseInt(map.get("idReceta").toString())));
             ps.getReceta().setNombre(map.get("nombre").toString());
             ps.getReceta().setPreparacion(map.get("preparacion").toString());
             ps.getReceta().setPorciones(Integer.parseInt(map.get("porciones").toString()));
+            int porciones = Integer.parseInt(map.get("porciones").toString());
+            if (porciones <= 0) {
+                throw new Exception("Las porciones deben ser un número entero mayor a cero.");
+            }
+            ps.getReceta().setPorciones(porciones);
             ps.getReceta().setFavoritos(Boolean.parseBoolean(map.get("favoritos").toString()));
-            
+
+            ps.validarReceta(ps.getReceta());
             ps.update();
 
             res.put("msg", "Ok");
@@ -126,13 +137,13 @@ public class RecetaApi {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteRe(@PathParam("id") int id) {
         HashMap<String, Object> res = new HashMap<>();
-    
+
         try {
             RecetaServicies fs = new RecetaServicies();
-            
+
             // Intentar eliminar la reseña por ID
             boolean recetaDeleted = fs.delete(id);
-    
+
             if (recetaDeleted) {
                 res.put("message", "Receta eliminada exitosamente");
                 return Response.ok(res).build();
