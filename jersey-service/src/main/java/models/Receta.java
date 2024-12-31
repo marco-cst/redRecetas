@@ -1,18 +1,18 @@
 package models;
+
 import java.util.Date;
 
 public class Receta {
+
     private Integer idReceta;
-    private String Nombre;
-    private Date fecha_Publicacion;
+    private String nombre;
+    private Date fechaPublicacion;
     private String preparacion;
     private Integer porciones;
     private Boolean favoritos;
 
-
     public Receta() {
     }
-
 
     public Integer getidReceta() {
         return idReceta;
@@ -23,19 +23,19 @@ public class Receta {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
-    public Date getFecha_Publicacion() {
-        return fecha_Publicacion;
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
     }
 
-    public void setFecha_Publicacion(Date fecha_Publicacion) {
-        this.fecha_Publicacion = fecha_Publicacion;
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
 
     public String getPreparacion() {
