@@ -6,7 +6,6 @@ public class Receta {
 
     private Integer idReceta;
     private String nombre;
-    //Incormporar la fecha de publicacion
     private Date fechaPublicacion;
     private String preparacion;
     private Integer porciones;
