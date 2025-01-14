@@ -75,9 +75,32 @@ public class IngredientesApi {
 
         try {
             IngredientesServicies ps = new IngredientesServicies();
-            ps.getIngredientes().setNombre(map.get("nombre").toString());
-            ps.getIngredientes().setCantidad(Float.parseFloat(map.get("cantidad").toString()));
-            ps.getIngredientes().setUnidadMedida(map.get("unidadMedida").toString());
+
+            // Validación de campos obligatorios
+            if (!map.containsKey("nombre") || map.get("nombre").toString().isEmpty()) {
+                throw new IllegalArgumentException("El nombre del ingrediente es obligatorio.");
+            }
+            if (!map.containsKey("cantidad") || map.get("cantidad").toString().isEmpty()) {
+                throw new IllegalArgumentException("La cantidad es obligatoria.");
+            }
+
+            // Formatear nombre
+            String nombre = map.get("nombre").toString().trim();
+            nombre = Character.toUpperCase(nombre.charAt(0)) + nombre.substring(1).toLowerCase();
+            ps.getIngredientes().setNombre(nombre);
+
+            // Validación de cantidad
+            float cantidad = Float.parseFloat(map.get("cantidad").toString());
+            if (cantidad <= 0) {
+                throw new IllegalArgumentException("La cantidad debe ser mayor a cero.");
+            }
+            ps.getIngredientes().setCantidad(cantidad);
+
+            // Asignar unidad de medida
+            String unidadMedida = map.containsKey("unidadMedida") && !map.get("unidadMedida").toString().isEmpty()
+                    ? map.get("unidadMedida").toString()
+                    : "No especificado";
+            ps.getIngredientes().setUnidadMedida(unidadMedida);
 
             ps.save();
 
@@ -103,10 +126,33 @@ public class IngredientesApi {
         try {
             IngredientesServicies ps = new IngredientesServicies();
             ps.setIngredientes(ps.get(Integer.parseInt(map.get("idIngredientes").toString())));
-            ps.getIngredientes().setNombre(map.get("nombre").toString());
-            ps.getIngredientes().setCantidad(Float.parseFloat(map.get("cantidad").toString()));
-            ps.getIngredientes().setUnidadMedida(map.get("unidadMedida").toString());
-            
+
+            // Validación de campos obligatorios
+            if (!map.containsKey("nombre") || map.get("nombre").toString().isEmpty()) {
+                throw new IllegalArgumentException("El nombre del ingrediente es obligatorio.");
+            }
+            if (!map.containsKey("cantidad") || map.get("cantidad").toString().isEmpty()) {
+                throw new IllegalArgumentException("La cantidad es obligatoria.");
+            }
+
+            // Formatear nombre
+            String nombre = map.get("nombre").toString().trim();
+            nombre = Character.toUpperCase(nombre.charAt(0)) + nombre.substring(1).toLowerCase();
+            ps.getIngredientes().setNombre(nombre);
+
+            // Validación de cantidad
+            float cantidad = Float.parseFloat(map.get("cantidad").toString());
+            if (cantidad <= 0) {
+                throw new IllegalArgumentException("La cantidad debe ser mayor a cero.");
+            }
+            ps.getIngredientes().setCantidad(cantidad);
+
+            // Asignar unidad de medida
+            String unidadMedida = map.containsKey("unidadMedida") && !map.get("unidadMedida").toString().isEmpty()
+                    ? map.get("unidadMedida").toString()
+                    : "No especificado";
+            ps.getIngredientes().setUnidadMedida(unidadMedida);
+
             ps.update();
 
             res.put("msg", "Ok");
@@ -124,13 +170,13 @@ public class IngredientesApi {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteRe(@PathParam("id") int id) {
         HashMap<String, Object> res = new HashMap<>();
-    
+
         try {
             IngredientesServicies fs = new IngredientesServicies();
-            
+
             // Intentar eliminar la reseña por ID
             boolean IngreDeleted = fs.delete(id);
-    
+
             if (IngreDeleted) {
                 res.put("message", "Ingredientes eliminados exitosamente");
                 return Response.ok(res).build();
