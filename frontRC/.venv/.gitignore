@@ -52,3 +52,12 @@ media/
 # Migraciones innecesarias (si usas un ORM como Django)
 */migrations/*.py
 !*/migrations/__init__.py
+
+# Ignorar caché de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar entornos virtuales
+virtual/
+env/
+.env/
