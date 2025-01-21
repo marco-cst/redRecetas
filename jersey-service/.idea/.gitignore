@@ -1,8 +1,23 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+# Archivos y carpetas específicas del entorno
+/.idea/
+*.iml
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación y dependencias
+/target/
+*.class
+*.jar
+*.war
+
+# Archivos temporales
+*.tmp
+*.swp
+*.bak
+
+# Configuraciones locales
+/.vscode/
+.env
