@@ -33,7 +33,7 @@ def admin_contact():
 def admin_template():
     return render_template('template.html')
 
-    #resenia
+    #dat
 
 @router.route('/admin/resenia/list')
 def admin_resenia_list():
@@ -59,7 +59,7 @@ def save_resenia():
         # "fecha": form["fecha"],
     }
     
-    r = requests.post("http://localhost:8086/api/resenia/save", data=json.dumps(dataF), headers=headers)
+    r = requests.post("http://localhost:8086/api/resenia/save", data= json.dumps(dataF), headers=headers)
     dat = r.json()
     
     if r.status_code == 200:
@@ -99,19 +99,49 @@ def save_resenia():
 
 
 
-@router.route('/admin/resenia/edit')
-def view_edit_inversionista():
+@router.route('/admin/resenia/edit/<int:id>')
+def view_edit_inversionista(id):
     r = requests.get("http://localhost:8086/api/resenia/list")
     data = r.json()
+    r1 = requests.get(f"http://localhost:8086/api/resenia/get/{id}")
+    data1 = r1.json()
     
-    return render_template('resenia/actualizar.html', list=data["data"], resenia=data["data"])
+    # return render_template('resenia/actualizar.html', list=data["data"], resenia=data["data"])
+
+    if r1.status_code == 200:
+        return render_template('resenia/actualizar.html', list=data["data"], resenia=data1["data"])
+    else:
+        flash("resenia no encontrado", category='error')
+        return redirect("/admin/resenia/list")
+
+
+# @router.route('/admin/universidad/edit/<int:id>')
+# def view_edit_sintetica(id):
+#     r = requests.get("http://localhost:8090/api/universidad/list")
+#     data = r.json()
+#     r1 = requests.get(f"http://localhost:8090/api/universidad/get/{id}")
+#     data1 = r1.json()
+    
+#     if r1.status_code == 200:
+#         return render_template('tmpl/editar.html', list=data["data"], sintetica=data1["data"])
+#     else:
+#         flash("sintetica no encontrado", category='error')
+#         return redirect("/admin/universidad/list")
+
+
 
 @router.route('/admin/resenia/update', methods=["POST"])
 def update_resenia():
     headers = {'Content-type': 'application/json'}
     form = request.form
+    # dataF = {
+    #     "comentario": form["comt"],
+    #     "calificacion": form["calf"],
+    # }
     dataF = {
+        "idResenia": form["id"],
         "comentario": form["comt"],
+        # "calificacion": float(form["calificacion"]),
         "calificacion": form["calf"],
     }
     
@@ -119,12 +149,30 @@ def update_resenia():
     dat = r.json()
     
     if r.status_code == 200:
-        flash("Inversionista actualizado correctamente", category='info')
-        # registrar_historial("actualizar", "inversionista", f"Inversionista {form['nom']} {form['ape']} actualizado")
+        print("Respuesta de la API:", dat)
+        flash("resenia actualizado correctamente", category='info')
     else:
         flash(str(dat["data"]), category='error')
 
     return redirect("/admin/resenia/list")
+
+#     dataF = {
+#         "idSintetica": form["id"],
+#         "nombre": form["nombre"],
+#             "latitud": float(form["latitud"]),
+#             "longitud": float(form["longitud"]), 
+#             "tipo": form["tipo"],
+#     }
+#     r = requests.post("http://localhost:8090/api/universidad/update", data=json.dumps(dataF), headers=headers)
+#     dat = r.json()
+    
+#     if r.status_code == 200:
+#         flash("sintetica actualizado correctamente", category='info')
+       
+#     else:
+#         flash(str(dat["data"]), category='error')
+
+#     return redirect("/admin/universidad/list")
 
 
     #EJEMPLO CRUD

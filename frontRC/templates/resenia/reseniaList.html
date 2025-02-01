@@ -14,6 +14,7 @@
             <tr>
               <th>Id</th>
               <th>Resenia</th>
+              <th>Calificacion</th>
               <th>Fecha(segundos)</th>
             </tr>
           </thead>
@@ -24,10 +25,12 @@
                 <!-- <td>{{ loop.index }}</td> -->
                  <td>{{ item.idResenia}}</td>
                 <td>{{ item.comentario }}</td>
+                <td>{{ item.calificacion}}</td>
                 <td>{{ item.fecha}}</td>
                 <td>
-                  <a href="/admin/resenia/edit" class="btn btn-custom">Modificar</a>
+                  <a href="/admin/resenia/edit/{{ item.idResenia }}" class="btn btn-custom">Modificar</a>
                   <button class="btn btn-custom" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
+
                 </td>
               </tr>
               {% endfor %}
