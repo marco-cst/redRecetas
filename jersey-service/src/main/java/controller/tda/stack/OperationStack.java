@@ -29,11 +29,5 @@ public class OperationStack<E> extends LinkedList<E> {
         }
     }
 
-    public E pop() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("La pila está vacía");
-        } else {
-            return deleteLast(); 
-        }
-    }
+    
 }

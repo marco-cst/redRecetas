@@ -35,11 +35,5 @@ public class OperationQueuque<E> extends LinkedList<E> {
         }
     }
     
-    public E dequeuque() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("La cola está vacía");
-        } else {
-            return deleteLast();
-        }
-    }
+    
 }

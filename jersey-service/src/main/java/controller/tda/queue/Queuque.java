@@ -30,7 +30,5 @@ public class Queuque<E> {
         queuqu.reset(); 
     }
 
-    public E dequeuque() throws ArrayPositionException, ListEmptyException {
-        return queuqu.dequeuque();
-    }
+    
 }

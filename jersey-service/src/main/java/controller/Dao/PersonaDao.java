@@ -28,13 +28,65 @@ public class PersonaDao extends AdapterDao<Persona> {
         }
         return listAll; //Devuelve la lista de objetos de la variable listAll
     }
-    public Boolean save() throws Exception{ //Guarda la variable persona en la lista de objetos
-        Integer id = getlistAll().getSize()+1; //Obtiene el tamaño de la lista y le suma 1 para asignar un nuevo id
-        persona.setIdPersona(id); //Asigna el id a persona
-        this.persist(this.persona); //Guarda la persona en la lista de objetos LinkedList y en el archivo JSON
-        this.listAll = listAll(); //Actualiza la lista de objetos
-        return true; //Retorna verdadero si se guardó correctamente
+
+
+    public Boolean save() throws Exception {
+        // Validar entradas vacías o solo espacios en blanco
+        if (persona.getDNI().trim().isEmpty()) {
+            throw new Exception("El DNI no puede estar vacío o contener solo espacios.");
+        }
+        if (persona.getApodo().trim().isEmpty()) {
+            throw new Exception("El apodo no puede estar vacío o contener solo espacios.");
+        }
+        // Validar que no existan duplicados en el DNI y el Apodo
+        LinkedList<Persona> allRecords = (LinkedList<Persona>) listAll(); // Lanzará una excepción si el tipo no coincide
+
+        for (int i = 0; i < allRecords.getSize(); i++) {
+            Object record = allRecords.get(i); // Obtener el registro actual
+        
+            if (record instanceof Persona) { // Verificar si es una instancia de Persona
+                Persona existingPersona = (Persona) record;
+        
+                // Validar duplicado de DNI
+                if (existingPersona.getDNI().equalsIgnoreCase(persona.getDNI())) {
+                    throw new Exception("El DNI ya está registrado.");
+                }
+        
+                // Validar duplicado de Apodo
+                if (existingPersona.getApodo().equalsIgnoreCase(persona.getApodo())) {
+                    throw new Exception("El apodo ya está registrado.");
+                }
+            }
+        }
+        
+        // Asignar ID y guardar el registro
+        Integer id = listAll().getSize() + 1; // Obtener el tamaño de la lista actual y sumarle 1 para el nuevo ID
+        persona.setIdPersona(id); // Asignar el ID único
+        this.persist(this.persona); // Guardar el objeto persona en la lista y el archivo JSON
+    
+        return true; // Retornar verdadero si se guardó correctamente
     }
+
+    public Boolean update() throws Exception{ //Actualiza el nodo Persona en la lista de objetos
+        this.merge(getPersona(), getPersona().getIdPersona()-1);  //Envia la persona a actualizar con su index 
+        this.listAll = listAll();  //Actualiza la lista de objetos
+        return true; 
+    }
+
+    public Boolean delete(int id) throws Exception {
+        LinkedList<Persona> list = getlistAll();
+        for (int i = 0; i < list.getSize(); i++) {
+            if (list.get(i).getIdPersona() == id) {
+                this.supreme(i);
+                this.listAll = listAll(); // Actualiza la lista de objetos
+                return true; // Retorna verdadero si se eliminó correctamente
+            }
+        }
+        return false; // Retorna falso si no se encontró el ID
+    }
+
+
+
 
     public LinkedList order(Integer type_order, String atributo){
         LinkedList listita = listAll(); //Obtiene la lista de objetos
@@ -72,6 +124,27 @@ public class PersonaDao extends AdapterDao<Persona> {
         }
         return false;
     }
+
+
+    public Persona buscar_identificacion(String texto) {
+        Persona persona = null;
+        LinkedList<Persona> listita = listAll();
+        if (!listita.isEmpty()) {
+            Persona[] aux = listita.toArray();
+            for (int i = 0; i < aux.length; i++) {
+
+                if (aux[i].getDNI().equals(texto)) {
+
+                    persona = aux[i];
+                    break;
+                }
+            }
+        }
+        return persona;
+    }
+
+
+
     
     
 }

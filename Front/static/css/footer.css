@@ -1,0 +1,180 @@
+.footer-section {
+    background-color: #d87d76;
+    /* Fondo oscuro elegante */
+    color: #020202;
+    /* Texto blanco */
+    padding: 50px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-section .container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-section .logo img {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.fs-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.fs-left p {
+    font-size: 24px;
+    color: #1d2020;
+    margin-top: 10px;
+}
+
+.copyright-text {
+    text-align: center;
+    font-size: 14px;
+    color: #070606;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+.copyright-text a {
+    color: #ff6f61;
+    /* Color llamativo para los enlaces */
+    text-decoration: none;
+    font-weight: 1500;
+}
+
+.copyright-text a:hover {
+    color: #111010;
+    /* Efecto de hover */
+}
+
+.footer-section .row .col-lg-6 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-section .social-icons {
+    margin-top: 20px;
+}
+
+.footer-section .social-icons a {
+    margin: 0 10px;
+    font-size: 18px;
+    color: #141212;
+    transition: 0.3s ease;
+}
+
+.footer-section .social-icons a:hover {
+    color: #ff6f61;
+    transform: scale(1.1);
+}
+
+.top-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+
+
+.Versatil {
+    background-color: #faf6f6; /* Color de fondo rojo suave */
+    width: 160%; /* El ancho del div */
+    max-width: 1200px; /* Limita el ancho máximo del div */
+    margin: 15px auto; /* Centra el div horizontalmente y agrega un pequeño margen arriba y abajo */
+    padding: 30px; /* Espaciado interno para que el contenido no esté pegado a los bordes */
+    border-radius: 15px; /* Bordes redondeados para un diseño más suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    border: 3px solid #e74c3c; /* Borde delgado de color más oscuro que el fondo */
+    transition: all 0.3s ease-in-out; /* Transición suave para interacciones */
+}
+
+/* Efecto cuando el div recibe hover */
+.Versatil:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Aumentar sombra al hacer hover */
+    transform: scale(1.03); /* Ligeramente aumentar el tamaño del div */
+}
+
+
+a[data-tooltip]:hover::after {
+   
+    background-color: #333;
+    color: #fff;
+   
+    white-space: nowrap;
+    top: 100%; /* Ajustar para que quede debajo del enlace */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+}
+
+
+a[data-tooltip]::after {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre los ítems */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center; /* Centra verticalmente los íconos con el texto */
+    gap: 5px; /* Espacio entre texto y el ícono */
+}
+
+ul li svg {
+    display: inline-block;
+    vertical-align: middle; /* Asegura que el ícono esté alineado con el texto */
+}
+
+
+/* Estilo base */
+.menu-item {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000; /* Color inicial */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre texto e ícono */
+    transition: color 0.3s, background-color 0.3s; /* Transición suave */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 5px; /* Esquinas redondeadas */
+}
+
+/* Efecto hover */
+.menu-item:hover {
+    color: #fff; /* Cambia el texto a blanco */
+    background-color: #000; /* Fondo negro */
+}
+
+
+
+
+
+
+
+
+  
+  
+  

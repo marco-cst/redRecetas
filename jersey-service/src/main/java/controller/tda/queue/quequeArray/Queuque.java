@@ -31,8 +31,6 @@ public class Queuque<E>{
         queuqu.reset();
     }
     
-    public E dequeuque() throws ListEmptyException {
-        return queuqu.dequeuque();
-    }
+   
     
 }

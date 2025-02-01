@@ -1,6 +1,15 @@
 package controller.tda.list;
 
-public class LinkedList<E> {
+import controller.tda.list.LinkedList;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.StreamSupport;
+import java.util.stream.Stream;
+
+
+
+public class LinkedList<E> implements Iterable<E> {
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
     private Node<E> last;   // Nodo último (el último nodo de la lista)
     private Integer size;   // Tamaño de la lista (cuenta el número de nodos en la lista)
@@ -280,6 +289,37 @@ public class LinkedList<E> {
             return (a.toString().compareTo(b.toString()) > 0);
         }
     }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private Node<E> current = header;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() {
+                E data = current.getInfo();
+                current = current.getNext();
+                return data;
+            }
+        };
+    }
+
+    @Override
+    public Spliterator<E> spliterator() {  // ✅ Ahora sobrescribe correctamente
+        return Spliterators.spliteratorUnknownSize(iterator(), 0);
+    }
+
+    public Stream<E> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+
+
 
     
 }
