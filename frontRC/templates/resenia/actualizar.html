@@ -13,15 +13,19 @@
           <div class="card-body custom-card-body">
             <h5 class="card-title">Ingresa los datos del inversionista </h5>
             <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/update" novalidate>
-              <input type="hidden" value="{{ resenia.idResenia }}" name="id" />
+              <input type="hidden" name="id" value="{{ resenia.idResenia }}"/>
+
               <div class="mb-3">
-                <label for="comt" class="form-label">Reseña</label>
-                <input type="text" class="form-control" name="comt" required value="{{resenia.comentario}}">
+                <label for="comentario" class="form-label">Reseña</label>
+                <!-- <input type="text" class="form-control" id="nombre" name="comt" value="{{resenia.comentario}}" required> -->
+                <input type="text" class="form-control" id="comentario" name="comentario" value="{{ resenia.comentario }}" required>
               </div>
+
               <div class="mb-3">
-                <label for="calf" class="form-label">Calificacion</label>
+                <label for="calificacion" class="form-label">Calificacion</label>
                 <!-- <input type="Float" class="form-control" name="calificacion" required value="{{ resenia.calificacion }}"> -->
-                <input type="text" class="form-control" name="calf" required value="{{resenia.calificacion}}">
+                <!-- <input type="text" class="form-control" id="calificacion" name="calf" value="{{resenia.calificacion}}" required> -->
+                <input type="text" class="form-control" id="calificacion" name="calificacion" value="{{ resenia.calificacion }}" required>
               </div>
 
               <button type="submit" class="btn btn-primary">Guardar</button>

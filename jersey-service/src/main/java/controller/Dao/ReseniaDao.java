@@ -127,18 +127,26 @@ public class ReseniaDao extends AdapterDao<Resenia> {
         return true;
     }
 
-    public Boolean update() throws Exception {
-        try {
-            this.merge(getResenia(), getResenia().getIdResenia() - 1);
-            this.listAll = getListAll(); 
-            System.out.println("Inversionista actualizado correctamente.");
-            return true;
-        } catch (Exception e) {
-            System.out.println("Error al actualizar inversionista: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+    // public Boolean update() throws Exception {
+    //     try {
+    //         this.merge(getResenia(), getResenia().getIdResenia() - 1);
+    //         this.listAll = getListAll(); 
+    //         System.out.println("Inversionista actualizado correctamente.");
+    //         return true;
+    //     } catch (Exception e) {
+    //         System.out.println("Error al actualizar inversionista: " + e.getMessage());
+    //         e.printStackTrace();
+    //         return false;
+    //     }
+    // }
+
+    
+    public Boolean update() throws Exception { // Actualiza el nodo Receta en la lista de objetos
+        this.merge(getResenia(), getResenia().getIdResenia() - 1); // Envia la Receta a actualizar con su index
+        this.listAll = listAll(); // Actualiza la lista de objetos
+        return true;
     }
+
 
     public Boolean delete(Integer id) throws Exception {
         LinkedList<Resenia> list = getListAll(); 

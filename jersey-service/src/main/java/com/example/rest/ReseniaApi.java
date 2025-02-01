@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import com.google.gson.Gson;
 
 import controller.Dao.servicies.ReseniaServices;
+import models.Receta;
 import models.Resenia;
 
 
@@ -131,6 +132,50 @@ public class ReseniaApi {
         }
     }
 
+
+
+    @Path("/update")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response update(HashMap map) {
+
+        HashMap res = new HashMap<>();
+
+        try {
+            ReseniaServices rs = new ReseniaServices();
+            Resenia reseniaExisente = rs.get(Integer.parseInt(map.get("idResenia").toString()));
+            rs.setResenia(reseniaExisente);
+            rs.setResenia(rs.get(Integer.parseInt(map.get("idReceta").toString())));
+            rs.getResenia().setComentario(map.get("comentario").toString());
+            rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
+            rs.getResenia().setFecha(new Date());
+            // rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
+
+            // rs.setResenia()rs.set(map.get("nombre").toString());;
+            // rs.setResenia().setPreparacion(map.get("preparacion").toString());
+            // ps.setResenia().setPorciones(Integer.parseInt(map.get("porciones").toString()));
+            float calificacion = Float.parseFloat(map.get("calificacion").toString());
+            if (calificacion < 1.0 && calificacion <= 5.0) {
+                throw new Exception("Las calificacion debe ser: mayor a uno y maximo 5.");
+            }
+            rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
+            rs.getResenia().setComentario(map.get("comentario").toString());
+
+            rs.update();
+
+            res.put("msg", "Ok");
+            res.put("data", "Resenia actualizada exitosamente");
+            return Response.ok(res).build();
+        } catch (Exception e) {
+            res.put("msg", "Error");
+            res.put("data", e.getMessage());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
+        }
+    }
+
+
+    /*
     @Path("/update")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -182,6 +227,7 @@ public class ReseniaApi {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();        
         }
     }
+        */
 
         /*
         try {
@@ -286,4 +332,16 @@ public class ReseniaApi {
         return Response.ok(map).build();
     }
 
+    
+    @Path("/listType")
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getType() {
+        HashMap map = new HashMap<>();
+        ReseniaServices rs = new ReseniaServices();
+        map.put("msg", "Ok");
+        map.put("data", rs.getResenia());
+        return Response.ok(map).build();
+    }
 }
