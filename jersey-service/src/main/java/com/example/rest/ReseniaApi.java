@@ -102,7 +102,6 @@ public class ReseniaApi {
         }
     }
  
-
     @Path("/delete")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

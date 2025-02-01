@@ -47,8 +47,10 @@ def view_register_resenia():
     data = r.json()
     return render_template('resenia/nwResenia.html', list=data["data"])
 
-@router.route('/admin/resenia/save', methods=["POST"])
-def save_rssenia():
+
+
+@router.route('/admin/resenia/saveResenia', methods=["POST"])
+def save_resenia():
     headers = {'Content-type': 'application/json'}
     form = request.form
     dataF = {
@@ -65,7 +67,37 @@ def save_rssenia():
     else:
         flash(str(dat["data"]), category='error')
 
-    return redirect("/admin/resenia/list")
+    return redirect(url_for("router.admin_resenia_list"))
+
+    # return redirect("/admin/resenia/list")
+    
+#     headers = {'Content-type': 'application/json'}
+#     form = request.form
+#     print("Datos del formulario:", form)
+#     try:
+#         dataF = {
+#             "nombre": form["nombre"],
+#             "latitud": float(form["latitud"]),
+#             "longitud": float(form["longitud"]),
+#             "tipo": form["tipo"],
+#         }
+#         print("Datos enviados al backend:", dataF) 
+#         r = requests.post("http://localhost:8090/api/universidad/save", data=json.dumps(dataF), headers=headers)
+#         dat = r.json()
+#         print("Respuesta de la API:", dat)
+#         if r.status_code == 200:
+#             flash("Sintética guardada correctamente", category='info')
+#         else:
+#             flash("Error al guardar la sintética", category='error')
+
+#     except ValueError:
+#         flash("Error: La latitud y longitud deben ser valores numéricos", category='error')
+
+#     return redirect(url_for("router.list_sintetica"))
+
+
+
+
 
 @router.route('/admin/resenia/edit')
 def view_edit_inversionista():

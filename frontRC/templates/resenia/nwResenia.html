@@ -5,8 +5,10 @@
   <div class="pagetitle text-center">
     <h1 class="text-black">Nueva resenia</h1>
   </div>
-  <h5 class="card-title text-white">Ingresa los datos del inversionista </h5>
-  <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/save" novalidate>
+  
+    <h5 class="card-title text-white">Ingresa los datos del inversionista </h5>
+    <form class="row g-3 needs-validation" method="POST" action="{{ url_for('router.save_resenia') }}" novalidate>
+  <!-- <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/saveResenia" novalidate> -->
     <div class="mb-3">
       <div class="mb-3">
         <label for="comt" class="form-label text-black">Comentario</label>
@@ -22,3 +24,5 @@
   </form>
 </div>
 {% endblock %}
+
+
