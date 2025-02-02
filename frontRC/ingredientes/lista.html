@@ -1,0 +1,94 @@
+{% extends "template.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Ingredientes</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Header Section Begin -->
+    <header class="header-section-other">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="./recipe.html">
+                    <img src="{{ url_for('static', filename='img/foto.png') }}" alt="" width="100" height="100">
+                </a>
+            </div>                     
+            <div class="nav-menu">
+                <nav class="main-menu mobile-menu">
+                    <ul class="d-flex justify-content-center">
+                        <li class="active"><a href="#">SABORES CONECTADOS</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-right search-switch">
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="container mt-5">
+        <div class="pagetitle text-center">
+            <h1>Ingredientes</h1>
+        </div>
+        <div class="text-end mb-3">
+            <a href="/admin/ingre/register" class="btn btn-success">Nuevo Ingrediente</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered text-center mx-auto"
+                style="max-width: 1000px;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Unidad de Medida</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in lista_ingre %}
+                    <tr>
+                        <td>{{ item.idIngrediente }}</td>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>{{ item.unidadMedida }}</td>
+                        <td>
+                            <a href="/admin/ingre/edit/{{ item.idIngredientes }}" class="btn btn-info">EDITAR</a>
+                            <form action="/admin/ingre/eliminar/{{ item.idIngredientes }}" method="POST"
+                                style="display: inline;">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('¿Estás seguro de que deseas eliminar este ingrediente?');">ELIMINAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+{% endblock %}
