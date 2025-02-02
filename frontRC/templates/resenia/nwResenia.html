@@ -11,7 +11,7 @@
         <div class="card custom-card">
           <div class="card-body custom-card-body">
             <h5 class="card-title">Ingresa los datos de la reseña</h5>
-            <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/update" novalidate onsubmit="return validarFormulario()">
+            <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/saveResenia" novalidate onsubmit="return validarFormulario()">
               <input type="hidden" name="id" value="{{ resenia.idResenia }}" />
   
               <!-- Campo para el comentario -->
