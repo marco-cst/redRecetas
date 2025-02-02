@@ -47,25 +47,25 @@ def admin_categoria_list():
 #     data = r.json()
 #     return render_template('categoria/nwCategoria.html', list=data["data"])
 
-@router.route('/admin/categoria/save', methods=["POST"])
-def save_rssenia():
-    headers = {'Content-type': 'application/json'}
-    form = request.form
-    dataF = {
-        "tipo": form["tp"], #ape
-        "estado": form["est"], #nom
-        # "fecha": form["fecha"],
-    }
+# @router.route('/admin/categoria/save', methods=["POST"])
+# def save_rssenia():
+#     headers = {'Content-type': 'application/json'}
+#     form = request.form
+#     dataF = {
+#         "tipo": form["tp"], #ape
+#         "estado": form["est"], #nom
+#         # "fecha": form["fecha"],
+#     }
     
-    r = requests.post("http://localhost:8086/api/categoria/save", data=json.dumps(dataF), headers=headers)
-    dat = r.json()
+#     r = requests.post("http://localhost:8086/api/categoria/save", data=json.dumps(dataF), headers=headers)
+#     dat = r.json()
     
-    if r.status_code == 200:
-        flash("categoria guardado correctamente", category='info')
-    else:
-        flash(str(dat["data"]), category='error')
+#     if r.status_code == 200:
+#         flash("categoria guardado correctamente", category='info')
+#     else:
+#         flash(str(dat["data"]), category='error')
 
-    return redirect("/admin/categoria/list")
+#     return redirect("/admin/categoria/list")
 
 @router.route('/admin/categoria/edit')
 def view_edit_inversionista():
@@ -74,63 +74,29 @@ def view_edit_inversionista():
     
     return render_template('categoria/actualizar.html', list=data["data"], categoria=data["data"])
 
-
-# @router.route('/admin/proyecto/list/search/<categoria>/<texto>')
-# def view_buscar_receta(categoria, texto):
-#     try:
-#         base_url = "http://localhost:8086/api/categoria/list/search"
-
-#         if categoria not in ["SALADO", "DULCE"]: 
-#             flash("Categoría de búsqueda no válida", category='error')
-#             return redirect(url_for('router.list'))
-
-#         criterio = "lineal"
-#         api_url = f"{base_url}/{criterio}/{categoria}/{texto}"
-
-#         r = requests.get(api_url)
-#         data = r.json()
-
-#         if r.status_code == 200:
-#             categoria = data.get("data", [])
-#             return render_template('categoria/categoriaList.html', list=categoria)
-#         else:
-#             flash("No se encontraron resultados", category='info')
-#             return render_template('categoria/categoriaList.html', list=[])
-
-#     except requests.RequestException as e:
-#         flash(f"Error de conexión: {str(e)}", category='error')
-#         return redirect(url_for('router.list'))
-
-@router.route('/admin/proyecto/list/search/<categoria>/<texto>')
-def view_buscar_receta(categoria, texto):
+@router.route('/admin/proyecto/list/search/<categoria>')
+def view_buscar_receta(categoria):
     try:
-        base_url = "http://localhost:8086/api/categoria/list/search"
-
-        # Validar la categoría
+        # Validar la categoría antes de hacer la solicitud
         if categoria not in ["SALADO", "DULCE"]:
-            flash("Categoría de búsqueda no válida", category='error')
-            return redirect(url_for('router.list'))
+            return jsonify({"error": "Categoría de búsqueda no válida"}), 400
 
-        # Construir la URL de la API
-        criterio = "lineal"
-        api_url = f"{base_url}/{criterio}/{categoria}/{texto}"
+        # Construir la URL de la API (corregida)
+        api_url = f"http://localhost:8086/api/categoria/list/search/lineal/categoria/{categoria}"
 
         # Hacer la solicitud a la API
         r = requests.get(api_url)
         data = r.json()
 
         # Verificar la respuesta de la API
-        if r.status_code == 200:
-            categorias = data.get("data", [])
-            return render_template('categoria/categoriaList.html', list=categorias)
+        if r.status_code == 200 and "data" in data:
+            categorias = data["data"]
+            return jsonify(categorias)  # Devolver los datos en formato JSON
         else:
-            flash("No se encontraron resultados", category='info')
-            return render_template('categoria/categoriaList.html', list=[])
+            return jsonify({"error": "No se encontraron resultados"}), 404
 
     except requests.RequestException as e:
-        flash(f"Error de conexión: {str(e)}", category='error')
-        return redirect(url_for('router.list'))
-
+        return jsonify({"error": f"Error de conexión: {str(e)}"}), 500
 
 
 # @router.route('/admin/categoria/update', methods=["POST"])
