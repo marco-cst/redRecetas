@@ -36,6 +36,7 @@ public class ReseniaApi {
             rs.getResenia().setIdPersona(2);
             rs.getResenia().setIdReceta(1);
             rs.getResenia().setFecha(new Date());
+            
             rs.save();
 
             aux = "Nueva Resenia guardada: ";

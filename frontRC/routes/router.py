@@ -103,12 +103,8 @@ def save_resenia():
 def view_edit_resenia(id):
     r = requests.get("http://localhost:8086/api/resenia/list")
     data = r.json()
-    
-    # r = requests.get("http://localhost:8086/api/receta/listType")
-    # data = r.json() #lista resenia = r json()
-    
+
     r1 = requests.get(f"http://localhost:8086/api/resenia/get/{id}")
-    # data1 = r1.json()
    
     if r1.status_code == 200:
         data1 = r1.json()
@@ -148,15 +144,6 @@ def update_resenia():
         return redirect("/admin/resenia/list")
 
 
-    # if r_receta.status_code == 200:
-
-    #     flash("Receta actualizada correctamente", category='info')
-    #     return redirect('/admin/receta/list')
-    # else:
-    #     error_msg = r_receta.json().get("data", "Error al actualizar la receta")
-    #     flash(error_msg, category='error')
-    #     return redirect('/admin/receta/list')
-    
     #EJEMPLO CRUD
 
 # @router.route('/admin/inversionista/list')

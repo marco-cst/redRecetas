@@ -57,4 +57,32 @@
   });
 </script>
 
+<script>
+  function validarResenia() {
+    const comentario = document.getElementById('comentario').value;
+
+    if (/^\d+$/.test(comentario)) {
+      alert("El comentario no puede contener solo números, di algo más.");
+      return false;
+    }
+
+    const groserias = ["asco", "basura", "horrible", "mierda", "puta", "puto","pendejo", "chinga", "verga", "joto", "culero", "pito", "pene"]; 
+    for (const groseria of groserias) {
+      if (comentario.toLowerCase().includes(groseria)) {
+        alert("El comentario contiene lenguaje inapropiado.");
+        return false;
+      }
+    }
+
+    return true; 
+  }
+
+  // Asignar la función al evento submit del formulario
+  document.querySelector('form').addEventListener('submit', function (event) {
+    if (!validarResenia()) {
+      event.preventDefault(); 
+    }
+  });
+</script>
+
 {% endblock %}
