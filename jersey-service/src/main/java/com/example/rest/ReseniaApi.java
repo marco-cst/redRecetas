@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -15,11 +17,12 @@ import javax.ws.rs.core.Response.Status;
 import com.google.gson.Gson;
 
 import controller.Dao.servicies.ReseniaServices;
+import models.Receta;
+import models.Resenia;
 
 
 @Path("resenia")
 public class ReseniaApi {
-
     @GET
     @Path("/saveResenia")
     @Produces(MediaType.APPLICATION_JSON)
@@ -30,10 +33,11 @@ public class ReseniaApi {
 
         try {
             rs.getResenia().setComentario("Perfecto");
-            rs.getResenia().setCalificacion(5f);
+            rs.getResenia().setCalificacion(2);
             rs.getResenia().setIdPersona(2);
             rs.getResenia().setIdReceta(1);
             rs.getResenia().setFecha(new Date());
+            
             rs.save();
 
             aux = "Nueva Resenia guardada: ";
@@ -76,18 +80,11 @@ public class ReseniaApi {
         System.out.println("  " + a);
         try {
             ReseniaServices rs = new ReseniaServices();
-
             
             rs.getResenia().setComentario(map.get("comentario").toString());
-            // rs.getResenia().setIdPersona(Integer.parseInt(map.get("idPersona").toString()));
-            // rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
-            rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
+            rs.getResenia().setCalificacion(Integer.parseInt(map.get("calificacion").toString()));
             rs.getResenia().setFecha(new Date());
             rs.getResenia().getCalificacion();
-
-            // ps.getInversionista().setNombre(map.get("nombre").toString());
-            // ps.getInversionista().setApellido(map.get("apellido").toString());
-            // ps.getInversionista().setDNI(map.get("dni").toString());
 
             rs.save();
             res.put("msg", "Ok");
@@ -103,6 +100,33 @@ public class ReseniaApi {
     }
  
 
+    
+    @Path("/delete/{id}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteResenia(@PathParam("id") int id) {
+        HashMap<String, Object> res = new HashMap<>();
+
+        try {
+            ReseniaServices rs = new ReseniaServices();
+
+            // Intentar eliminar la reseña por ID
+            boolean reseniaDeleted = rs.delete(id);
+
+            if (reseniaDeleted) {
+                res.put("message", "Resenia eliminada exitosamente");
+                return Response.ok(res).build();
+            } else {
+                res.put("message", "Resenia no encontrada o no eliminada");
+                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
+            }
+        } catch (Exception e) {
+            res.put("message", "Error al intentar eliminar la receta");
+            res.put("error", e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+        }
+    }
+    /*
     @Path("/delete")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -130,6 +154,7 @@ public class ReseniaApi {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
+ */
 
     @Path("/update")
     @POST
@@ -140,22 +165,63 @@ public class ReseniaApi {
 
         try {
             ReseniaServices rs = new ReseniaServices();
+            Resenia reseniaExistente = rs.get(Integer.parseInt(map.get("idResenia").toString()));
+            rs.setResenia(reseniaExistente);
             rs.setResenia(rs.get(Integer.parseInt(map.get("idResenia").toString())));
             rs.getResenia().setComentario(map.get("comentario").toString());
-            rs.getResenia().setCalificacion(Float.parseFloat(map.get("calificacion").toString()));
-            rs.getResenia().setFecha(new Date());
-            // rs.getResenia().setIdReceta(Integer.parseInt(map.get("idReceta").toString()));
-            rs.getResenia().setIdResenia(1);
+            rs.getResenia().setCalificacion(Integer.parseInt(map.get("calificacion").toString()));
+
+            int calificacion = Integer.parseInt(map.get("calificacion").toString());
+            if (calificacion < 1 || calificacion > 5) {
+                res.put("msg", "Error");
+                res.put("data", "La calificación debe estar entre 1.0 y 5.0");
+                throw new Exception("Las calificacion debe ser: mayor a uno y maximo 5.");
+            }
+            rs.getResenia().setCalificacion(calificacion);
+
             rs.update();
 
             res.put("msg", "Ok");
-            res.put("data", "Guardado correctamente");
+            res.put("data", "Resenia actualizada exitosamente");
             return Response.ok(res).build();
         } catch (Exception e) {
-            System.out.println("Error en save data" + e.toString());
             res.put("msg", "Error");
-            res.put("data", e.toString());
+            res.put("data", e.getMessage());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
+    }
+
+    @Path("/get/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getResenia(@PathParam("id") Integer id) {
+        HashMap map = new HashMap<>();
+        ReseniaServices rs = new ReseniaServices();
+        try {
+            rs.setResenia(rs.get(id));
+        } catch (Exception e) {
+        }
+
+        map.put("msg", "Ok");
+        map.put("data", rs.getResenia());
+
+
+        if (rs.getResenia().getIdResenia() == null) {
+            map.put("data", "No existe la resenia con ese identificador");
+            return Response.status(Status.BAD_REQUEST).entity(map).build();
+        }
+        return Response.ok(map).build();
+    }
+    
+    @Path("/listType")
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getType() {
+        HashMap map = new HashMap<>();
+        ReseniaServices rs = new ReseniaServices();
+        map.put("msg", "Ok");
+        map.put("data", rs.getResenia());
+        return Response.ok(map).build();
     }
 }

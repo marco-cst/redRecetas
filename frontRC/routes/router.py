@@ -1,7 +1,8 @@
-from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort
+from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort, jsonify
 import requests
 import datetime
 from urllib.parse import quote
+
 
 router = Blueprint('router', __name__)
 
@@ -33,7 +34,7 @@ def admin_contact():
 def admin_template():
     return render_template('template.html')
 
-    #resenia
+    #dat
 
 @router.route('/admin/resenia/list')
 def admin_resenia_list():
@@ -47,8 +48,10 @@ def view_register_resenia():
     data = r.json()
     return render_template('resenia/nwResenia.html', list=data["data"])
 
-@router.route('/admin/resenia/save', methods=["POST"])
-def save_rssenia():
+
+
+@router.route('/admin/resenia/saveResenia', methods=["POST"])
+def save_resenia():
     headers = {'Content-type': 'application/json'}
     form = request.form
     dataF = {
@@ -56,8 +59,8 @@ def save_rssenia():
         "calificacion": form["calf"], #nom
         # "fecha": form["fecha"],
     }
-    
-    r = requests.post("http://localhost:8086/api/resenia/save", data=json.dumps(dataF), headers=headers)
+   
+    r = requests.post("http://localhost:8086/api/resenia/save", data= json.dumps(dataF), headers=headers)
     dat = r.json()
     
     if r.status_code == 200:
@@ -65,35 +68,65 @@ def save_rssenia():
     else:
         flash(str(dat["data"]), category='error')
 
-    return redirect("/admin/resenia/list")
+    return redirect(url_for("router.admin_resenia_list"))
 
-@router.route('/admin/resenia/edit')
-def view_edit_inversionista():
+@router.route('/admin/resenia/edit/<int:id>', methods=['GET'])
+def view_edit_resenia(id):
     r = requests.get("http://localhost:8086/api/resenia/list")
     data = r.json()
-    
-    return render_template('resenia/actualizar.html', list=data["data"], resenia=data["data"])
 
-@router.route('/admin/resenia/update', methods=["POST"])
+    r1 = requests.get(f"http://localhost:8086/api/resenia/get/{id}")
+   
+    if r1.status_code == 200:
+        data1 = r1.json()
+        if "data" in data1 and data1["data"]:
+            resenia = data1["data"]
+            return render_template('resenia/actualizar.html', list=data["data"], resenia=resenia)
+        else:
+            flash("No se encontraron datos para la receta.", category='error')
+            return redirect("/admin/resenia/list")
+    else:
+        flash("Error al obtener la resenia", category='error')
+        return redirect("/admin/resenia/list")
+
+
+@router.route('/admin/resenia/update', methods=['POST'])
 def update_resenia():
     headers = {'Content-type': 'application/json'}
     form = request.form
+    
     dataF = {
+        "idResenia": int(form["id"]),
         "comentario": form["comt"],
-        "calificacion": form["calf"],
+        "calificacion": int(form["calf"]),
     }
     
     r = requests.post("http://localhost:8086/api/resenia/update", data=json.dumps(dataF), headers=headers)
-    dat = r.json()
+    # dat = r.json()
     
     if r.status_code == 200:
-        flash("Inversionista actualizado correctamente", category='info')
-        # registrar_historial("actualizar", "inversionista", f"Inversionista {form['nom']} {form['ape']} actualizado")
+        # print("Respuesta de la API:", dat)
+        flash("resenia actualizado correctamente", category='info')
+        return redirect('/admin/resenia/list')
     else:
-        flash(str(dat["data"]), category='error')
+        error_msg = r.json().get("data", "Error al actualizar la receta")
+        flash(error_msg, category='error')
+        # flash(str(dat["data"]), category='error')
+        return redirect("/admin/resenia/list")
 
-    return redirect("/admin/resenia/list")
 
+@router.route('/admin/resenia/eliminar/<int:id>', methods=['POST'])
+def delete_resenia(id):
+    r_receta = requests.delete(f"http://localhost:8086/api/resenia/delete/{id}")
+
+    if r_receta.status_code == 200:
+        flash("Resenia eliminada correctamente", category='info')
+    elif r_receta.status_code == 404:
+        flash("Resenia no encontrada o no pudo ser eliminada", category='warning')
+    else:
+        flash("Error al intentar eliminar la receta", category='error')
+
+    return redirect('/admin/resenia/list')
 
     #EJEMPLO CRUD
 

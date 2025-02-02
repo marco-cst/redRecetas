@@ -141,7 +141,95 @@ public class LinkedList<E> {
         }
     }
 
+<<<<<<< HEAD
     /*** END BYPOSITION */
+=======
+   
+    
+   public E removeFirst() throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacía");
+        } else {
+            E elemnt = header.getInfo();
+            Node<E> aux = header.getNext();
+            header = aux;
+            if (size.intValue() == 1) {
+                last = null;
+            } 
+            size--;
+            return elemnt;
+            }
+        }
+        
+        
+    public E removeLast() throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacía");
+        } else{
+            E elemnt = last.getInfo();
+            Node<E> aux = getNode(size -2);
+            if (aux == null) {
+                last = null;
+                if (size == 2) {
+                    last = header;
+                }else {
+                header = null;
+                }
+            }else{
+                last = null;
+                last = aux;
+                last.setNext(null);
+            }
+            size--;
+            return elemnt;
+        }
+    }
+
+    public E delete(Integer post) throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacía");
+        } else if (post < 0 || post >= size) {
+            throw new IndexOutOfBoundsException("Error, fuera de rango");
+        } else if (post == 0) {
+            return removeFirst(); // Elimina el primer nodo
+        } else if (post == (size - 1)) {
+            return removeLast(); // Elimina el último nodo
+        } else {
+            Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
+            Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
+            E element = current.getInfo(); // Información del nodo a eliminar
+            Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
+    
+            previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
+            size--; // Disminuye el tamaño de la lista
+            return element; // Devuelve la información del nodo eliminado
+        }
+    }
+    
+    public E remove(Integer post) throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacia");
+        } else if (post < 0 || post >= size) {
+            throw new IndexOutOfBoundsException("Error, fuera de rango");
+        } else if (post == 0) {
+            return removeFirst();
+        } else if (post == (size - 1)) {
+            return removeLast();
+        } else {
+            Node<E> preview = getNode(post - 1);
+            Node<E> actually = getNode(post);
+            E element = preview.getInfo();
+            Node<E> next = actually.getNext();
+            actually = null;
+            preview.setNext(next);
+            size--;
+            return element;
+
+        }
+    }
+    
+
+>>>>>>> feature/Resenia
     public void reset() {
         this.header = null;
         this.last = null;
@@ -188,10 +276,52 @@ public class LinkedList<E> {
         return matrix;
     }
 
+<<<<<<< HEAD
     public LinkedList<E> toList(E[] matrix) { // Recibe un array de objetos
         reset(); // Reinicia la lista
         for (int i = 0; i < matrix.length; i++) { // Recorre el array
             this.add(matrix[i]); // Agrega cada objeto del array a un nodo de la lista
+=======
+    public LinkedList<E> toList(E[] matrix) {
+        reset();
+        for (int i = 0; i < matrix.length; i++) {
+            this.add(matrix[i]);
+        }
+        return this;
+    }
+
+    //new
+
+    public LinkedList<E> order() throws Exception {
+        if (isEmpty()) {
+            E data = this.header.getInfo();
+            if (data instanceof Number || data instanceof String) {
+                E[] lista = this.toArray();
+                reset();
+                for (int i = 0; i < lista.length; i++) {
+                    E aux = lista[i];
+                    int j = i - 1;
+                    while (j >= 0 && compare(lista[j], aux)) {
+                        lista[j + 1] = lista[j--];
+                    }
+                    lista[j + 1] = aux;
+                }
+                this.toList(lista);
+            } else{
+                System.out.println("Objeto");
+            }
+        }
+        return this;
+    } 
+
+    private Boolean compare(E a, E b){
+        if (a instanceof  Number) {
+            Number a1 = (Number) a;
+            Number b1 = (Number) b;
+            return a1.doubleValue() > b1.doubleValue();
+        } else {
+            return (a.toString().compareTo(b.toString()) > 0);
+>>>>>>> feature/Resenia
         }
         return this; // Devuelve la instancia LinkedList
     }

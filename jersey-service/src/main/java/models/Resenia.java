@@ -3,18 +3,18 @@ package models;
 import java.util.Date;
 
 public class Resenia {
-    private int idResenia;
+    private Integer idResenia;
     private String comentario;
-    private float calificacion;
+    private Integer calificacion;
     private Date fecha;
-    private int idReceta;
-    private int idPersona;
+    private Integer idReceta;
+    private Integer idPersona;
 
     public Resenia() {
     
     }
 
-    public Resenia(int idResenia, String comentario, float calificacion, Date fecha, int idReceta, int idPersona) {
+    public Resenia(Integer idResenia, String comentario, Integer calificacion, Date fecha, Integer idReceta, Integer idPersona) {
         this.idResenia = idResenia;
         this.comentario = comentario;
         this.calificacion = calificacion;
@@ -23,11 +23,11 @@ public class Resenia {
         this.idPersona = idPersona;
     }
 
-    public int getIdResenia() {
+    public Integer getIdResenia() {
         return this.idResenia;
     }
 
-    public void setIdResenia(int idResenia) {
+    public void setIdResenia(Integer idResenia) {
         this.idResenia = idResenia;
     }
 
@@ -40,11 +40,11 @@ public class Resenia {
         this.comentario = comentario;
     }
 
-    public float getCalificacion() {
+    public Integer getCalificacion() {
         return this.calificacion;
     }
 
-    public void setCalificacion(float calificacion) {
+    public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -56,32 +56,32 @@ public class Resenia {
         this.fecha = fecha;
     }
 
-    public int getIdReceta() {
+    public Integer getIdReceta() {
         return this.idReceta;
     }
 
-    public void setIdReceta(int idReceta) {
+    public void setIdReceta(Integer idReceta) {
         this.idReceta = idReceta;
     }
 
-    public int getIdPersona() {
+    public Integer getIdPersona() {
         return this.idPersona;
     }
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-            " idResenia='" + getIdResenia() + "'" +
-            ", comentario='" + getComentario() + "'" +
-            ", calificacion='" + getCalificacion() + "'" +
-            ", fecha='" + getFecha() + "'" +
-            ", idReceta='" + getIdReceta() + "'" +
-            ", idPersona='" + getIdPersona() + "'" +
-            "}";
-    }
+    // @Override
+    // public String toString() {
+    //     return "{" +
+    //         " idResenia='" + getIdResenia() + "'" +
+    //         ", comentario='" + getComentario() + "'" +
+    //         ", calificacion='" + getCalificacion() + "'" +
+    //         ", fecha='" + getFecha() + "'" +
+    //         ", idReceta='" + getIdReceta() + "'" +
+    //         ", idPersona='" + getIdPersona() + "'" +
+    //         "}";
+    // }
 
 }

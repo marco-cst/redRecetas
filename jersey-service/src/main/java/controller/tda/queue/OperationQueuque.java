@@ -35,6 +35,7 @@
 //         }
 //     }
     
+<<<<<<< HEAD
 //     public E dequeuque() throws ListEmptyException {
 //         if (isEmpty()) {
 //             throw new ListEmptyException("La cola está vacía");
@@ -43,3 +44,13 @@
 //         }
 //     }
 // }
+=======
+    public E dequeuque() throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("La cola está vacía");
+        } else {
+            return removeLast();
+        }
+    }
+}
+>>>>>>> feature/Resenia
