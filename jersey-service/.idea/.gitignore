@@ -6,3 +6,22 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# Ignorar archivos y carpetas generados automáticamente
+/target/
+*.class
+*.log
+*.iml
+
+# Ignorar configuraciones específicas del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar configuraciones de entornos de desarrollo
+/.idea/
+*.swp
+*.swo
+
+# Ignorar archivos relacionados con Maven
+.mvn/
+.settings/
