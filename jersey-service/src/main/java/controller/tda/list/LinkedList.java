@@ -1,6 +1,9 @@
 package controller.tda.list;
 
-public class LinkedList<E> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class LinkedList<E> implements Iterable<E> {
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
     private Node<E> last;   // Nodo último (el último nodo de la lista)
     private Integer size;   // Tamaño de la lista (cuenta el número de nodos en la lista)
@@ -119,7 +122,7 @@ public class LinkedList<E> {
 
    
     
-   public E deleteFirst() throws ListEmptyException {
+   public E removeFirst() throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
         } else {
@@ -135,7 +138,7 @@ public class LinkedList<E> {
         }
         
         
-    public E deleteLast() throws ListEmptyException {
+    public E removeLast() throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacía");
         } else{
@@ -164,9 +167,9 @@ public class LinkedList<E> {
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
-            return deleteFirst(); // Elimina el primer nodo
+            return removeFirst(); // Elimina el primer nodo
         } else if (post == (size - 1)) {
-            return deleteLast(); // Elimina el último nodo
+            return removeLast(); // Elimina el último nodo
         } else {
             Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
             Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
@@ -179,28 +182,27 @@ public class LinkedList<E> {
         }
     }
     
-    public boolean remove(E element) {
-        if (isEmpty()) return false;
-        
-        if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
-            header = header.getNext();
+    public E remove(Integer post) throws ListEmptyException {
+        if (isEmpty()) {
+            throw new ListEmptyException("Error, lista vacia");
+        } else if (post < 0 || post >= size) {
+            throw new IndexOutOfBoundsException("Error, fuera de rango");
+        } else if (post == 0) {
+            return removeFirst();
+        } else if (post == (size - 1)) {
+            return removeLast();
+        } else {
+            Node<E> preview = getNode(post - 1);
+            Node<E> actually = getNode(post);
+            E element = preview.getInfo();
+            Node<E> next = actually.getNext();
+            actually = null;
+            preview.setNext(next);
             size--;
-            return true;
+            return element;
+
         }
-        
-        Node<E> current = header;
-        while (current.getNext() != null) {
-            if (current.getNext().getInfo().equals(element)) {
-                current.setNext(current.getNext().getNext());
-                size--;
-                return true;
-            }
-            current = current.getNext();
-        }
-        
-        return false; // Elemento no encontrado
     }
-    
 
     public void reset() {
         this.header = null;
@@ -319,7 +321,32 @@ public class LinkedList<E> {
             search.setInfo(data);
         }
     }
+
+
+    // Implementación de Iterable
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedListIterator();
+    }
+
+    // Clase interna para el iterador
+    private class LinkedListIterator implements Iterator<E> {
+        private Node<E> current = header;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E data = current.getInfo();
+            current = current.getNext();
+            return data;
+        }
+    }
+
 }
-
-
-

@@ -1,6 +1,7 @@
 package controller.Dao;
 
 import controller.Dao.implement.AdapterDao;
+import controller.Dao.servicies.CategoriaServices;
 import controller.tda.list.LinkedList;
 import models.Categoria;
 
@@ -23,7 +24,7 @@ public class CategoriaDao extends AdapterDao<Categoria> {
         this.categoria = categoria;
     }
 
-    public LinkedList<Categoria> getListAll(){  
+    public LinkedList<Categoria> getlistAll(){  
         if (listAll == null) { 
             this.listAll = listAll();
         }
@@ -31,7 +32,7 @@ public class CategoriaDao extends AdapterDao<Categoria> {
     }
 
     public Boolean save() throws Exception{ 
-        Integer id = getListAll().getSize()+1;
+        Integer id = getlistAll().getSize()+1;
         categoria.setIdCategoria(id); 
         this.persist(this.categoria); 
         this.listAll = listAll(); 
@@ -41,10 +42,10 @@ public class CategoriaDao extends AdapterDao<Categoria> {
     /*
 
         public Boolean save() throws Exception {
-            Integer id = getListAll().getSize() + 1;
+            Integer id = getlistAll().getSize() + 1;
             categoria.setIdCategoria(id);
             this.persist(this.categoria);
-            this.listAll = listAll();  //getListAll();
+            this.listAll = listAll();  //getlistAll();
             return true;
         }
     */
@@ -52,7 +53,7 @@ public class CategoriaDao extends AdapterDao<Categoria> {
     public Boolean update() throws Exception {
         try {
             this.merge(getCategoria(), getCategoria().getIdCategoria() - 1);
-            this.listAll = getListAll(); 
+            this.listAll = getlistAll(); 
             System.out.println("Inversionista actualizado correctamente.");
             return true;
         } catch (Exception e) {
@@ -62,19 +63,55 @@ public class CategoriaDao extends AdapterDao<Categoria> {
         }
     }
 
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Categoria> list = getListAll(); 
-        Categoria categoria= get(id); 
-        if (categoria != null) {
-            list.remove(categoria); 
-            String info = g.toJson(list.toArray());
-            saveFile(info); 
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Inversionista con id " + id + " no encontrada.");
-            return false;
+    public Boolean delete(int id) throws Exception {
+        LinkedList<Categoria> list = getlistAll();
+        for (int i = 0; i < list.getSize(); i++) {
+            if (list.get(i).getIdCategoria() == id) {
+                this.supreme(i);
+                this.listAll = listAll(); // Actualiza la lista de objetos
+                return true; // Retorna verdadero si se eliminó correctamente
+            }
         }
+        return false; // Retorna falso si no se encontró el ID
     }
     
+    
+    public LinkedList<Categoria> busquedaLinCategoria(String texto) {
+        LinkedList<Categoria> lista = new LinkedList<>();
+        LinkedList<Categoria> listita = listAll();
+        if (!listita.isEmpty() && texto != null) {
+            for (Categoria Categoria : listita.toArray()) {
+                if (Categoria != null && Categoria.getTipo() != null &&
+                    // Categoria.getTipo().toLowerCase().contains(texto.toLowerCase())) {
+                    Categoria.getTipo().toString().contains(texto.toLowerCase())) {
+                    lista.add(Categoria);
+                }
+            }
+        }
+        return lista;
+    }
+
+    // public LinkedList<Receta> buscarPorSabor(Sabor sabor) {
+    //     LinkedList<Receta> lista = new LinkedList<>();
+    //     LinkedList<Receta> listita = listAll();  // Obtener todas las recetas
+    
+    //     if (!listita.isEmpty()) {
+    //         for (Receta receta : listita) {
+    //             if (receta != null && receta.getSabor() == sabor) {
+    //                 lista.add(receta);
+    //             }
+    //         }
+    //     }
+    //     return lista;
+    // }
+
+    //TEST
+    public static void main(String[] args) {
+    CategoriaServices services = new CategoriaServices();
+    LinkedList<Categoria> resultado = services.busquedaLinCategoria("SALADO");
+
+    for (Categoria categoria : resultado) {
+        System.out.println("ID: " + categoria.getIdCategoria() + ", Tipo: " + categoria.getTipo());
+    }
+}
 }

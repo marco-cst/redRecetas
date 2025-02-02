@@ -1,4 +1,4 @@
-#!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3
+#!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

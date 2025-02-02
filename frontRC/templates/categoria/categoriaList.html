@@ -1,52 +1,94 @@
 {% extends 'template.html' %}
 {% block content %}
-
 <div class="pagetitle">
-    <div class="col-12 d-flex flex-column align-items-center">
-      <h2 class="mt-4 text-black">Categorias </h2>
+  <div class="col-12 d-flex flex-column align-items-center">
+      <h2 class="mt-4 text-black">Categorías</h2>
       <div class="d-flex justify-content-end w-100 mb-3">
-        <a href="/admin/categoria/register">Nuevo</a>
+          <a href="/admin/categoria/register">Nuevo</a>
       </div>
-      
+
+      <!-- Sección de Búsqueda -->
+      <div style="margin-bottom: 20px; width: 90%; background-color: rgba(30, 30, 30, 0.5); padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+          <h3 style="color: #ff5252; text-align: left; margin-bottom: 20px; font-family: Arial, sans-serif;">Búsqueda Lineal</h3>
+
+          <div style="margin-bottom: 15px;">
+              <label for="categoria" style="display: block; color: #fff; font-weight: bold; margin-bottom: 5px;">Seleccione la categoría:</label>
+              <select id="categoria" class="styled-select">
+                  <option value="SALADO">Salado</option>
+                  <option value="DULCE">Dulce</option>
+              </select>
+          </div>
+
+          <div style="margin-bottom: 15px;">
+              <label for="texto" style="display: block; color: #fff; font-weight: bold; margin-bottom: 5px;">Ingrese el texto:</label>
+              <input type="text" id="texto" class="styled-input" placeholder="Ingrese un término..." />
+          </div>
+
+          <button id="buscar" class="btn-ordenar">Buscar</button>
+      </div>
+
+      <!-- Tabla de Categorías -->
       <div class="table-responsive w-100">
-        <table class="table table-custom text-black custom-table">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>categoria</th>
-              <th>Es salado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% if list %}
-              {% for item in list %}
-              <tr id="row-{{ item.idcategoria }}">
-                <!-- <td>{{ loop.index }}</td> -->
-                 <td>{{ item.idCategoria}}</td>
-                <td>{{ item.tipo }}</td>
-                <td>{{ item.estado}}</td>
-                <td>
-                  <a href="/admin/categoria/edit" class="btn btn-custom">Modificar</a>
-                  <button class="btn btn-custom" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
-                </td>
-              </tr>
-              {% endfor %}
-            {% else %}
-              <tr>
-                <td colspan="4" class="text-center">No hay categoria.</td>
-              </tr>
-            {% endif %}
-          </tbody>
-        </table>
+          <table class="table table-custom text-black custom-table">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Categoría</th>
+                      <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody id="tabla-categorias">
+                  {% if list %}
+                      {% for item in list %}
+                      <tr id="row-{{ item.idcategoria }}">
+                          <td>{{ item.idCategoria }}</td>
+                          <td>{{ item.tipo }}</td>
+                          <td>
+                              <a href="/admin/categoria/edit" class="btn btn-custom">Modificar</a>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  {% else %}
+                      <tr>
+                          <td colspan="3" class="text-center">No hay categorías.</td>
+                      </tr>
+                  {% endif %}
+              </tbody>
+          </table>
       </div>
-    </div>
   </div>
-  <script>
-    function deleteRow(index) {
-      const row = document.getElementById(row-$,{index});
-      if (confirm("¿Deseaa eliminar cliente?")) {
-        row.remove(); 
+</div>
+
+<script>
+  $(document).ready(function () {
+      // Función para realizar la búsqueda
+      function buscar() {
+          const categoria = $("#categoria").val(); // Obtener la categoría seleccionada
+          const texto = $("#texto").val(); // Obtener el texto de búsqueda
+  
+          if (!categoria || !texto) {
+              alert("Por favor, seleccione una categoría e ingrese un término de búsqueda.");
+              return;
+          }
+  
+          // Construir la URL de búsqueda
+          const url = `/admin/proyecto/list/search/${categoria}/${texto}`;
+  
+          // Redirigir a la URL de búsqueda
+          window.location.href = url;
       }
-    }
+  
+      // Evento para el botón de búsqueda
+      $("#buscar").click(function () {
+          buscar();
+      });
+  
+      // Evento para buscar al presionar "Enter" en el input
+      $("#texto").keypress(function (e) {
+          if (e.which === 13) { // 13 es el código de la tecla "Enter"
+              buscar();
+          }
+      });
+  });
   </script>
 {% endblock %}

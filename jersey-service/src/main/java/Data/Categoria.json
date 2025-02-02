@@ -1,17 +1,1 @@
-[
-    {
-        "idCategoria": 1,
-        "tipo": "Salado",
-        "estado": true
-    },
-    {
-        "idCategoria": 2,
-        "tipo": "Salado",
-        "estado": true
-    },
-    {
-        "idCategoria": 3,
-        "tipo": "Dulce",
-        "estado": false
-    }
-]
+[{"idCategoria":1,"tipo":"SALADO"},{"idCategoria":2,"tipo":"DULCE"}]

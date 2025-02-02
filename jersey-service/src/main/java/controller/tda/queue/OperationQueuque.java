@@ -39,7 +39,7 @@ public class OperationQueuque<E> extends LinkedList<E> {
         if (isEmpty()) {
             throw new ListEmptyException("La cola está vacía");
         } else {
-            return deleteLast();
+            return removeLast();
         }
     }
 }
