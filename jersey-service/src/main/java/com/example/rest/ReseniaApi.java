@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -98,6 +99,34 @@ public class ReseniaApi {
         }
     }
  
+
+    
+    @Path("/delete/{id}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteResenia(@PathParam("id") int id) {
+        HashMap<String, Object> res = new HashMap<>();
+
+        try {
+            ReseniaServices rs = new ReseniaServices();
+
+            // Intentar eliminar la reseña por ID
+            boolean reseniaDeleted = rs.delete(id);
+
+            if (reseniaDeleted) {
+                res.put("message", "Resenia eliminada exitosamente");
+                return Response.ok(res).build();
+            } else {
+                res.put("message", "Resenia no encontrada o no eliminada");
+                return Response.status(Response.Status.NOT_FOUND).entity(res).build();
+            }
+        } catch (Exception e) {
+            res.put("message", "Error al intentar eliminar la receta");
+            res.put("error", e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+        }
+    }
+    /*
     @Path("/delete")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -125,6 +154,7 @@ public class ReseniaApi {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
+ */
 
     @Path("/update")
     @POST

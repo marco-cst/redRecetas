@@ -179,29 +179,6 @@ public class LinkedList<E> {
         }
     }
     
-    // public boolean remove(E element) {
-    //     if (isEmpty()) return false;
-        
-    //     if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
-    //         header = header.getNext();
-    //         size--;
-    //         return true;
-    //     }
-        
-    //     Node<E> current = header;
-    //     while (current.getNext() != null) {
-    //         if (current.getNext().getInfo().equals(element)) {
-    //             current.setNext(current.getNext().getNext());
-    //             size--;
-    //             return true;
-    //         }
-    //         current = current.getNext();
-    //     }
-        
-    //     return false; // Elemento no encontrado
-    // }
-
-    
     public E remove(Integer post) throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacia");
@@ -275,19 +252,6 @@ public class LinkedList<E> {
         }
         return this;
     }
-
-    // public void update(E object, Integer index) {
-    //     if (index < 0 || index >= size) { // Verifica el rango del índice
-    //         throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
-    //     }
-    
-    //     Node<E> current = header; // Comienza desde la cabecera
-    //     for (int i = 0; i < index; i++) {
-    //         current = current.getNext(); // Moverse al nodo en el índice deseado
-    //     }
-    
-    //     current.setInfo(object); // Actualizar el dato del nodo usando el setter
-    // }
 
     //new
 
