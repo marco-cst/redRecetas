@@ -28,10 +28,13 @@
                 <td>{{ item.calificacion}}</td>
                 <td>
                   <a href="/admin/resenia/edit/{{ item.idResenia }}" class="btn btn-custom">Modificar</a>
-                  <button class="btn btn-custom" onclick="deleteRow('{{ item.id }}')">Eliminar</button>
-
+                  <form action="/admin/resenia/eliminar/{{ item.idResenia }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta resenia?');">ELIMINAR</button>
+                </form>
                 </td>
               </tr>
+
+
               {% endfor %}
             {% else %}
               <tr>
@@ -43,12 +46,5 @@
       </div>
     </div>
   </div>
-  <script>
-    function deleteRow(index) {
-      const row = document.getElementById(row-$,{index});
-      if (confirm("¿Deseaa eliminar cliente?")) {
-        row.remove(); 
-      }
-    }
-  </script>
+
 {% endblock %}

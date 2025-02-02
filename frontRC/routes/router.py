@@ -115,6 +115,19 @@ def update_resenia():
         return redirect("/admin/resenia/list")
 
 
+@router.route('/admin/resenia/eliminar/<int:id>', methods=['POST'])
+def delete_resenia(id):
+    r_receta = requests.delete(f"http://localhost:8086/api/resenia/delete/{id}")
+
+    if r_receta.status_code == 200:
+        flash("Resenia eliminada correctamente", category='info')
+    elif r_receta.status_code == 404:
+        flash("Resenia no encontrada o no pudo ser eliminada", category='warning')
+    else:
+        flash("Error al intentar eliminar la receta", category='error')
+
+    return redirect('/admin/resenia/list')
+
     #EJEMPLO CRUD
 
 # @router.route('/admin/inversionista/list')
