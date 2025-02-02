@@ -1,7 +1,8 @@
-from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort
+from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort, jsonify
 import requests
 import datetime
 from urllib.parse import quote
+
 
 router = Blueprint('router', __name__)
 
@@ -58,7 +59,7 @@ def save_resenia():
         "calificacion": form["calf"], #nom
         # "fecha": form["fecha"],
     }
-    
+   
     r = requests.post("http://localhost:8086/api/resenia/save", data= json.dumps(dataF), headers=headers)
     dat = r.json()
     
@@ -68,36 +69,6 @@ def save_resenia():
         flash(str(dat["data"]), category='error')
 
     return redirect(url_for("router.admin_resenia_list"))
-
-    # return redirect("/admin/resenia/list")
-    
-#     headers = {'Content-type': 'application/json'}
-#     form = request.form
-#     print("Datos del formulario:", form)
-#     try:
-#         dataF = {
-#             "nombre": form["nombre"],
-#             "latitud": float(form["latitud"]),
-#             "longitud": float(form["longitud"]),
-#             "tipo": form["tipo"],
-#         }
-#         print("Datos enviados al backend:", dataF) 
-#         r = requests.post("http://localhost:8090/api/universidad/save", data=json.dumps(dataF), headers=headers)
-#         dat = r.json()
-#         print("Respuesta de la API:", dat)
-#         if r.status_code == 200:
-#             flash("Sintética guardada correctamente", category='info')
-#         else:
-#             flash("Error al guardar la sintética", category='error')
-
-#     except ValueError:
-#         flash("Error: La latitud y longitud deben ser valores numéricos", category='error')
-
-#     return redirect(url_for("router.list_sintetica"))
-
-
-
-
 
 @router.route('/admin/resenia/edit/<int:id>', methods=['GET'])
 def view_edit_resenia(id):

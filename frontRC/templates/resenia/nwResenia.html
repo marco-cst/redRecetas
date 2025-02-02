@@ -1,28 +1,117 @@
 {% extends 'template.html' %}
 
 {% block content %}
-<div class="container custom-container">
-  <div class="pagetitle text-center">
-    <h1 class="text-black">Nueva resenia</h1>
+<div class="container">
+  <div class="pagetitle">
+    <h1>Editar reseña</h1>
   </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-18">
+        <div class="card custom-card">
+          <div class="card-body custom-card-body">
+            <h5 class="card-title">Ingresa los datos de la reseña</h5>
+            <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/update" novalidate onsubmit="return validarFormulario()">
+              <input type="hidden" name="id" value="{{ resenia.idResenia }}" />
   
-    <h5 class="card-title text-white">Ingresa los datos del inversionista </h5>
-    <form class="row g-3 needs-validation" method="POST" action="{{ url_for('router.save_resenia') }}" novalidate>
-  <!-- <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/saveResenia" novalidate> -->
-    <div class="mb-3">
-      <div class="mb-3">
-        <label for="comt" class="form-label text-black">Comentario</label>
-        <input type="text" class="form-control custom-input" name="comt" required>
+              <!-- Campo para el comentario -->
+              <div class="mb-3">
+                <label for="comentario" class="form-label">Reseña</label>
+                <input type="text" class="form-control" id="comentario" name="comt" value="{{ resenia.comentario }}" required>
+                <div class="invalid-feedback">
+                  Por favor, ingresa un comentario.
+                </div>
+              </div>
+  
+              <!-- Campo para la calificación -->
+              <div class="mb-3">
+                <label for="calificacion" class="form-label">Calificación</label>
+                <input type="range" class="form-range" id="calificacion" name="calf" min="1" max="5" step="1" value="{{ resenia.calificacion }}" required>
+                <output for="calificacion" id="calificacion-value">{{ resenia.calificacion }}</output>
+                <div class="invalid-feedback">
+                  La calificación debe estar entre 1 y 5.
+                </div>
+              </div>
+  
+              <!-- Botones -->
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="/admin/resenia/list" class="btn btn-custom btn-secondary">Cancelar</a>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <label for="calf" class="form-label text-black">Calificacion</label>
-      <input type="text" class="form-control custom-input" name="calf" required>
     </div>
-    <div class="d-flex justify-content-between">
-      <button type="submit" class="btn btn-custom btn-light">Guardar</button>
-      <a href="/admin/resenia/list" class="btn btn-custom btn-secondary">Cancelar</a>
-    </div>
-  </form>
+  </section>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const calificacionInput = document.getElementById('calificacion');
+    const calificacionOutput = document.getElementById('calificacion-value');
+    
+    calificacionInput.addEventListener('input', () => {
+      calificacionOutput.value = calificacionInput.value;
+    });
+  });
+
+  function validarFormulario() {
+    const comentario = document.getElementById('comentario').value.trim();
+    const calificacion = document.getElementById('calificacion').value;
+
+    if (!comentario) {
+      alert("El comentario no puede estar vacío.");
+      return false;
+    }
+
+    if (/^\d+$/.test(comentario)) {
+      alert("El comentario no puede contener solo números.");
+      return false;
+    }
+
+    if (comentario.length < 5 || comentario.length > 500) {
+      alert("El comentario debe tener entre 5 y 500 caracteres.");
+      return false;
+    }
+
+    const caracteresEspeciales = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (caracteresEspeciales.test(comentario)) {
+      alert("El comentario contiene demasiados caracteres especiales.");
+      return false;
+    }
+
+    const groserias = ["nauseas", "asco", "basura", "horrible"];
+    for (const groseria of groserias) {
+      if (comentario.toLowerCase().includes(groseria)) {
+        alert("El comentario contiene lenguaje inapropiado.");
+        return false;
+      }
+    }
+
+    if (!comentario.replace(/\s/g, '').length) {
+      alert("El comentario no puede contener solo espacios en blanco.");
+      return false;
+    }
+
+    const mayusculas = (comentario.match(/[A-Z]/g) || []).length;
+    if (mayusculas > comentario.length * 0.5) {
+      alert("El comentario no puede contener un uso excesivo de mayúsculas.");
+      return false;
+    }
+
+    if (calificacion < 1 || calificacion > 5) {
+      alert("La calificación debe estar entre 1 y 5.");
+      return false;
+    }
+
+    if (calificacion < 4 && !comentario) {
+      alert("Debes justificar una calificación menor a 4 estrellas.");
+      return false;
+    }
+
+    return true; 
+  }
+</script>
+
 {% endblock %}
-
-
