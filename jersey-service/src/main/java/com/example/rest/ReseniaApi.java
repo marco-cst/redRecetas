@@ -142,6 +142,8 @@ public class ReseniaApi {
 
             int calificacion = Integer.parseInt(map.get("calificacion").toString());
             if (calificacion < 1 || calificacion > 5) {
+                res.put("msg", "Error");
+                res.put("data", "La calificación debe estar entre 1.0 y 5.0");
                 throw new Exception("Las calificacion debe ser: mayor a uno y maximo 5.");
             }
             rs.getResenia().setCalificacion(calificacion);
