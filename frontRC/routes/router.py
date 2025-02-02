@@ -41,6 +41,33 @@ def admin_categoria_list():
     data = r.json()
     return render_template('categoria/categoriaList.html', list=data["data"])
 
+@router.route('/admin/proyecto/list/search/<categoria>')
+def view_buscar_receta(categoria):
+    try:
+        if categoria not in ["SALADO", "DULCE"]:
+            return jsonify({"error": "Categoría de búsqueda no válida"}), 400
+
+        # Construir la URL de la API (corregida)
+        api_url = f"http://localhost:8086/api/categoria/list/search/lineal/categoria/{categoria}"
+
+        # Hacer la solicitud a la API
+        r = requests.get(api_url)
+        data = r.json()
+
+        # Verificar la respuesta de la API
+        if r.status_code == 200 and "data" in data:
+            categorias = data["data"]
+            return jsonify(categorias)  # Devolver los datos en formato JSON
+        else:
+            return jsonify({"error": "No se encontraron resultados"}), 404
+
+    except requests.RequestException as e:
+        return jsonify({"error": f"Error de conexión: {str(e)}"}), 500
+
+
+# no necesarios CREATE, DELETE, ya que la categoria es fija, no debe ser cambiada,
+# borrada por el usuario.
+
 # @router.route('/admin/categoria/register')
 # def view_register_categoria():
 #     r = requests.get("http://localhost:8086/api/categoria/list")
@@ -67,36 +94,12 @@ def admin_categoria_list():
 
 #     return redirect("/admin/categoria/list")
 
-@router.route('/admin/categoria/edit')
-def view_edit_inversionista():
-    r = requests.get("http://localhost:8086/api/categoria/list")
-    data = r.json()
+# @router.route('/admin/categoria/edit')
+# def view_edit_inversionista():
+#     r = requests.get("http://localhost:8086/api/categoria/list")
+#     data = r.json()
     
-    return render_template('categoria/actualizar.html', list=data["data"], categoria=data["data"])
-
-@router.route('/admin/proyecto/list/search/<categoria>')
-def view_buscar_receta(categoria):
-    try:
-        # Validar la categoría antes de hacer la solicitud
-        if categoria not in ["SALADO", "DULCE"]:
-            return jsonify({"error": "Categoría de búsqueda no válida"}), 400
-
-        # Construir la URL de la API (corregida)
-        api_url = f"http://localhost:8086/api/categoria/list/search/lineal/categoria/{categoria}"
-
-        # Hacer la solicitud a la API
-        r = requests.get(api_url)
-        data = r.json()
-
-        # Verificar la respuesta de la API
-        if r.status_code == 200 and "data" in data:
-            categorias = data["data"]
-            return jsonify(categorias)  # Devolver los datos en formato JSON
-        else:
-            return jsonify({"error": "No se encontraron resultados"}), 404
-
-    except requests.RequestException as e:
-        return jsonify({"error": f"Error de conexión: {str(e)}"}), 500
+#     return render_template('categoria/actualizar.html', list=data["data"], categoria=data["data"])
 
 
 # @router.route('/admin/categoria/update', methods=["POST"])
