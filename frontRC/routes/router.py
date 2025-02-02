@@ -127,29 +127,36 @@ def view_edit_resenia(id):
 def update_resenia():
     headers = {'Content-type': 'application/json'}
     form = request.form
-    # dataF = {
-    #     "comentario": form["comt"],
-    #     "calificacion": form["calf"],
-    # }
+    
     dataF = {
         "idResenia": int(form["id"]),
-        "comentario": form["comentario"],
-        "calificacion": float(form["calificacion"]),
+        "comentario": form["comt"],
+        "calificacion": int(form["calf"]),
     }
     
     r = requests.post("http://localhost:8086/api/resenia/update", data=json.dumps(dataF), headers=headers)
-    dat = r.json()
+    # dat = r.json()
     
     if r.status_code == 200:
-        print("Respuesta de la API:", dat)
+        # print("Respuesta de la API:", dat)
         flash("resenia actualizado correctamente", category='info')
         return redirect('/admin/resenia/list')
     else:
         error_msg = r.json().get("data", "Error al actualizar la receta")
         flash(error_msg, category='error')
-        flash(str(dat["data"]), category='error')
+        # flash(str(dat["data"]), category='error')
         return redirect("/admin/resenia/list")
 
+
+    # if r_receta.status_code == 200:
+
+    #     flash("Receta actualizada correctamente", category='info')
+    #     return redirect('/admin/receta/list')
+    # else:
+    #     error_msg = r_receta.json().get("data", "Error al actualizar la receta")
+    #     flash(error_msg, category='error')
+    #     return redirect('/admin/receta/list')
+    
     #EJEMPLO CRUD
 
 # @router.route('/admin/inversionista/list')
