@@ -1,0 +1,279 @@
+.footer-section {
+    background-color: #d87d76;
+    /* Fondo oscuro elegante */
+    color: #020202;
+    /* Texto blanco */
+    padding: 50px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-section .container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footer-section .logo img {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.fs-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.fs-left p {
+    font-size: 24px;
+    color: #1d2020;
+    margin-top: 10px;
+}
+
+.copyright-text {
+    text-align: center;
+    font-size: 14px;
+    color: #070606;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+}
+
+.copyright-text a {
+    color: #ff6f61;
+    /* Color llamativo para los enlaces */
+    text-decoration: none;
+    font-weight: 1500;
+}
+
+.copyright-text a:hover {
+    color: #111010;
+    /* Efecto de hover */
+}
+
+.footer-section .row .col-lg-6 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-section .social-icons {
+    margin-top: 20px;
+}
+
+.footer-section .social-icons a {
+    margin: 0 10px;
+    font-size: 18px;
+    color: #141212;
+    transition: 0.3s ease;
+}
+
+.footer-section .social-icons a:hover {
+    color: #ff6f61;
+    transform: scale(1.1);
+}
+
+.top-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+
+
+.Versatil {
+    background-color: #ebe4e4; /* Color de fondo rojo suave */
+    width: 160%; /* El ancho del div */
+    max-width: 1200px; /* Limita el ancho máximo del div */
+    margin: 15px auto; /* Centra el div horizontalmente y agrega un pequeño margen arriba y abajo */
+    padding: 30px; /* Espaciado interno para que el contenido no esté pegado a los bordes */
+    border-radius: 15px; /* Bordes redondeados para un diseño más suave */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    border: 3px solid #e74c3c; /* Borde delgado de color más oscuro que el fondo */
+    transition: all 0.3s ease-in-out; /* Transición suave para interacciones */
+}
+
+/* Efecto cuando el div recibe hover */
+.Versatil:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Aumentar sombra al hacer hover */
+    transform: scale(1.03); /* Ligeramente aumentar el tamaño del div */
+}
+
+
+a[data-tooltip]:hover::after {
+   
+    background-color: #333;
+    color: #fff;
+   
+    white-space: nowrap;
+    top: 100%; /* Ajustar para que quede debajo del enlace */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+}
+
+
+a[data-tooltip]::after {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre los ítems */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center; /* Centra verticalmente los íconos con el texto */
+    gap: 5px; /* Espacio entre texto y el ícono */
+}
+
+ul li svg {
+    display: inline-block;
+    vertical-align: middle; /* Asegura que el ícono esté alineado con el texto */
+}
+
+
+/* Estilo base */
+.menu-item {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000; /* Color inicial */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre texto e ícono */
+    transition: color 0.3s, background-color 0.3s; /* Transición suave */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 5px; /* Esquinas redondeadas */
+}
+
+/* Efecto hover */
+.menu-item:hover {
+    color: #fff; /* Cambia el texto a blanco */
+    background-color: #000; /* Fondo negro */
+}
+
+
+/* Estilos para la tabla */
+.table-red {
+    background-color: #e7e1e1; /* Fondo blanco para la tabla */
+    border-collapse: collapse; /* Colapsar bordes para un diseño más limpio */
+    width: 100%; /* Asegurar que la tabla ocupe el 100% del contenedor */
+    margin-bottom: 1rem; /* Margen inferior para separar de otros elementos */
+    color: #000000; /* Color de texto principal */
+    border: 2px solid #ec9d94; /* Borde rojo para la tabla */
+}
+
+/* Estilos para el encabezado de la tabla */
+.table-red thead {
+    background-color: #d87d76; /* Color de fondo rojo para el encabezado */
+    color: #ffffff; /* Color de texto blanco para el encabezado */
+}
+
+/* Estilos para las celdas del encabezado */
+.table-red th {
+    padding: 12px; /* Espaciado interno para las celdas del encabezado */
+    text-align: left; /* Alinear texto a la izquierda */
+    border-bottom: 2px solid #ec2e19; /* Borde inferior más oscuro */
+    border-right: 1px solid #c0392b; /* Borde derecho para las celdas del encabezado */
+}
+
+/* Estilos para las filas del cuerpo de la tabla */
+.table-red tbody tr {
+    border-bottom: 1px solid #f5b7b1; /* Borde inferior más claro para las filas */
+}
+
+/* Estilos para las celdas del cuerpo de la tabla */
+.table-red td {
+    padding: 12px; /* Espaciado interno para las celdas del cuerpo */
+    text-align: left; /* Alinear texto a la izquierda */
+    border-right: 1px solid #f5b7b1; /* Borde derecho para las celdas del cuerpo */
+}
+
+/* Estilos para las filas al pasar el mouse (hover) */
+.table-red tbody tr:hover {
+    background-color: #f5b7b1; /* Color de fondo rojo suave al pasar el mouse */
+    color: #000000; /* Color de texto al pasar el mouse */
+}
+
+/* Estilos para el botón de eliminar */
+.btn-outline-danger {
+    color: #e74c3c; /* Color de texto rojo */
+    border-color: #e74c3c; /* Color del borde rojo */
+    background-color: transparent; /* Fondo transparente */
+    transition: all 0.3s ease; /* Transición suave para efectos hover */
+}
+
+.btn-outline-danger:hover {
+    color: #ffffff; /* Color de texto blanco al pasar el mouse */
+    background-color: #e74c3c; /* Fondo rojo al pasar el mouse */
+    border-color: #e74c3c; /* Borde rojo al pasar el mouse */
+}
+
+/* Estilos para el botón de cerrar sesión */
+.btn-cerrar-sesion {
+    background-color:  #e28c84; /* Fondo rojo */
+    color: #f1eeee; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ad343e;
+    
+    text-decoration: none;
+   
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto hover para el botón */
+.btn-cerrar-sesion:hover {
+    background-color: #f1e9e9; /* Fondo rojo más oscuro al pasar el mouse */
+    border-color: #e74c3c; /* Borde rojo al pasar el mouse */
+    transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
+    text-decoration: none;
+}
+
+/* Estilos para el ícono */
+.btn-cerrar-sesion i {
+    font-size: 1.2em; /* Tamaño del ícono */
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+    text-decoration: none;
+}
+
+
+.top-recipe-img {
+    width: 100%;
+    max-width: 400px; /* Ajusta según el tamaño que necesites */
+    overflow: hidden; /* Evita que el contenido sobresalga */
+}
+
+.top-recipe-img img {
+    width: 400%; /* La imagen se ajusta al ancho del contenedor */
+    height: auto;
+    display: block;
+}
+
+
+
+
+
+  
+  
+  
