@@ -1,0 +1,85 @@
+{% extends 'template.html' %}
+{% block content %}
+<div class="pagetitle">
+  <div class="col-12 d-flex flex-column align-items-center">
+      <h2 class="mt-4 text-black">Categorías</h2>
+
+      <!-- Sección de Búsqueda -->
+      <div style="margin-bottom: 20px; width: 90%; background-color: rgba(30, 30, 30, 0.5); padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
+          <h3 style="color: #ff5252; text-align: left; margin-bottom: 20px; font-family: Arial, sans-serif;">Búsqueda Lineal</h3>
+
+          <div style="margin-bottom: 15px;">
+              <label for="categoria" style="display: block; color: #fff; font-weight: bold; margin-bottom: 5px;">Seleccione la categoría:</label>
+              <select id="categoria" class="styled-select">
+                  <option value="SALADO">Salado</option>
+                  <option value="DULCE">Dulce</option>
+              </select>
+          </div>
+
+          <button id="buscar" class="btn-ordenar">Buscar</button>
+      </div>
+
+      <!-- Tabla de Categorías -->
+      <div class="table-responsive w-100">
+          <table class="table table-custom text-black custom-table">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Categoría</th>
+                  </tr>
+              </thead>
+              <tbody id="tabla-categorias">
+                  {% if list %}
+                      {% for item in list %}
+                      <tr id="row-{{ item.idCategoria }}">
+                          <td>{{ item.idCategoria }}</td>
+                          <td>{{ item.tipo }}</td>
+                      </tr>
+                      {% endfor %}
+                  {% else %}
+                      <tr>
+                          <td colspan="3" class="text-center">No hay categorías.</td>
+                      </tr>
+                  {% endif %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<!-- Agregar JavaScript para manejar la búsqueda -->
+<script>
+document.getElementById('buscar').addEventListener('click', function() {
+    // Obtener la categoría seleccionada
+    var categoria = document.getElementById('categoria').value;
+
+    // Realizar la solicitud al backend
+    fetch(`/admin/proyecto/list/search/${categoria}`)
+        .then(response => response.json())
+        .then(data => {
+            // Limpiar la tabla
+            var tbody = document.getElementById('tabla-categorias');
+            tbody.innerHTML = '';
+
+            // Verificar si hay datos
+            if (data.length > 0) {
+                // Llenar la tabla con los nuevos datos
+                data.forEach(item => {
+                    var row = `<tr id="row-${item.idCategoria}">
+                        <td>${item.idCategoria}</td>
+                        <td>${item.tipo}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } else {
+                // Mostrar mensaje si no hay datos
+                tbody.innerHTML = '<tr><td colspan="3" class="text-center">No hay categorías.</td></tr>';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+</script>
+
+{% endblock %}

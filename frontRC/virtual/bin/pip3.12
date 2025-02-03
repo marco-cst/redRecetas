@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
 =======
 #!/home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual/bin/python3
@@ -7,6 +8,9 @@
 =======
 #!/home/marco/Documents/ProgG/redRecetas/FrontRC/virtual/bin/python3
 >>>>>>> feature/Cuenta
+=======
+#!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
+>>>>>>> feature/Categoria
 # -*- coding: utf-8 -*-
 import re
 import sys

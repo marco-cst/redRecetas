@@ -1,9 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
 =======
 #!/home/marco/Documents/ProgG/redRecetas/FrontRC/virtual/bin/python3
 >>>>>>> feature/Cuenta
+=======
+#!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
+>>>>>>> feature/Categoria
 # -*- coding: utf-8 -*-
 import re
 import sys
@@ -11,6 +15,7 @@ from charset_normalizer import cli
 if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
     sys.exit(cli.cli_detect())
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #!/home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual/bin/python3
@@ -24,3 +29,5 @@ if __name__ == '__main__':
 >>>>>>> feature/Ingredientes
 =======
 >>>>>>> feature/Cuenta
+=======
+>>>>>>> feature/Categoria

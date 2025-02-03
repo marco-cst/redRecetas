@@ -41,10 +41,14 @@ if [ "${OSTYPE:-}" = "cygwin" ] || [ "${OSTYPE:-}" = "msys" ] ; then
     # and to /cygdrive/d/path/to/venv on Cygwin
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/Categoria
     export VIRTUAL_ENV=$(cygpath /home/marco/Documents/ProgG/redRecetas/frontRC/virtual)
 else
     # use the path as-is
     export VIRTUAL_ENV=/home/marco/Documents/ProgG/redRecetas/frontRC/virtual
+<<<<<<< HEAD
 =======
     export VIRTUAL_ENV=$(cygpath /home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual)
 else
@@ -57,6 +61,8 @@ else
     # use the path as-is
     export VIRTUAL_ENV=/home/marco/Documents/ProgG/redRecetas/FrontRC/virtual
 >>>>>>> feature/Cuenta
+=======
+>>>>>>> feature/Categoria
 fi
 
 _OLD_VIRTUAL_PATH="$PATH"

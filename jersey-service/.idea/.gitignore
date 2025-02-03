@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -28,6 +29,8 @@ Thumbs.db
 <<<<<<< HEAD
 .settings/
 =======
+=======
+>>>>>>> feature/Categoria
 # Archivos y carpetas específicas del entorno
 /.idea/
 *.iml
@@ -51,7 +54,10 @@ Thumbs.db
 # Configuraciones locales
 /.vscode/
 .env
+<<<<<<< HEAD
 >>>>>>> feature/Ingredientes
 =======
 .settings/
 >>>>>>> feature/Cuenta
+=======
+>>>>>>> feature/Categoria

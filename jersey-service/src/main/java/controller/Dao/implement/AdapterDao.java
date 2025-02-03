@@ -122,6 +122,9 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return true; //Retorna verdadero si se eliminó correctamente
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/Categoria
 
     public Boolean supreme(int index) throws Exception {
         LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
@@ -131,6 +134,9 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return true; //Retorna verdadero si se eliminó correctamente
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> feature/Cuenta
+=======
+>>>>>>> feature/Categoria
 }

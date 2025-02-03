@@ -1,49 +1,51 @@
 package models;
 
+import models.enumedores.TipoCategoria;
+
 public class Categoria {
-    private int idCategoria;
-    private String tipo;
-    private Boolean estado;
+    private Integer idCategoria;
+    private TipoCategoria tipo; // private String tipo;
+    // private Boolean estado;
 
     public Categoria() {
     }
     
-    public Categoria(int idCategoria, String tipo, Boolean estado) {
+    public Categoria(Integer idCategoria, TipoCategoria tipo) { //, Boolean estado
         this.idCategoria = idCategoria;
         this.tipo = tipo;
-        this.estado = estado;
+        // this.estado = estado;
     }
-    public int getIdCategoria() {
+    public Integer getIdCategoria() {
         return this.idCategoria;
     }
 
-    public void setIdCategoria(int idCategoria) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 
-    public String getTipo() {
+    public TipoCategoria getTipo() {
         return this.tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoCategoria tipo) {
         this.tipo = tipo;
     }
 
-    public Boolean getEstado() {
-        return this.estado;
-    }
+    // public Boolean getEstado() {
+    //     return this.estado;
+    // }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
+    // public void setEstado(Boolean estado) {
+    //     this.estado = estado;
+    // }
 
-    @Override   
-    public String toString() {
-        return "Categoria{" +
-            "idCategoria=" + idCategoria +
-            ", tipo='" + tipo + '\'' +
-            ", estado=" + estado +
-            '}';
-    }
+    // @Override   
+    // public String toString() {
+    //     return "Categoria{" +
+    //         "idCategoria=" + idCategoria +
+    //         ", tipo='" + tipo + '\'' +
+    //         ", estado=" + estado +
+    //         '}';
+    // }
         
 }

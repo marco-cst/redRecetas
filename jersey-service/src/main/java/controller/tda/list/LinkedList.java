@@ -1,5 +1,6 @@
 package controller.tda.list;
 
+<<<<<<< HEAD
 import controller.tda.list.LinkedList;
 <<<<<<< HEAD
 import models.Receta;
@@ -23,6 +24,12 @@ import java.util.stream.Stream;
 
 public class LinkedList<E> implements Iterable<E> {
 >>>>>>> feature/Cuenta
+=======
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class LinkedList<E> implements Iterable<E> {
+>>>>>>> feature/Categoria
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
     private Node<E> last; // Nodo último (el último nodo de la lista)
     private Integer size; // Tamaño de la lista (cuenta el número de nodos en la lista)
@@ -204,6 +211,9 @@ public class LinkedList<E> implements Iterable<E> {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> feature/Categoria
             return removeFirst(); // Elimina el primer nodo
         } else if (post == (size - 1)) {
             return removeLast(); // Elimina el último nodo
@@ -229,12 +239,15 @@ public class LinkedList<E> implements Iterable<E> {
         } else if (post == (size - 1)) {
             return removeLast();
         } else {
+<<<<<<< HEAD
 =======
             return removeFirst();
         } else if (post == (size - 1)) {
             return removeLast();
         } else {
 >>>>>>> feature/Cuenta
+=======
+>>>>>>> feature/Categoria
             Node<E> preview = getNode(post - 1);
             Node<E> actually = getNode(post);
             E element = preview.getInfo();
@@ -246,9 +259,12 @@ public class LinkedList<E> implements Iterable<E> {
 
         }
     }
+<<<<<<< HEAD
     
    
     
+=======
+>>>>>>> feature/Categoria
 
 >>>>>>> feature/Resenia
     public void reset() {
@@ -366,6 +382,7 @@ public class LinkedList<E> implements Iterable<E> {
             search.setInfo(data);
         }
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     // REMOVE AGREGADO 24/OCT/2024
 
@@ -810,3 +827,34 @@ public class LinkedList<E> implements Iterable<E> {
     
 >>>>>>> feature/Cuenta
 }
+=======
+
+
+    // Implementación de Iterable
+    @Override
+    public Iterator<E> iterator() {
+        return new LinkedListIterator();
+    }
+
+    // Clase interna para el iterador
+    private class LinkedListIterator implements Iterator<E> {
+        private Node<E> current = header;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            E data = current.getInfo();
+            current = current.getNext();
+            return data;
+        }
+    }
+
+}
+>>>>>>> feature/Categoria
