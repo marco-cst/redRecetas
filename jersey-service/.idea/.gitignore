@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -25,3 +26,28 @@ Thumbs.db
 # Ignorar archivos relacionados con Maven
 .mvn/
 .settings/
+=======
+# Archivos y carpetas específicas del entorno
+/.idea/
+*.iml
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación y dependencias
+/target/
+*.class
+*.jar
+*.war
+
+# Archivos temporales
+*.tmp
+*.swp
+*.bak
+
+# Configuraciones locales
+/.vscode/
+.env
+>>>>>>> feature/Ingredientes

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
+=======
+#!/home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual/bin/python3
+>>>>>>> feature/Ingredientes
 # -*- coding: utf-8 -*-
 import re
 import sys

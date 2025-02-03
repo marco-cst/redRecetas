@@ -33,7 +33,11 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
 set -gx VIRTUAL_ENV /home/marco/Documents/ProgG/redRecetas/frontRC/virtual
+=======
+set -gx VIRTUAL_ENV /home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual
+>>>>>>> feature/Ingredientes
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
