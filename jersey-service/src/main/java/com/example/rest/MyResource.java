@@ -23,7 +23,7 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getIt() {
     
-    HashMap mapa = new HashMap<>();
+    HashMap<String,Object> mapa = new HashMap<>();
     PersonaServicies pd = new PersonaServicies(); 
     String aux = "";
 
