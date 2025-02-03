@@ -39,30 +39,10 @@ deactivate nondestructive
 if [ "${OSTYPE:-}" = "cygwin" ] || [ "${OSTYPE:-}" = "msys" ] ; then
     # transform D:\path\to\venv to /d/path/to/venv on MSYS
     # and to /cygdrive/d/path/to/venv on Cygwin
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
     export VIRTUAL_ENV=$(cygpath /home/marco/Documents/ProgG/redRecetas/frontRC/virtual)
 else
     # use the path as-is
     export VIRTUAL_ENV=/home/marco/Documents/ProgG/redRecetas/frontRC/virtual
-<<<<<<< HEAD
-=======
-    export VIRTUAL_ENV=$(cygpath /home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual)
-else
-    # use the path as-is
-    export VIRTUAL_ENV=/home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual
->>>>>>> feature/Ingredientes
-=======
-    export VIRTUAL_ENV=$(cygpath /home/marco/Documents/ProgG/redRecetas/FrontRC/virtual)
-else
-    # use the path as-is
-    export VIRTUAL_ENV=/home/marco/Documents/ProgG/redRecetas/FrontRC/virtual
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
 fi
 
 _OLD_VIRTUAL_PATH="$PATH"

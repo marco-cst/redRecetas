@@ -19,29 +19,27 @@
           <div class="col-lg-8">
             <div class="card shadow-sm border-0">
               <div class="card-body p-4">
-<<<<<<< HEAD
+/*  < -- */
                 <h5 class="card-title text-center mb-4 text-primary">Editar Receta</h5>
                 <form class="row g-3 needs-validation" method="POST" action="/admin/receta/update" novalidate>
                   <input type="hidden" name="id" value="{{ receta.idReceta }}">
-=======
-                <h5 class="card-title text-center mb-4 text-primary">Editar Ingrediente</h5>
+/*  < -- */                <h5 class="card-title text-center mb-4 text-primary">Editar Ingrediente</h5>
                 <form class="row g-3 needs-validation" method="POST" action="/admin/ingre/update" novalidate>
                   <input type="hidden" name="id" value="{{ ingrediente.idIngrediente }}">
->>>>>>> feature/Ingredientes
+/*  < -- */feature/Ingredientes
                   
                   <!-- Nombre -->
                   <div class="col-md-6">
                     <label for="nombre" class="form-label fw-bold">Nombre</label>
-<<<<<<< HEAD
+/*  < -- */
                     <input type="text" class="form-control border-primary" id="nombre" name="nom" value="{{ receta.nombre }}" required>
-=======
-                    <input type="text" class="form-control border-primary" id="nombre" name="nom" value="{{ ingrediente.nombre }}" required>
->>>>>>> feature/Ingredientes
+/*  < -- */                    <input type="text" class="form-control border-primary" id="nombre" name="nom" value="{{ ingrediente.nombre }}" required>
+/*  < -- */feature/Ingredientes
                   </div>
   
                   <!-- Porciones -->
                   <div class="col-md-6">
-<<<<<<< HEAD
+/*  < -- */
                     <label for="porciones" class="form-label fw-bold">Porciones</label>
                     <input type="text" class="form-control border-primary" id="porciones" name="por" value="{{ receta.porciones }}" required>
                   </div>
@@ -60,8 +58,7 @@
                     </div>
                   </div>
   
-=======
-                    <label for="cantidad" class="form-label fw-bold">Cantidad</label>
+/*  < -- */                    <label for="cantidad" class="form-label fw-bold">Cantidad</label>
                     <input type="text" class="form-control border-primary" id="cantidad" name="can" value="{{ ingrediente.cantidad }}" required>
                   </div>
   
@@ -69,17 +66,16 @@
                     <label for="unidadMedida" class="form-label fw-bold">Unidad de Medida</label>
                     <input type="text" class="form-control border-primary" id="medida" name="can" value="{{ ingrediente.unidadMedida}}" required>
                   </div>
->>>>>>> feature/Ingredientes
+/*  < -- */feature/Ingredientes
                   <!-- Botones -->
                   <div class="col-12 text-center">
                     <button class="btn btn-success px-4 py-2" type="submit">
                       <i class="fa fa-check"></i> Actualizar
                     </button>
-<<<<<<< HEAD
+/*  < -- */
                     <a href="/admin/receta/list" class="btn btn-danger px-4 py-2">
-=======
-                    <a href="/admin/ingre/list" class="btn btn-danger px-4 py-2">
->>>>>>> feature/Ingredientes
+/*  < -- */                    <a href="/admin/ingre/list" class="btn btn-danger px-4 py-2">
+/*  < -- */feature/Ingredientes
                       <i class="fa fa-times"></i> Cancelar
                     </a>
                   </div>

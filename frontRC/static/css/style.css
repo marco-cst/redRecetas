@@ -38,13 +38,7 @@ body {
 	font-family: "PT Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 	font-family: 'Poppins', sans-serif;
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
 	background: none;
 }
 
@@ -315,10 +309,6 @@ ol {
 -----------------------*/
 
 .header-section {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
 	padding-top: 65px;
 	padding-bottom: 30px;
 }
@@ -326,8 +316,6 @@ ol {
 .header-section .logo {
 	text-align: center;
 	margin-bottom: 92px;
-<<<<<<< HEAD
-=======
 	padding-top: 20px;
 	padding-bottom: 10px;
 	background-color:  #FC0254;
@@ -346,25 +334,15 @@ ol {
 	position:left;
 	width: auto;
 	/* Controla el tamaño del logo */
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
 }
 
 .header-section .logo a {
 	display: inline-block;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
-.header-section .nav-menu {
 	position: relative;
 }
 
-<<<<<<< HEAD
-=======
 .header-section .mobile-menu-wrap .logo a {
 	position: relative;
 	text-align: center;
@@ -395,30 +373,26 @@ ol {
     display: flex;
     justify-content: center; /* Alinear menú a la derecha */
 }
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- *//*  < -- */feature/Categoria
 .header-section .nav-menu .main-menu {
 	text-align: center;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 .header-section .nav-menu .main-menu ul li {
 	display: inline-block;
 	margin-right: 60px;
-=======
-
+/*  < -- */
 
 .header-section .nav-menu .main-menu ul li {
 	display: inline-block;
 	margin-right: 30px;
->>>>>>> feature/Cuenta
-=======
-.header-section .nav-menu .main-menu ul li {
+/*  < -- */feature/Cuenta
+/*  < -- */.header-section .nav-menu .main-menu ul li {
 	display: inline-block;
 	margin-right: 60px;
->>>>>>> feature/Categoria
+/*  < -- */feature/Categoria
 	position: relative;
 }
 
@@ -439,15 +413,13 @@ ol {
 }
 
 .header-section .nav-menu .main-menu ul li.active a {
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 	color: #FC0254;
-=======
-	color: #0c0c0c;
->>>>>>> feature/Cuenta
-=======
-	color: #FC0254;
->>>>>>> feature/Categoria
+/*  < -- */	color: #0c0c0c;
+/*  < -- */feature/Cuenta
+/*  < -- */	color: #FC0254;
+/*  < -- */feature/Categoria
 }
 
 .header-section .nav-menu .main-menu ul li.active a:after {
@@ -465,15 +437,13 @@ ol {
 }
 
 .header-section .nav-menu .main-menu ul li a {
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 	color: #353535;
-=======
-	color: #f5e8e8;
->>>>>>> feature/Cuenta
-=======
-	color: #353535;
->>>>>>> feature/Categoria
+/*  < -- */	color: #f5e8e8;
+/*  < -- */feature/Cuenta
+/*  < -- */	color: #353535;
+/*  < -- */feature/Categoria
 	font-size: 20px;
 	font-weight: 700;
 	padding: 5px;
@@ -498,29 +468,25 @@ ol {
 .header-section .nav-menu .main-menu ul li:hover .sub-menu {
 	visibility: visible;
 	opacity: 1;
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 	margin-top: 16px;
-=======
-	margin-top: 6px;
->>>>>>> feature/Cuenta
-=======
-	margin-top: 16px;
->>>>>>> feature/Categoria
+/*  < -- */	margin-top: 6px;
+/*  < -- */feature/Cuenta
+/*  < -- */	margin-top: 16px;
+/*  < -- */feature/Categoria
 }
 
 .header-section .nav-menu .main-menu ul .sub-menu {
 	position: absolute;
 	list-style: none;
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 	width: 220px;
-=======
-	width: 20px;
->>>>>>> feature/Cuenta
-=======
-	width: 220px;
->>>>>>> feature/Categoria
+/*  < -- */	width: 20px;
+/*  < -- */feature/Cuenta
+/*  < -- */	width: 220px;
+/*  < -- */feature/Categoria
 	left: 0;
 	top: 100%;
 	padding: 20px 0 10px;
@@ -577,14 +543,12 @@ ol {
 	display: none;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+/*  < -- */
+/*  < -- */
+/*  < -- */
 
-
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 /*---------------------
   Page Top Recipe
 -----------------------*/
@@ -986,10 +950,9 @@ ol {
   Footer
 -----------------------*/
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- */
+/*  < -- *//*  < -- */feature/Categoria
 .footer-section {
 	background: #EAEDF2;
 	padding-top: 70px;
@@ -1101,25 +1064,21 @@ ol {
 	padding-top: 50px;
 	padding-bottom: 8px;
 }
-<<<<<<< HEAD
-=======
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- *//*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 
 /* ---------------------------------- Other Pages Styles --------------------------------*/
 
 /*---------------------
   Header Other Pages
 -----------------------*/
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 
-=======
->>>>>>> feature/Cuenta
-=======
-
->>>>>>> feature/Categoria
+/*  < -- *//*  < -- */feature/Cuenta
+/*  < -- */
+/*  < -- */feature/Categoria
 .header-section-other {
 	height: 85px;
 	padding-top: 21px;
@@ -1128,10 +1087,9 @@ ol {
 	padding-right: 50px;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- */
+/*  < -- *//*  < -- */feature/Categoria
 .header-section-other .logo {
 	float: left;
 }
@@ -1146,9 +1104,8 @@ ol {
 	margin-top: 10px;
 }
 
-<<<<<<< HEAD
-=======
-
+/*  < -- */
+/*  < -- */
 .header-section-other {
     padding-left: 0;
     padding-right: 0;
@@ -1170,9 +1127,8 @@ ol {
 }
 
 
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 .header-section-other .nav-menu .main-menu {
 	margin-right: 100px;
 }
@@ -1302,10 +1258,9 @@ ol {
 	cursor: pointer;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-.header-section-other .logo2 {
+/*  < -- */
+/*  < -- */
+/*  < -- */.header-section-other .logo2 {
     float: left; /* Alinea el logo hacia la izquierda */
     text-align: left; /* Asegura que el contenido del logo esté alineado a la izquierda */
     margin-bottom: 0; /* Ajusta los márgenes para una mejor alineación */
@@ -1316,9 +1271,8 @@ ol {
 
 
 
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 /*---------------------
   Hero Search
 -----------------------*/
@@ -2503,19 +2457,17 @@ ol {
 	.fr-item .fr-item-img {
 		float: none;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*  < -- */
+/*  < -- */
 	.footer-section .subscribe-form input {
 		margin-bottom: 15px;
 	}
-=======
-	
->>>>>>> feature/Cuenta
-=======
-	.footer-section .subscribe-form input {
+/*  < -- */	
+/*  < -- */feature/Cuenta
+/*  < -- */	.footer-section .subscribe-form input {
 		margin-bottom: 15px;
 	}
->>>>>>> feature/Categoria
+/*  < -- */feature/Categoria
 	.hero-search .filter-table .filter-search input {
 		width: calc(27% - 10px);
 	}
@@ -2660,10 +2612,9 @@ ol {
 		float: none;
 		margin-right: 0;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- */
+/*  < -- *//*  < -- */feature/Categoria
 	.footer-section .subscribe-form input {
 		margin-bottom: 15px;
 	}
@@ -2684,12 +2635,10 @@ ol {
 		right: 110px;
 		top: -4px;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- */	
+/*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 	.hero-search .filter-table .filter-search input {
 		width: 100%;
 		margin-bottom: 5px;
@@ -2728,22 +2677,19 @@ ol {
 	.fr-item {
 		text-align: center;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- */
+/*  < -- *//*  < -- */feature/Categoria
 	.footer-section .social-links a {
 		margin-right: 10px;
 	}
 	.footer-section .social-links a span {
 		display: none;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */
+/*  < -- */	
+/*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 	.hero-search {
 		height: 340px;
 		padding-top: 40px;
@@ -2790,15 +2736,13 @@ ol {
 	.map .map-content {
 		right: calc(50% - 131px);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
+/*  < -- */
+/*  < -- */
+/*  < -- */
+/*  */
 
 	
 	
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
+/*  < -- */feature/Cuenta
+/*  < -- *//*  < -- */feature/Categoria
 }

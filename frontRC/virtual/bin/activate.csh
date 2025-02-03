@@ -9,19 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 setenv VIRTUAL_ENV /home/marco/Documents/ProgG/redRecetas/frontRC/virtual
-=======
-setenv VIRTUAL_ENV /home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual
->>>>>>> feature/Ingredientes
-=======
-setenv VIRTUAL_ENV /home/marco/Documents/ProgG/redRecetas/FrontRC/virtual
->>>>>>> feature/Cuenta
-=======
-setenv VIRTUAL_ENV /home/marco/Documents/ProgG/redRecetas/frontRC/virtual
->>>>>>> feature/Categoria
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"
