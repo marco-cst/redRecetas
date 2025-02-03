@@ -47,23 +47,17 @@
   </div>
 </div>
 
-<!-- Agregar JavaScript para manejar la búsqueda -->
 <script>
 document.getElementById('buscar').addEventListener('click', function() {
-    // Obtener la categoría seleccionada
     var categoria = document.getElementById('categoria').value;
 
-    // Realizar la solicitud al backend
     fetch(`/admin/proyecto/list/search/${categoria}`)
         .then(response => response.json())
         .then(data => {
-            // Limpiar la tabla
             var tbody = document.getElementById('tabla-categorias');
             tbody.innerHTML = '';
 
-            // Verificar si hay datos
             if (data.length > 0) {
-                // Llenar la tabla con los nuevos datos
                 data.forEach(item => {
                     var row = `<tr id="row-${item.idCategoria}">
                         <td>${item.idCategoria}</td>
@@ -72,7 +66,6 @@ document.getElementById('buscar').addEventListener('click', function() {
                     tbody.innerHTML += row;
                 });
             } else {
-                // Mostrar mensaje si no hay datos
                 tbody.innerHTML = '<tr><td colspan="3" class="text-center">No hay categorías.</td></tr>';
             }
         })

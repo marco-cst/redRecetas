@@ -43,6 +43,9 @@ def view_asignar(texto):
                 return render_template("/admin/person/register", error_message=str(data1["data"]))
         
 
+
+
+
 @router1.route('/admin/person/save', methods=['POST'])
 def save_receta():
     headers = {'Content-Type': 'application/json'}

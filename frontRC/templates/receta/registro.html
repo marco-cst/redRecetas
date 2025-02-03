@@ -1,0 +1,62 @@
+{% extends "template.html" %}
+{% block content %}
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title p-4">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Registro</h1>
+      <nav class="breadcrumbs">
+      </nav>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h5 class="card-title text-center text-primary mb-4">¡Bienvenido!</h5>
+              <form class="row g-3 needs-validation" method="POST" action="/admin/receta/save" novalidate>
+                
+                <!-- Nombre -->
+                <div class="col-md-6">
+                  <label for="nom" class="form-label fw-bold">Nombre</label>
+                  <input type="text" class="form-control border-primary" id="nombre" name="nom" placeholder="EJ: ENCEBOLLADO" required>
+                </div>
+
+                <!-- Preparación -->
+                <div class="col-md-6">
+                  <label for="pre" class="form-label fw-bold">Preparación</label>
+                  <textarea class="form-control border-primary" id="preparacion" name="pre" rows="5" placeholder="Describe la preparacion(cada enter es un paso)" required></textarea>
+                </div>
+
+                <!-- Porciones -->
+                <div class="col-md-6">
+                  <label for="por" class="form-label fw-bold">Porciones</label>
+                  <input type="text" class="form-control border-primary" id="porciones" name="por" placeholder="EJ: 8" required>
+                </div>
+
+                <!-- Botones -->
+                <div class="col-12 text-center mt-4">
+                  <button class="btn btn-success px-4 py-2" type="submit">
+                    <i class="fa fa-paper-plane"></i> Publicar
+                  </button>
+                  <a href="/admin/receta/list" class="btn btn-danger px-4 py-2">
+                    <i class="fa fa-times"></i> Cancelar
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

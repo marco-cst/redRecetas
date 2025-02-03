@@ -1,0 +1,61 @@
+{% extends "template.html" %}
+{% block content %}
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title p-4">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Editar</h1>
+      <nav class="breadcrumbs">
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
+
+  <main class="main">
+    <section class="section py-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4">
+                <h5 class="card-title text-center mb-4 text-primary">Editar Ingrediente</h5>
+                <form class="row g-3 needs-validation" method="POST" action="/admin/ingre/update" novalidate>
+                  <input type="hidden" name="id" value="{{ ingre.idIngrediente }}">
+                  
+                  <!-- Nombre -->
+                  <div class="col-md-6">
+                    <label for="nombre" class="form-label fw-bold">Nombre</label>
+                    <input type="text" class="form-control border-primary" id="nombre" name="nom" value="{{ ingre.nombre }}" required>
+                  </div>
+  
+                  <!-- Porciones -->
+                  <div class="col-md-6">
+                    <label for="cantidad" class="form-label fw-bold">Cantidad</label>
+                    <input type="text" class="form-control border-primary" id="cantidad" name="can" value="{{ ingre.cantidad }}" required>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <label for="unidadMedida" class="form-label fw-bold">Unidad de Medida</label>
+                    <input type="text" class="form-control border-primary" id="unidadMedida" name="med" value="{{ ingre.unidadMedida}}" required>
+                  </div>
+                  <!-- Botones -->
+                  <div class="col-12 text-center">
+                    <button class="btn btn-success px-4 py-2" type="submit">
+                      <i class="fa fa-check"></i> Actualizar
+                    </button>
+                    <a href="/admin/ingre/list" class="btn btn-danger px-4 py-2">
+                      <i class="fa fa-times"></i> Cancelar
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  {% endblock %}
+  

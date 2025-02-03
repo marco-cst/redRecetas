@@ -309,13 +309,6 @@ ol {
 -----------------------*/
 
 .header-section {
-	padding-top: 65px;
-	padding-bottom: 30px;
-}
-
-.header-section .logo {
-	text-align: center;
-	margin-bottom: 92px;
 	padding-top: 20px;
 	padding-bottom: 10px;
 	background-color:  #FC0254;
@@ -338,9 +331,6 @@ ol {
 
 .header-section .logo a {
 	display: inline-block;
-}
-
-	position: relative;
 }
 
 .header-section .mobile-menu-wrap .logo a {
@@ -373,26 +363,15 @@ ol {
     display: flex;
     justify-content: center; /* Alinear menú a la derecha */
 }
-/*  < -- *//*  < -- */feature/Categoria
 .header-section .nav-menu .main-menu {
 	text-align: center;
 }
 
-/*  < -- */
-/*  < -- */
-.header-section .nav-menu .main-menu ul li {
-	display: inline-block;
-	margin-right: 60px;
-/*  < -- */
+
 
 .header-section .nav-menu .main-menu ul li {
 	display: inline-block;
 	margin-right: 30px;
-/*  < -- */feature/Cuenta
-/*  < -- */.header-section .nav-menu .main-menu ul li {
-	display: inline-block;
-	margin-right: 60px;
-/*  < -- */feature/Categoria
 	position: relative;
 }
 
@@ -413,13 +392,7 @@ ol {
 }
 
 .header-section .nav-menu .main-menu ul li.active a {
-/*  < -- */
-/*  < -- */
-	color: #FC0254;
-/*  < -- */	color: #0c0c0c;
-/*  < -- */feature/Cuenta
-/*  < -- */	color: #FC0254;
-/*  < -- */feature/Categoria
+	color: #0c0c0c;
 }
 
 .header-section .nav-menu .main-menu ul li.active a:after {
@@ -437,13 +410,7 @@ ol {
 }
 
 .header-section .nav-menu .main-menu ul li a {
-/*  < -- */
-/*  < -- */
-	color: #353535;
-/*  < -- */	color: #f5e8e8;
-/*  < -- */feature/Cuenta
-/*  < -- */	color: #353535;
-/*  < -- */feature/Categoria
+	color: #f5e8e8;
 	font-size: 20px;
 	font-weight: 700;
 	padding: 5px;
@@ -468,25 +435,13 @@ ol {
 .header-section .nav-menu .main-menu ul li:hover .sub-menu {
 	visibility: visible;
 	opacity: 1;
-/*  < -- */
-/*  < -- */
-	margin-top: 16px;
-/*  < -- */	margin-top: 6px;
-/*  < -- */feature/Cuenta
-/*  < -- */	margin-top: 16px;
-/*  < -- */feature/Categoria
+	margin-top: 6px;
 }
 
 .header-section .nav-menu .main-menu ul .sub-menu {
 	position: absolute;
 	list-style: none;
-/*  < -- */
-/*  < -- */
-	width: 220px;
-/*  < -- */	width: 20px;
-/*  < -- */feature/Cuenta
-/*  < -- */	width: 220px;
-/*  < -- */feature/Categoria
+	width: 20px;
 	left: 0;
 	top: 100%;
 	padding: 20px 0 10px;
@@ -543,12 +498,8 @@ ol {
 	display: none;
 }
 
-/*  < -- */
-/*  < -- */
-/*  < -- */
 
-/*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
+
 /*---------------------
   Page Top Recipe
 -----------------------*/
@@ -950,135 +901,12 @@ ol {
   Footer
 -----------------------*/
 
-/*  < -- */
-/*  < -- */
-/*  < -- *//*  < -- */feature/Categoria
-.footer-section {
-	background: #EAEDF2;
-	padding-top: 70px;
-}
-
-.footer-section .fs-left {
-	margin-bottom: 31px;
-}
-
-.footer-section .fs-left .logo {
-	margin-bottom: 34px;
-}
-
-.footer-section .fs-left .logo a {
-	display: inline-block;
-}
-
-.footer-section .fs-left p {
-	color: #7a818d;
-}
-
-.footer-section .subscribe-form {
-	margin-bottom: 38px;
-	padding-top: 25px;
-}
-
-.footer-section .subscribe-form h3 {
-	color: #353535;
-	font-weight: 700;
-	margin-bottom: 20px;
-}
-
-.footer-section .subscribe-form input {
-	width: calc(100% - 225px);
-	height: 64px;
-	border: 1px solid #fff;
-	display: inline-block;
-	margin-right: 15px;
-	padding-left: 34px;
-	padding-right: 10px;
-	font-size: 16px;
-	font-style: italic;
-	color: #353535;
-}
-
-.footer-section .subscribe-form input::-webkit-input-placeholder {
-	color: #353535;
-}
-
-.footer-section .subscribe-form input::-moz-placeholder {
-	color: #353535;
-}
-
-.footer-section .subscribe-form input:-ms-input-placeholder {
-	color: #353535;
-}
-
-.footer-section .subscribe-form input::-ms-input-placeholder {
-	color: #353535;
-}
-
-.footer-section .subscribe-form input::placeholder {
-	color: #353535;
-}
-
-.footer-section .subscribe-form button {
-	border: 1px solid #FC0254;
-	background: #FC0254;
-	font-size: 18px;
-	font-weight: 700;
-	color: #fff;
-	padding: 17px 40px;
-	display: inline-block;
-	cursor: pointer;
-	min-width: 205px;
-}
-
-.footer-section .social-links a {
-	display: inline-block;
-	margin-right: 35px;
-	margin-bottom: 15px;
-}
-
-.footer-section .social-links a:hover i {
-	color: #0DB1F6;
-}
-
-.footer-section .social-links a i {
-	color: #B8C1D0;
-	font-size: 28px;
-	float: left;
-	margin-right: 22px;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.footer-section .social-links a span {
-	color: #fff;
-	float: left;
-	line-height: 27px;
-	font-size: 12px;
-	color: #8f8f8f;
-	text-transform: uppercase;
-}
-
-.footer-section .copyright-text {
-	font-size: 14px;
-	color: #b8c1d0;
-	padding-top: 50px;
-	padding-bottom: 8px;
-}
-/*  < -- */
-/*  < -- *//*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
 
 /* ---------------------------------- Other Pages Styles --------------------------------*/
 
 /*---------------------
   Header Other Pages
 -----------------------*/
-/*  < -- */
-/*  < -- */
-
-/*  < -- *//*  < -- */feature/Cuenta
-/*  < -- */
-/*  < -- */feature/Categoria
 .header-section-other {
 	height: 85px;
 	padding-top: 21px;
@@ -1087,25 +915,7 @@ ol {
 	padding-right: 50px;
 }
 
-/*  < -- */
-/*  < -- */
-/*  < -- *//*  < -- */feature/Categoria
-.header-section-other .logo {
-	float: left;
-}
 
-.header-section-other .logo a {
-	display: inline-block;
-}
-
-.header-section-other .nav-menu {
-	position: relative;
-	float: right;
-	margin-top: 10px;
-}
-
-/*  < -- */
-/*  < -- */
 .header-section-other {
     padding-left: 0;
     padding-right: 0;
@@ -1127,8 +937,6 @@ ol {
 }
 
 
-/*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
 .header-section-other .nav-menu .main-menu {
 	margin-right: 100px;
 }
@@ -1258,9 +1066,7 @@ ol {
 	cursor: pointer;
 }
 
-/*  < -- */
-/*  < -- */
-/*  < -- */.header-section-other .logo2 {
+.header-section-other .logo2 {
     float: left; /* Alinea el logo hacia la izquierda */
     text-align: left; /* Asegura que el contenido del logo esté alineado a la izquierda */
     margin-bottom: 0; /* Ajusta los márgenes para una mejor alineación */
@@ -1271,8 +1077,6 @@ ol {
 
 
 
-/*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
 /*---------------------
   Hero Search
 -----------------------*/
@@ -2457,17 +2261,7 @@ ol {
 	.fr-item .fr-item-img {
 		float: none;
 	}
-/*  < -- */
-/*  < -- */
-	.footer-section .subscribe-form input {
-		margin-bottom: 15px;
-	}
-/*  < -- */	
-/*  < -- */feature/Cuenta
-/*  < -- */	.footer-section .subscribe-form input {
-		margin-bottom: 15px;
-	}
-/*  < -- */feature/Categoria
+	
 	.hero-search .filter-table .filter-search input {
 		width: calc(27% - 10px);
 	}
@@ -2612,33 +2406,7 @@ ol {
 		float: none;
 		margin-right: 0;
 	}
-/*  < -- */
-/*  < -- */
-/*  < -- *//*  < -- */feature/Categoria
-	.footer-section .subscribe-form input {
-		margin-bottom: 15px;
-	}
-	.footer-section .subscribe-form input {
-		width: 100%;
-	}
-	.header-section-other {
-		padding-left: 0;
-		padding-right: 0;
-		height: auto;
-	}
-	.header-section-other .logo {
-		float: none;
-		text-align: center;
-		margin-bottom: 10px;
-	}
-	.header-section-other .nav-menu .nav-right {
-		right: 110px;
-		top: -4px;
-	}
-/*  < -- */
-/*  < -- */	
-/*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
+	
 	.hero-search .filter-table .filter-search input {
 		width: 100%;
 		margin-bottom: 5px;
@@ -2677,19 +2445,7 @@ ol {
 	.fr-item {
 		text-align: center;
 	}
-/*  < -- */
-/*  < -- */
-/*  < -- *//*  < -- */feature/Categoria
-	.footer-section .social-links a {
-		margin-right: 10px;
-	}
-	.footer-section .social-links a span {
-		display: none;
-	}
-/*  < -- */
-/*  < -- */	
-/*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
+	
 	.hero-search {
 		height: 340px;
 		padding-top: 40px;
@@ -2736,13 +2492,9 @@ ol {
 	.map .map-content {
 		right: calc(50% - 131px);
 	}
-/*  < -- */
-/*  < -- */
-/*  < -- */
-/*  */
+
+
 
 	
 	
-/*  < -- */feature/Cuenta
-/*  < -- *//*  < -- */feature/Categoria
 }
