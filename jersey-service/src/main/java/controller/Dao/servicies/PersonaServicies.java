@@ -29,7 +29,7 @@ public class PersonaServicies {
         obj.setPersona(persona); //Invoca el método setPersona() de la clase PersonaDao y envía el objeto Persona
     }
 
-    public LinkedList order(Integer type_order, String atributo){ //Ordena la lista de objetos por apellido
+    public LinkedList<Persona> order(Integer type_order, String atributo){ //Ordena la lista de objetos por apellido
         return obj.order(type_order, atributo); //Invoca el método order_ape() de la clase PersonaDao
     }
 
