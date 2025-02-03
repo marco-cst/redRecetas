@@ -25,6 +25,7 @@ Thumbs.db
 
 # Ignorar archivos relacionados con Maven
 .mvn/
+<<<<<<< HEAD
 .settings/
 =======
 # Archivos y carpetas específicas del entorno
@@ -51,3 +52,6 @@ Thumbs.db
 /.vscode/
 .env
 >>>>>>> feature/Ingredientes
+=======
+.settings/
+>>>>>>> feature/Cuenta

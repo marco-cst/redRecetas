@@ -65,6 +65,10 @@ public class CuentaServices {
     public Cuenta get(Integer id) throws Exception{
         return obj.get(id);
     }
+
+    public Boolean delete(int id) throws Exception{
+        return obj.delete(id);
+    }
     
 
 

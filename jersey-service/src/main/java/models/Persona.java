@@ -1,10 +1,14 @@
 package models;
 
 public class Persona {
-    private int idPersona;
+    private Integer idPersona;
     private String nombre;
     private String apellido;
-    // private String DNI;
+    private String DNI;
+   
+
+
+
     private String apodo;
 
     public Persona() {
@@ -19,7 +23,7 @@ public class Persona {
     }
 
     // Getters and Setters
-    public int getIdPersona() {
+    public Integer getIdPersona() {
         return idPersona;
     }
 
@@ -43,13 +47,14 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    // public String getDNI() {
-    //     return DNI;
-    // }
+    public String getDNI() {
+        return DNI;
+    }
 
-    // public void setDNI(String DNI) {
-    //     this.DNI = DNI;
-    // }
+    public void setDNI(String dNI) {
+        DNI = dNI;
+    }
+
 
     public String getApodo() {
         return apodo;
@@ -58,6 +63,8 @@ public class Persona {
     public void setApodo(String apodo) {
         this.apodo = apodo;
     }
+
+    
 
     //new
 

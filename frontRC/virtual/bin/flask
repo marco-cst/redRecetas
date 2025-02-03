@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #!/home/marco/Documents/ProgG/redRecetas/frontRC/virtual/bin/python3.12
 =======
 #!/home/marcoub/Documentos/ClonGit/redRecetas/frontRC/virtual/bin/python3
 >>>>>>> feature/Ingredientes
+=======
+#!/home/marco/Documents/ProgG/redRecetas/FrontRC/virtual/bin/python3
+>>>>>>> feature/Cuenta
 # -*- coding: utf-8 -*-
 import re
 import sys

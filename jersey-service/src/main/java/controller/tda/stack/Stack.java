@@ -24,6 +24,7 @@
 //         return operationStack.getTop();
 //     }
 
+<<<<<<< HEAD
 //     public E pop() throws ListEmptyException {
 //         return operationStack.pop();
 //     }
@@ -32,3 +33,8 @@
 //         return operationStack.pop(); 
 //     }
 // }
+=======
+   
+    
+}
+>>>>>>> feature/Cuenta

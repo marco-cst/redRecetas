@@ -36,6 +36,7 @@
 //     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 //     public E dequeuque() throws ListEmptyException {
 //         if (isEmpty()) {
 //             throw new ListEmptyException("La cola está vacía");
@@ -52,5 +53,8 @@
             return removeLast();
         }
     }
+=======
+    
+>>>>>>> feature/Cuenta
 }
 >>>>>>> feature/Resenia

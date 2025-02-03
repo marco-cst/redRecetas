@@ -1,6 +1,7 @@
 package controller.tda.list;
 
 import controller.tda.list.LinkedList;
+<<<<<<< HEAD
 import models.Receta;
 
 import java.lang.reflect.Method;
@@ -11,6 +12,17 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class LinkedList<E> {
+=======
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.StreamSupport;
+import java.util.stream.Stream;
+
+
+
+public class LinkedList<E> implements Iterable<E> {
+>>>>>>> feature/Cuenta
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
     private Node<E> last; // Nodo último (el último nodo de la lista)
     private Integer size; // Tamaño de la lista (cuenta el número de nodos en la lista)
@@ -185,12 +197,13 @@ public class LinkedList<E> {
         }
     }
 
-    public E delete(Integer post) throws ListEmptyException {
+    public E remove(Integer post) throws ListEmptyException {
         if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacía");
+            throw new ListEmptyException("Error, lista vacia");
         } else if (post < 0 || post >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
         } else if (post == 0) {
+<<<<<<< HEAD
             return removeFirst(); // Elimina el primer nodo
         } else if (post == (size - 1)) {
             return removeLast(); // Elimina el último nodo
@@ -216,6 +229,12 @@ public class LinkedList<E> {
         } else if (post == (size - 1)) {
             return removeLast();
         } else {
+=======
+            return removeFirst();
+        } else if (post == (size - 1)) {
+            return removeLast();
+        } else {
+>>>>>>> feature/Cuenta
             Node<E> preview = getNode(post - 1);
             Node<E> actually = getNode(post);
             E element = preview.getInfo();
@@ -227,6 +246,8 @@ public class LinkedList<E> {
 
         }
     }
+    
+   
     
 
 >>>>>>> feature/Resenia
@@ -345,6 +366,7 @@ public class LinkedList<E> {
             search.setInfo(data);
         }
     }
+<<<<<<< HEAD
     // REMOVE AGREGADO 24/OCT/2024
 
     public int getLength() {
@@ -752,4 +774,39 @@ public class LinkedList<E> {
         }
         return this;
     }
+=======
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private Node<E> current = header;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() {
+                E data = current.getInfo();
+                current = current.getNext();
+                return data;
+            }
+        };
+    }
+
+    @Override
+    public Spliterator<E> spliterator() {  // ✅ Ahora sobrescribe correctamente
+        return Spliterators.spliteratorUnknownSize(iterator(), 0);
+    }
+
+    public Stream<E> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+
+
+
+    
+>>>>>>> feature/Cuenta
 }

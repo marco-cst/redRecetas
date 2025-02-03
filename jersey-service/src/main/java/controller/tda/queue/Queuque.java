@@ -30,7 +30,12 @@
 //         queuqu.reset(); 
 //     }
 
+<<<<<<< HEAD
 //     public E dequeuque() throws ArrayPositionException, ListEmptyException {
 //         return queuqu.dequeuque();
 //     }
 // }
+=======
+    
+}
+>>>>>>> feature/Cuenta

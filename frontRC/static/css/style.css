@@ -38,6 +38,10 @@ body {
 	font-family: "PT Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+<<<<<<< HEAD
+=======
+	font-family: 'Poppins', sans-serif;
+>>>>>>> feature/Cuenta
 	background: none;
 }
 
@@ -308,6 +312,7 @@ ol {
 -----------------------*/
 
 .header-section {
+<<<<<<< HEAD
 	padding-top: 65px;
 	padding-bottom: 30px;
 }
@@ -315,23 +320,84 @@ ol {
 .header-section .logo {
 	text-align: center;
 	margin-bottom: 92px;
+=======
+	padding-top: 20px;
+	padding-bottom: 10px;
+	background-color:  #FC0254;
+}
+
+.header-section .logo {
+	text-align: left;
+	margin-bottom: -13px;
+	
+}
+
+
+
+.header-section .logo img {
+    max-height: 200px;
+	position:left;
+	width: auto;
+	/* Controla el tamaño del logo */
+>>>>>>> feature/Cuenta
 }
 
 .header-section .logo a {
 	display: inline-block;
 }
 
+<<<<<<< HEAD
 .header-section .nav-menu {
 	position: relative;
 }
 
+=======
+.header-section .mobile-menu-wrap .logo a {
+	position: relative;
+	text-align: center;
+}
+
+
+.logo {
+    display: flex; /* Alinea elementos horizontalmente */
+    align-items: center; /* Alinea verticalmente al centro */
+    gap: 15px; /* Espacio entre logo y texto */
+}
+
+.site-title {
+    font-size: 70px; /* Tamaño de fuente del título */
+    font-weight: bold; /* Texto en negrita */
+    color: #f8f4f4; /* Color del texto */
+    margin: 0; /* Elimina márgenes del h1 */
+    white-space: nowrap; 
+	font-family: "Playwrite VN", serif;
+    font-weight: 700;
+	font-optical-sizing: auto;
+	font-style: normal;/* Evita que el texto se parta en varias líneas */
+}
+
+.header-section .nav-menu {
+    position: relative;
+    flex-grow: 10; /* Ocupar espacio restante */
+    display: flex;
+    justify-content: center; /* Alinear menú a la derecha */
+}
+>>>>>>> feature/Cuenta
 .header-section .nav-menu .main-menu {
 	text-align: center;
 }
 
+<<<<<<< HEAD
 .header-section .nav-menu .main-menu ul li {
 	display: inline-block;
 	margin-right: 60px;
+=======
+
+
+.header-section .nav-menu .main-menu ul li {
+	display: inline-block;
+	margin-right: 30px;
+>>>>>>> feature/Cuenta
 	position: relative;
 }
 
@@ -352,7 +418,11 @@ ol {
 }
 
 .header-section .nav-menu .main-menu ul li.active a {
+<<<<<<< HEAD
 	color: #FC0254;
+=======
+	color: #0c0c0c;
+>>>>>>> feature/Cuenta
 }
 
 .header-section .nav-menu .main-menu ul li.active a:after {
@@ -370,7 +440,11 @@ ol {
 }
 
 .header-section .nav-menu .main-menu ul li a {
+<<<<<<< HEAD
 	color: #353535;
+=======
+	color: #f5e8e8;
+>>>>>>> feature/Cuenta
 	font-size: 20px;
 	font-weight: 700;
 	padding: 5px;
@@ -395,13 +469,21 @@ ol {
 .header-section .nav-menu .main-menu ul li:hover .sub-menu {
 	visibility: visible;
 	opacity: 1;
+<<<<<<< HEAD
 	margin-top: 16px;
+=======
+	margin-top: 6px;
+>>>>>>> feature/Cuenta
 }
 
 .header-section .nav-menu .main-menu ul .sub-menu {
 	position: absolute;
 	list-style: none;
+<<<<<<< HEAD
 	width: 220px;
+=======
+	width: 20px;
+>>>>>>> feature/Cuenta
 	left: 0;
 	top: 100%;
 	padding: 20px 0 10px;
@@ -458,6 +540,11 @@ ol {
 	display: none;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> feature/Cuenta
 /*---------------------
   Page Top Recipe
 -----------------------*/
@@ -859,6 +946,7 @@ ol {
   Footer
 -----------------------*/
 
+<<<<<<< HEAD
 .footer-section {
 	background: #EAEDF2;
 	padding-top: 70px;
@@ -970,13 +1058,18 @@ ol {
 	padding-top: 50px;
 	padding-bottom: 8px;
 }
+=======
+>>>>>>> feature/Cuenta
 
 /* ---------------------------------- Other Pages Styles --------------------------------*/
 
 /*---------------------
   Header Other Pages
 -----------------------*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/Cuenta
 .header-section-other {
 	height: 85px;
 	padding-top: 21px;
@@ -985,6 +1078,7 @@ ol {
 	padding-right: 50px;
 }
 
+<<<<<<< HEAD
 .header-section-other .logo {
 	float: left;
 }
@@ -999,6 +1093,30 @@ ol {
 	margin-top: 10px;
 }
 
+=======
+
+.header-section-other {
+    padding-left: 0;
+    padding-right: 0;
+    height: auto;
+}
+.header-section-other .logo2 {
+    float: none;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.header-section-other .nav-menu .nav-right {
+    right: 110px;
+    top: -4px;
+}
+
+.header-section-other .nav-menu {
+    float: right; /* Mantén la navegación hacia la derecha */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+
+>>>>>>> feature/Cuenta
 .header-section-other .nav-menu .main-menu {
 	margin-right: 100px;
 }
@@ -1128,6 +1246,20 @@ ol {
 	cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+.header-section-other .logo2 {
+    float: left; /* Alinea el logo hacia la izquierda */
+    text-align: left; /* Asegura que el contenido del logo esté alineado a la izquierda */
+    margin-bottom: 0; /* Ajusta los márgenes para una mejor alineación */
+    margin-right: 20px; /* Añade espacio entre el logo y el menú de navegación */
+}
+
+
+
+
+
+>>>>>>> feature/Cuenta
 /*---------------------
   Hero Search
 -----------------------*/
@@ -2312,9 +2444,13 @@ ol {
 	.fr-item .fr-item-img {
 		float: none;
 	}
+<<<<<<< HEAD
 	.footer-section .subscribe-form input {
 		margin-bottom: 15px;
 	}
+=======
+	
+>>>>>>> feature/Cuenta
 	.hero-search .filter-table .filter-search input {
 		width: calc(27% - 10px);
 	}
@@ -2459,6 +2595,7 @@ ol {
 		float: none;
 		margin-right: 0;
 	}
+<<<<<<< HEAD
 	.footer-section .subscribe-form input {
 		margin-bottom: 15px;
 	}
@@ -2479,6 +2616,9 @@ ol {
 		right: 110px;
 		top: -4px;
 	}
+=======
+	
+>>>>>>> feature/Cuenta
 	.hero-search .filter-table .filter-search input {
 		width: 100%;
 		margin-bottom: 5px;
@@ -2517,12 +2657,16 @@ ol {
 	.fr-item {
 		text-align: center;
 	}
+<<<<<<< HEAD
 	.footer-section .social-links a {
 		margin-right: 10px;
 	}
 	.footer-section .social-links a span {
 		display: none;
 	}
+=======
+	
+>>>>>>> feature/Cuenta
 	.hero-search {
 		height: 340px;
 		padding-top: 40px;
@@ -2569,4 +2713,12 @@ ol {
 	.map .map-content {
 		right: calc(50% - 131px);
 	}
+<<<<<<< HEAD
+=======
+
+
+
+	
+	
+>>>>>>> feature/Cuenta
 }

@@ -32,5 +32,20 @@ public class PersonaServicies {
     public LinkedList order(Integer type_order, String atributo){ //Ordena la lista de objetos por apellido
         return obj.order(type_order, atributo); //Invoca el método order_ape() de la clase PersonaDao
     }
+
+
+    public Boolean delete(int id) throws Exception{ //Elimina un objeto persona por su índice
+        return obj.delete(id); //Invoca el método delete() de la clase PersonaDao y envía el índice
+    }
+
+    public boolean update() throws Exception {
+        return obj.update();
+    }
+
+    public Persona buscar_identificacion(String texto ){
+        return obj.buscar_identificacion(texto);
+    }
+    
+
     
 }

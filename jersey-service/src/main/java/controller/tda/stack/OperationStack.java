@@ -30,6 +30,7 @@
 //     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //     public E pop() throws ListEmptyException {
 //         if (isEmpty()) {
 //             throw new ListEmptyException("La pila está vacía");
@@ -46,5 +47,8 @@
             return removeLast(); 
         }
     }
+=======
+    
+>>>>>>> feature/Cuenta
 }
 >>>>>>> feature/Resenia
