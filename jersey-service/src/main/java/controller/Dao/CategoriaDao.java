@@ -63,20 +63,6 @@ public class CategoriaDao extends AdapterDao<Categoria> {
         }
     }
 
-<<<<<<< HEAD
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Categoria> list = getListAll(); 
-        Categoria categoria= get(id); 
-        if (categoria != null) {
-            list.removeElement(categoria); 
-            String info = g.toJson(list.toArray());
-            saveFile(info); 
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Inversionista con id " + id + " no encontrada.");
-            return false;
-=======
     public Boolean delete(int id) throws Exception {
         LinkedList<Categoria> list = getlistAll();
         for (int i = 0; i < list.getSize(); i++) {
@@ -85,7 +71,6 @@ public class CategoriaDao extends AdapterDao<Categoria> {
                 this.listAll = listAll(); // Actualiza la lista de objetos
                 return true; // Retorna verdadero si se eliminó correctamente
             }
->>>>>>> feature/Categoria
         }
         return false; // Retorna falso si no se encontró el ID
     }

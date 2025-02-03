@@ -47,21 +47,6 @@ public class ReseniaDao extends AdapterDao<Resenia> {
         this.listAll = listAll(); // Actualiza la lista de objetos
         return true;
     }
-<<<<<<< HEAD
-
-    public Boolean delete(Integer id) throws Exception {
-        LinkedList<Resenia> list = getListAll(); 
-        Resenia resenia= get(id); 
-        if (resenia != null) {
-            list.removeElement(resenia); 
-            String info = g.toJson(list.toArray());
-            saveFile(info); 
-            this.listAll = list;
-            return true;
-        } else {
-            System.out.println("Inversionista con id " + id + " no encontrada.");
-            return false;
-=======
     
     public Boolean delete(int id) throws Exception {
         LinkedList<Resenia> list = getlistAll();
@@ -71,7 +56,6 @@ public class ReseniaDao extends AdapterDao<Resenia> {
                 this.listAll = listAll(); // Actualiza la lista de objetos
                 return true; // Retorna verdadero si se eliminó correctamente
             }
->>>>>>> feature/Resenia
         }
         return false; // Retorna falso si no se encontró el ID
     }

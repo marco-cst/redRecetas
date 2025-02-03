@@ -107,24 +107,14 @@ public class AdapterDao<T> implements InterfazDao<T> {
         }
     }
 
-<<<<<<< HEAD
-    
-    public Boolean supreme(int index) throws Exception {
-        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
-        list.remove(index); //Elimina el objeto en la posición index
-=======
     public boolean supreme(Integer id) throws Exception {
         LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
         list.remove(id); //Elimina el objeto en la posición index
->>>>>>> feature/Cuenta
         String info = g.toJson(list.toArray()); //Convierte la lista en un String JSON
         saveFile(info); //Guarda el String JSON en un archivo
         return true; //Retorna verdadero si se eliminó correctamente
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
+
 
     public Boolean supreme(int index) throws Exception {
         LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
@@ -134,9 +124,4 @@ public class AdapterDao<T> implements InterfazDao<T> {
         return true; //Retorna verdadero si se eliminó correctamente
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
 }

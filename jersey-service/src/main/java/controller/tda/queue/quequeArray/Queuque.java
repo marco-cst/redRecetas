@@ -30,13 +30,5 @@
 //     public void clear(){
 //         queuqu.reset();
 //     }
-    
-<<<<<<< HEAD
-//     public E dequeuque() throws ListEmptyException {
-//         return queuqu.dequeuque();
-//     }
-=======
-   
->>>>>>> feature/Cuenta
-    
+
 // }

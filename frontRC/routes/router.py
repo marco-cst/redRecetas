@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort, jsonify
-=======
 from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort
->>>>>>> feature/Categoria
 import requests
 import datetime
 from urllib.parse import quote
 
-<<<<<<< HEAD
 
-=======
->>>>>>> feature/Categoria
 router = Blueprint('router', __name__)
 
 @router.route('/admin')
@@ -43,7 +34,6 @@ def admin_contact():
 def admin_template():
     return render_template('template.html')
 
-<<<<<<< HEAD
     #dat
 
 @router.route('/admin/resenia/list')
@@ -210,7 +200,6 @@ def delete_resenia(id):
 #     }
     
 #     r = requests.post("http://localhost:8020/api/inversionista/update", data=json.dumps(dataF), headers=headers)
-=======
     #categoria
 
 @router.route('/admin/categoria/list')
@@ -290,33 +279,21 @@ def view_buscar_receta(categoria):
 #     }
     
 #     r = requests.post("http://localhost:8086/api/categoria/update", data=json.dumps(dataF), headers=headers)
->>>>>>> feature/Categoria
 #     dat = r.json()
     
 #     if r.status_code == 200:
 #         flash("Inversionista actualizado correctamente", category='info')
-<<<<<<< HEAD
 #         registrar_historial("actualizar", "inversionista", f"Inversionista {form['nom']} {form['ape']} actualizado")
 #     else:
 #         flash(str(dat["data"]), category='error')
 
 #     return redirect("/admin/inversionista/list")
-=======
-=======
->>>>>>> feature/Ingredientes
-from flask import Flask, json, flash, Blueprint, url_for, jsonify, make_response, request, render_template, redirect, abort
-import requests
-import datetime
-from urllib.parse import quote
-from transacciones import Transaccion, guardar_transaccion
-
 router = Blueprint('router', __name__)
 
 @router.route('/')
 def admin():
     return render_template('index.html')
 
-<<<<<<< HEAD
 @router.route('/admin/receta/register')
 def rec_register(msg=''):
     r_receta = requests.get("http://localhost:8086/api/receta/list")
@@ -444,8 +421,6 @@ def toggle_favoritos(id):
     
     return redirect('/admin/receta/list')
 
->>>>>>> feature/Receta
-=======
 @router.route('/admin/ingre/register')
 def ingre_register(msg=''):
     r_ingre = requests.get("http://localhost:8086/api/ingredientes/list")
@@ -550,11 +525,7 @@ def delete_ingre(id):
     return redirect('/admin/ingre/list')
 
 
->>>>>>> feature/Ingredientes
-=======
 #         # registrar_historial("actualizar", "inversionista", f"Inversionista {form['nom']} {form['ape']} actualizado")
 #     else:
 #         flash(str(dat["data"]), category='error')
 
-#     return redirect("/admin/categoria/list")
->>>>>>> feature/Categoria

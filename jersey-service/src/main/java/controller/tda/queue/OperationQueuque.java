@@ -35,26 +35,10 @@
 //         }
 //     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-//     public E dequeuque() throws ListEmptyException {
-//         if (isEmpty()) {
-//             throw new ListEmptyException("La cola está vacía");
-//         } else {
-//             return deleteLast();
-//         }
-//     }
-// }
-=======
-    public E dequeuque() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("La cola está vacía");
-        } else {
-            return removeLast();
-        }
-    }
-=======
-    
->>>>>>> feature/Cuenta
-}
->>>>>>> feature/Resenia
+    // public E dequeuque() throws ListEmptyException {
+    //     if (isEmpty()) {
+    //         throw new ListEmptyException("La cola está vacía");
+    //     } else {
+    //         return removeLast();
+    //     }
+    // }

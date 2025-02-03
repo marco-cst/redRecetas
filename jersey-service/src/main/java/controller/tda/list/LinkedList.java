@@ -1,35 +1,16 @@
 package controller.tda.list;
 
-<<<<<<< HEAD
 import controller.tda.list.LinkedList;
-<<<<<<< HEAD
-import models.Receta;
-
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
-public class LinkedList<E> {
-=======
-import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.StreamSupport;
 import java.util.stream.Stream;
-
-
-
-public class LinkedList<E> implements Iterable<E> {
->>>>>>> feature/Cuenta
-=======
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+
 
 public class LinkedList<E> implements Iterable<E> {
->>>>>>> feature/Categoria
     private Node<E> header; // Nodo cabecera (el primer nodo de la lista)
     private Node<E> last; // Nodo último (el último nodo de la lista)
     private Integer size; // Tamaño de la lista (cuenta el número de nodos en la lista)
@@ -160,113 +141,7 @@ public class LinkedList<E> implements Iterable<E> {
         }
     }
 
-<<<<<<< HEAD
     /*** END BYPOSITION */
-=======
-   
-    
-   public E removeFirst() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacía");
-        } else {
-            E elemnt = header.getInfo();
-            Node<E> aux = header.getNext();
-            header = aux;
-            if (size.intValue() == 1) {
-                last = null;
-            } 
-            size--;
-            return elemnt;
-            }
-        }
-        
-        
-    public E removeLast() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacía");
-        } else{
-            E elemnt = last.getInfo();
-            Node<E> aux = getNode(size -2);
-            if (aux == null) {
-                last = null;
-                if (size == 2) {
-                    last = header;
-                }else {
-                header = null;
-                }
-            }else{
-                last = null;
-                last = aux;
-                last.setNext(null);
-            }
-            size--;
-            return elemnt;
-        }
-    }
-
-    public E remove(Integer post) throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        } else if (post < 0 || post >= size) {
-            throw new IndexOutOfBoundsException("Error, fuera de rango");
-        } else if (post == 0) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feature/Categoria
-            return removeFirst(); // Elimina el primer nodo
-        } else if (post == (size - 1)) {
-            return removeLast(); // Elimina el último nodo
-        } else {
-            Node<E> previous = getNode(post - 1); // Nodo anterior al nodo a eliminar
-            Node<E> current = previous.getNext(); // Nodo actual (a eliminar)
-            E element = current.getInfo(); // Información del nodo a eliminar
-            Node<E> next = current.getNext(); // Nodo siguiente al nodo a eliminar
-    
-            previous.setNext(next); // Elimina el nodo actual enlazando el nodo anterior al siguiente
-            size--; // Disminuye el tamaño de la lista
-            return element; // Devuelve la información del nodo eliminado
-        }
-    }
-    
-    public E remove(Integer post) throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("Error, lista vacia");
-        } else if (post < 0 || post >= size) {
-            throw new IndexOutOfBoundsException("Error, fuera de rango");
-        } else if (post == 0) {
-            return removeFirst();
-        } else if (post == (size - 1)) {
-            return removeLast();
-        } else {
-<<<<<<< HEAD
-=======
-            return removeFirst();
-        } else if (post == (size - 1)) {
-            return removeLast();
-        } else {
->>>>>>> feature/Cuenta
-=======
->>>>>>> feature/Categoria
-            Node<E> preview = getNode(post - 1);
-            Node<E> actually = getNode(post);
-            E element = preview.getInfo();
-            Node<E> next = actually.getNext();
-            actually = null;
-            preview.setNext(next);
-            size--;
-            return element;
-
-        }
-    }
-<<<<<<< HEAD
-    
-   
-    
-=======
->>>>>>> feature/Categoria
-
->>>>>>> feature/Resenia
     public void reset() {
         this.header = null;
         this.last = null;
@@ -299,7 +174,7 @@ public class LinkedList<E> implements Iterable<E> {
     // esta bien
     public E[] toArray() {
         E[] matrix = null;
-//INICIO DE NEW ===========================================================
+        // INICIO DE NEW ===========================================================
         if (!isEmpty()) {
             Class clazz = header.getInfo().getClass();
             matrix = (E[]) java.lang.reflect.Array.newInstance(clazz, size);
@@ -313,52 +188,10 @@ public class LinkedList<E> implements Iterable<E> {
         return matrix;
     }
 
-<<<<<<< HEAD
     public LinkedList<E> toList(E[] matrix) { // Recibe un array de objetos
         reset(); // Reinicia la lista
         for (int i = 0; i < matrix.length; i++) { // Recorre el array
             this.add(matrix[i]); // Agrega cada objeto del array a un nodo de la lista
-=======
-    public LinkedList<E> toList(E[] matrix) {
-        reset();
-        for (int i = 0; i < matrix.length; i++) {
-            this.add(matrix[i]);
-        }
-        return this;
-    }
-
-    //new
-
-    public LinkedList<E> order() throws Exception {
-        if (isEmpty()) {
-            E data = this.header.getInfo();
-            if (data instanceof Number || data instanceof String) {
-                E[] lista = this.toArray();
-                reset();
-                for (int i = 0; i < lista.length; i++) {
-                    E aux = lista[i];
-                    int j = i - 1;
-                    while (j >= 0 && compare(lista[j], aux)) {
-                        lista[j + 1] = lista[j--];
-                    }
-                    lista[j + 1] = aux;
-                }
-                this.toList(lista);
-            } else{
-                System.out.println("Objeto");
-            }
-        }
-        return this;
-    } 
-
-    private Boolean compare(E a, E b){
-        if (a instanceof  Number) {
-            Number a1 = (Number) a;
-            Number b1 = (Number) b;
-            return a1.doubleValue() > b1.doubleValue();
-        } else {
-            return (a.toString().compareTo(b.toString()) > 0);
->>>>>>> feature/Resenia
         }
         return this; // Devuelve la instancia LinkedList
     }
@@ -382,8 +215,6 @@ public class LinkedList<E> implements Iterable<E> {
             search.setInfo(data);
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
     // REMOVE AGREGADO 24/OCT/2024
 
     public int getLength() {
@@ -428,38 +259,36 @@ public class LinkedList<E> implements Iterable<E> {
         }
     }
 
-    public E remove(Integer post) throws ListEmptyException {
+    public E remove(int index) throws ListEmptyException {
         if (isEmpty()) {
             throw new ListEmptyException("Error, lista vacia");
-        } else if (post < 0 || post >= size) {
+        } else if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Error, fuera de rango");
-        } else if (post == 0) {
+        } else if (index == 0) {
             return removeFirst();
-        } else if (post == (size - 1)) {
+        } else if (index == (size - 1)) {
             return removeLast();
         } else {
-            Node<E> preview = getNode(post - 1);
-            Node<E> actually = getNode(post);
-            E element = preview.getInfo();
-            Node<E> next = actually.getNext();
-            actually = null;
-            preview.setNext(next);
+            Node<E> prev = getNode(index - 1);
+            Node<E> current = prev.getNext();
+            E element = current.getInfo();
+            prev.setNext(current.getNext());
             size--;
             return element;
-
         }
     }
 
-     //Remove Element Original
-     public boolean removeElement(E element) {
-        if (isEmpty()) return false;
-        
+    // Remove Element Original
+    public boolean removeElement(E element) {
+        if (isEmpty())
+            return false;
+
         if (header.getInfo().equals(element)) { // Si el elemento está en la cabecera
             header = header.getNext();
             size--;
             return true;
         }
-        
+
         Node<E> current = header;
         while (current.getNext() != null) {
             if (current.getNext().getInfo().equals(element)) {
@@ -469,13 +298,14 @@ public class LinkedList<E> implements Iterable<E> {
             }
             current = current.getNext();
         }
-        
+
         return false; // Elemento no encontrado
     }
 
     public LinkedList<E> order(Integer type) throws Exception {
         if (!isEmpty()) {
-//FIN DE NEW ===================================================================================
+            // FIN DE NEW
+            // ===================================================================================
             E data = this.header.getInfo();
             if (data instanceof Number || data instanceof String) {
                 E[] lista = this.toArray();
@@ -572,7 +402,7 @@ public class LinkedList<E> implements Iterable<E> {
         return null;
     }
 
-    //Metodos de ordeenamiento
+    // Metodos de ordeenamiento
     // Quicksort
     public LinkedList<E> qs(int ordertype) throws Exception {
         if (!isEmpty()) {
@@ -791,7 +621,6 @@ public class LinkedList<E> implements Iterable<E> {
         }
         return this;
     }
-=======
 
     @Override
     public Iterator<E> iterator() {
@@ -822,39 +651,4 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-
-
-    
->>>>>>> feature/Cuenta
 }
-=======
-
-
-    // Implementación de Iterable
-    @Override
-    public Iterator<E> iterator() {
-        return new LinkedListIterator();
-    }
-
-    // Clase interna para el iterador
-    private class LinkedListIterator implements Iterator<E> {
-        private Node<E> current = header;
-
-        @Override
-        public boolean hasNext() {
-            return current != null;
-        }
-
-        @Override
-        public E next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            E data = current.getInfo();
-            current = current.getNext();
-            return data;
-        }
-    }
-
-}
->>>>>>> feature/Categoria

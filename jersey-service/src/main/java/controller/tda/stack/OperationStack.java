@@ -29,8 +29,6 @@
 //         }
 //     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 //     public E pop() throws ListEmptyException {
 //         if (isEmpty()) {
 //             throw new ListEmptyException("La pila está vacía");
@@ -39,16 +37,12 @@
 //         }
 //     }
 // }
-=======
-    public E pop() throws ListEmptyException {
-        if (isEmpty()) {
-            throw new ListEmptyException("La pila está vacía");
-        } else {
-            return removeLast(); 
-        }
-    }
-=======
+    // public E pop() throws ListEmptyException {
+    //     if (isEmpty()) {
+    //         throw new ListEmptyException("La pila está vacía");
+    //     } else {
+    //         return removeLast(); 
+    //     }
+    // }
     
->>>>>>> feature/Cuenta
-}
->>>>>>> feature/Resenia
+
