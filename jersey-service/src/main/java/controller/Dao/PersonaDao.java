@@ -6,7 +6,7 @@ import models.Persona;
 
 public class PersonaDao extends AdapterDao<Persona> {
     private Persona persona = new Persona(); 
-    private LinkedList listAll;
+    private LinkedList<Persona> listAll;
     
     public PersonaDao(){
         super(Persona.class);
@@ -23,13 +23,12 @@ public class PersonaDao extends AdapterDao<Persona> {
         this.persona = persona; //Asigna el objeto Persona a la variable persona
     }
 
-    public LinkedList getlistAll(){  //Obtiene la lista de objetos
+    public LinkedList<Persona> getlistAll(){  //Obtiene la lista de objetos
         if (listAll == null) { //Si la lista es nula 
             this.listAll = listAll(); //Invoca el método listAll() para obtener la lista de objetos
         }
         return listAll; //Devuelve la lista de objetos de la variable listAll
     }
-
 
     public Boolean save() throws Exception {
         // Validar entradas vacías o solo espacios en blanco
@@ -68,6 +67,7 @@ public class PersonaDao extends AdapterDao<Persona> {
         return true; // Retornar verdadero si se guardó correctamente
     }
 
+    
     public Boolean update() throws Exception{ //Actualiza el nodo Persona en la lista de objetos
         this.merge(getPersona(), getPersona().getIdPersona()-1);  //Envia la persona a actualizar con su index 
         this.listAll = listAll();  //Actualiza la lista de objetos
@@ -86,11 +86,8 @@ public class PersonaDao extends AdapterDao<Persona> {
         return false; // Retorna falso si no se encontró el ID
     }
 
-
-
-
-    public LinkedList order(Integer type_order, String atributo){
-        LinkedList listita = listAll(); //Obtiene la lista de objetos
+    public LinkedList<Persona> order(Integer type_order, String atributo){
+        LinkedList<Persona> listita = listAll(); //Obtiene la lista de objetos
         if (!listAll().isEmpty()) {
             Persona[] lista = (Persona[]) listita.toArray();
             listita.reset();
@@ -126,7 +123,6 @@ public class PersonaDao extends AdapterDao<Persona> {
         return false;
     }
 
-
     public Persona buscar_identificacion(String texto) {
         Persona persona = null;
         LinkedList<Persona> listita = listAll();
@@ -143,9 +139,6 @@ public class PersonaDao extends AdapterDao<Persona> {
         }
         return persona;
     }
-
-
-
     
     
 }

@@ -20,12 +20,6 @@ venv/
 
 # Ignorar archivos temporales generados por el sistema operativo
 .DS_Store   # (solo en macOS)
-<<<<<<< HEAD
-<<<<<<< HEAD
 Thumbs.db   # (solo en Windows)
-=======
 Thumbs.db   # (solo en Windows)
->>>>>>> feature/Cuenta
-=======
 Thumbs.db   # (solo en Windows)
->>>>>>> feature/Categoria

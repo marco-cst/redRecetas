@@ -33,4 +33,3 @@ public class JwtFilter implements ContainerRequestFilter {
         }
     }
 }
-

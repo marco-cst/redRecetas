@@ -30,5 +30,9 @@
 //     public void clear(){
 //         queuqu.reset();
 //     }
-
+    
+//     public E dequeuque() throws ListEmptyException {
+//         return queuqu.dequeuque();
+//     }
+    
 // }

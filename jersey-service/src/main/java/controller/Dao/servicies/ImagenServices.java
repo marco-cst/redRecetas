@@ -16,7 +16,7 @@ public class ImagenServices {
                 Receta p = new RecetaServicies().get(lista[i].getIdReceta());
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("id", lista[i].getIdImagen());
-                map.put("url", lista[i].getIdImagen());
+                map.put("url", lista[i].getImagen());
                 map.put("receta", p);
                 respuesta[i] = map;
             }
@@ -46,5 +46,17 @@ public class ImagenServices {
 
     public void setImagen(Imagen imagen) {
         obj.setImagen(imagen);
+    }
+
+    public Imagen get(int id) throws Exception {
+        return obj.get(id);
+    }
+
+    public Boolean update() throws Exception {
+        return obj.update();
+    }
+
+    public Boolean delete(int id) throws Exception {
+        return obj.delete(id);
     }
 }

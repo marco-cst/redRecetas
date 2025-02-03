@@ -17,7 +17,7 @@ public class Cuenta {
         return correo;
     }
 
-    public int getIdCuenta() {
+    public Integer getIdCuenta() {
         return idCuenta;
     }
 

@@ -6,10 +6,6 @@ public class Receta {
 
     private Integer idReceta;
     private String nombre;
-<<<<<<< HEAD
-    //Incluir la fecha de publicación
-=======
->>>>>>> origin/feature/Receta
     private Date fechaPublicacion;
     private String preparacion;
     private Integer porciones;

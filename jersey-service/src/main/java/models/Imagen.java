@@ -1,5 +1,6 @@
 package models;
 
+
 public class Imagen {
     private Integer idImagen;
     private Integer idReceta;

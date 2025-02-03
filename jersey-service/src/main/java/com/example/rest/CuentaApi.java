@@ -1,4 +1,5 @@
 package com.example.rest;
+
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;

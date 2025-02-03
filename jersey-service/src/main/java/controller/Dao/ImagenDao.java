@@ -37,6 +37,24 @@ public class ImagenDao extends AdapterDao<Imagen> {
         return true;
     }
 
+    public Boolean update() throws Exception {
+        this.merge(getImagen(), getImagen().getIdImagen() - 1);
+        this.listAll = listAll();
+        return true;
+    }
+
+    public Boolean delete(int id) throws Exception {
+        LinkedList<Imagen> list = getlistAll();
+        for (int i = 0; i < list.getSize(); i++) {
+            if (list.get(i).getIdImagen() == id) {
+                this.supreme(id);
+                this.listAll = listAll();
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     
     

@@ -174,7 +174,8 @@ public class LinkedList<E> implements Iterable<E> {
     // esta bien
     public E[] toArray() {
         E[] matrix = null;
-        // INICIO DE NEW ====================================================/*  < -- */        if (!isEmpty()) {
+        // INICIO DE NEW ===========================================================
+        if (!isEmpty()) {
             Class clazz = header.getInfo().getClass();
             matrix = (E[]) java.lang.reflect.Array.newInstance(clazz, size);
             Node<E> aux = header;
@@ -304,7 +305,8 @@ public class LinkedList<E> implements Iterable<E> {
     public LinkedList<E> order(Integer type) throws Exception {
         if (!isEmpty()) {
             // FIN DE NEW
-            // ============================================================================/*  < -- */            E data = this.header.getInfo();
+            // ===================================================================================
+            E data = this.header.getInfo();
             if (data instanceof Number || data instanceof String) {
                 E[] lista = this.toArray();
                 reset();

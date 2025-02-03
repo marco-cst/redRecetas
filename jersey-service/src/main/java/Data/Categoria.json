@@ -1,4 +1,1 @@
-/*  < -- */
-[{"idCategoria":1,"tipo":"Salado","estado":true},{"idCategoria":2,"tipo":"Salado","estado":true},{"idCategoria":3,"tipo":"Dulce","estado":true},{"idCategoria":4,"tipo":"Salado","estado":true},{"idCategoria":5,"tipo":"Salado","estado":true},{"idCategoria":6,"tipo":"Salado","estado":true}]
-/*  < -- */[{"idCategoria":1,"tipo":"SALADO"},{"idCategoria":2,"tipo":"DULCE"}]
-/*  < -- */feature/Categoria
+[{"idCategoria":1,"tipo":"SALADO"},{"idCategoria":2,"tipo":"DULCE"}]

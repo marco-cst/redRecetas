@@ -23,23 +23,8 @@ public class AdapterDao<T> implements InterfazDao<T> {
     }
 
     // public T get(Integer id) throws Exception {
-    //     LinkedList<T> list = listAll();
-    //     if (!list.isEmpty()) {
-    //         T[] matriz = list.toArray();
-    //         return matriz[id - 1];
-    //     }
-    //     return null; 
+    //     return null; // Implementar según sea necesario
     // }
-    
-
-    public T get(Integer id) throws Exception {
-        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
-        if(!list.isEmpty()){
-            T [] matrix = list.toArray(); //Convierte la lista en un Array de objetos
-            return matrix[id - 1]; //Devuelve el objeto en la posición id-1
-        }
-        return null; //Devuelve null si la lista está vacía
-    }
 
     public LinkedList<T> listAll() {  //Convierte el String con formato Json en un Array de objetos
         // LinkedList<T> list = new LinkedList<>();
@@ -59,7 +44,7 @@ public class AdapterDao<T> implements InterfazDao<T> {
         String info = g.toJson(list.toArray());
         saveFile(info);
     }
-     
+
     public void persist(T object) throws Exception {  //Guarda un objeto en un archivo JSON
         System.out.println("Persisting object: " + object); //Imprime el objeto a guardar
         LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
@@ -107,14 +92,14 @@ public class AdapterDao<T> implements InterfazDao<T> {
         }
     }
 
-    public boolean supreme(Integer id) throws Exception {
-        LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos
-        list.remove(id); //Elimina el objeto en la posición index
-        String info = g.toJson(list.toArray()); //Convierte la lista en un String JSON
-        saveFile(info); //Guarda el String JSON en un archivo
-        return true; //Retorna verdadero si se eliminó correctamente
+    public T get(Integer id) throws Exception {
+        LinkedList<T> list = listAll();
+        if (!list.isEmpty()) {
+            T[] matriz = list.toArray();
+            return matriz[id - 1];
+        }
+        return null; 
     }
-
 
     public Boolean supreme(int index) throws Exception {
         LinkedList<T> list = listAll(); //Invoca el método listAll() para obtener la lista de objetos

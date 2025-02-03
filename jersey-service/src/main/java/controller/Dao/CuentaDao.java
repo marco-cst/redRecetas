@@ -36,6 +36,11 @@ public class CuentaDao extends AdapterDao<Cuenta> {
         return true;
     }
 
+
+
+
+
+
     public Boolean save() throws Exception {
         // Validar campos nulos
         //if (cuenta.getCorreo() == null || cuenta.getClave() == null || cuenta.getIdPersona() == null) {
@@ -99,16 +104,23 @@ public class CuentaDao extends AdapterDao<Cuenta> {
     
 
 
-    public Boolean delete(int id) throws Exception {
+
+
+
+
+
+
+
+    public Boolean delete(Integer id) throws Exception {
         LinkedList<Cuenta> list = getListAll();
-        for (int i = 0; i < list.getSize(); i++) {
-            if (list.get(i).getIdCuenta() == id) {
-                this.supreme(id);
-                this.listAll = listAll(); // Actualiza la lista de objetos
-                return true; // Retorna verdadero si se eliminó correctamente
+        for (int i = 0; i < list.getSize(); i++) { // Iterar sobre la lista
+            if (list.get(i).getIdCuenta().equals(id)) { // Comparar IDs
+                list.remove(i); // Eliminar el elemento en la posición i
+                saveFile(g.toJson(list.toArray())); // Guardar la lista actualizada en el archivo
+                return true; // Retornar verdadero si se eliminó correctamente
             }
         }
-        return false; // Retorna falso si no se encontró el ID
+        return false; // Retornar falso si no se encontró el ID
     }
 
 }
