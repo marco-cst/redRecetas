@@ -1,0 +1,124 @@
+{% extends "template.html" %}
+{% block content %}
+
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title p-4">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="Site-title">Registra tu Receta</h1>
+      <nav class="breadcrumbs">
+      </nav>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="Versatil">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <form class="row g-3 needs-validation" method="POST" action="/admin/receta/save" novalidate>
+                <!-- Nombre -->
+                <div class="col-md-6">
+                  <label for="nom" class="form-label fw-bold">Nombre</label>
+                  <input type="text" class="form-control border-primary" id="nombre" name="nom" placeholder="EJ: ENCEBOLLADO" required>
+                </div>
+
+                <!-- Preparación -->
+                <div class="col-md-6">
+                  <label for="pre" class="form-label fw-bold">Preparación</label>
+                  <textarea class="form-control border-primary" id="preparacion" name="pre" rows="5" placeholder="Describe la preparacion(cada enter es un paso)" required></textarea>
+                </div>
+
+                <!-- Porciones -->
+                <div class="col-md-6">
+                  <label for="por" class="form-label fw-bold">Porciones</label>
+                  <input type="text" class="form-control border-primary" id="porciones" name="por" placeholder="EJ: 8" required>
+                </div>
+
+                <!-- Categoria -->
+                <div class="col-md-6">
+                  <label for="tip" class="form-label fw-bold">Categoría</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tip" id="salado" value="SALADO" required>
+                    <label class="form-check-label" for="salado">
+                      Salado
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tip" id="dulce" value="DULCE" required>
+                    <label class="form-check-label" for="dulce">
+                      Dulce
+                    </label>
+                  </div>
+                </div>
+
+
+                <div class="text-end mb-4">
+                  <a href="/admin/ingre/register" class="btn btn-outline-danger px-4 py-2 fw-bold shadow-sm rounded-pill">Agregar Ingrediente</a>
+              </div>
+
+              
+                <!-- Botones -->
+                <div class="col-12 text-center mt-4">
+                  <button class="btn btn-danger px-4 py-2" type="submit">
+                    <i class="fa fa-paper-plane"></i> Publicar
+                  </button>
+                  <!-- <a href="/logeado" class="btn btn-warning px-4 py-2">
+                    <i class="fa fa-times"></i> Cancelar
+                  </a> -->
+                  <a href="/public/receta/list" class="btn btn-danger px-4 py-2">
+                    <i class="fa fa-times"></i> Cancelar
+                  </a>
+                </div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Seleccionamos el formulario
+    const form = document.querySelector(".needs-validation");
+
+    // Escuchamos el evento submit del formulario
+    form.addEventListener("submit", function (event) {
+      // Detenemos el envío si no es válido
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      // Agregamos las clases de validación de Bootstrap
+      form.classList.add("was-validated");
+    });
+
+    // Seleccionamos todos los inputs y textareas dentro del formulario
+    const inputs = form.querySelectorAll("input, textarea");
+
+    inputs.forEach((input) => {
+      // Escuchamos el evento invalid
+      input.addEventListener("invalid", function () {
+        if (!input.validity.valid) {
+          // Establecemos un mensaje personalizado si el campo está vacío
+          input.setCustomValidity("El campo no puede estar vacío");
+        }
+      });
+
+      // Escuchamos el evento input para limpiar el mensaje personalizado al escribir
+      input.addEventListener("input", function () {
+        input.setCustomValidity(""); // Limpiamos el mensaje de error
+      });
+    });
+  });
+</script>
+
+{% endblock %}

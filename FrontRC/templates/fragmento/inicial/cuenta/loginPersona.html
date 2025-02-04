@@ -1,0 +1,109 @@
+{% extends "register.html" %}
+{% block content3 %}
+
+
+
+
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title p-4">
+        <div class="container d-lg-flex justify-content-center align-items-center">
+            <h1 class="mb-2 mb-lg-0"></h1>
+        </div>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="Versatil">
+                            <h5 class="card-title text-center text-dark mb-4">¡Registrar Datos!</h5>
+                            <form id="registrationForm" class="row g-3 needs-validation" method="POST" action="/admin/person/save" novalidate>
+                                <div class="col-12">
+                                    <label for="dni" class="form-label fw-bold">Identificación</label>
+                                    <div class="error-message text-danger small mb-1" id="dniError"></div>
+                                    <input type="number" class="form-control border-danger" id="dni" name="dni"
+                                        placeholder="Ingrese su identificador (DNI/RUC/OTROS)" required>
+                                </div>
+
+                                <!-- Nombre -->
+                                <div class="col-12">
+                                    <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                    <div class="error-message text-danger small mb-1" id="nombreError"></div>
+                                    <input type="text" class="form-control border-danger" id="nombre" name="nombre"
+                                        placeholder="Ingrese su nombre" required>
+                                </div>
+
+                                <!-- Apellido -->
+                                <div class="col-12">
+                                    <label for="apellido" class="form-label fw-bold">Apellido</label>
+                                    <div class="error-message text-danger small mb-1" id="apellidoError"></div>
+                                    <input type="text" class="form-control border-danger" id="apellido" name="apellido"
+                                        placeholder="Ingrese su apellido" required>
+                                </div>
+
+                                <!-- Apodo -->
+                                <div class="col-12">
+                                    <label for="apodo" class="form-label fw-bold">Apodo</label>
+                                    <div class="error-message text-danger small mb-1" id="apodoError"></div>
+                                    <input type="text" class="form-control border-danger" id="apodo" name="apodo"
+                                        placeholder="Ingrese un apodo" required>
+                                </div>
+
+                                <!-- Botones -->
+                                <div class="col-12 text-center mt-4">
+                                    <button class="btn btn-outline-danger px-4 py-2" type="submit">
+                                        <i class="fa fa-paper-plane"></i> Registrar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        let isValid = true;
+
+        // Clear previous error messages
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+        // Validate fields
+        const fields = [
+            { id: 'dni', errorId: 'dniError', message: 'El campo Identificación es obligatorio.' },
+            { id: 'nombre', errorId: 'nombreError', message: 'El campo Nombre es obligatorio.' },
+            { id: 'apellido', errorId: 'apellidoError', message: 'El campo Apellido es obligatorio.' },
+            { id: 'apodo', errorId: 'apodoError', message: 'El campo Apodo es obligatorio.' },
+            
+        ];
+
+        fields.forEach(field => {
+            const input = document.getElementById(field.id);
+            if (!input.value.trim()) {
+                isValid = false;
+                document.getElementById(field.errorId).textContent = field.message;
+                input.classList.add('border-danger');
+            } else {
+                input.classList.remove('border-danger');
+            }
+        });
+
+        // Prevent form submission if invalid
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+
+
+{% endblock %}

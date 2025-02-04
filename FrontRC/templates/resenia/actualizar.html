@@ -1,0 +1,86 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="pagetitle">
+    <h1>Editar resenia </h1>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-18">
+        <div class="card custom-card">
+          <div class="card-body custom-card-body">
+            <h5 class="card-title">Ingresa los datos de la reseña</h5>
+            <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/update" novalidate>
+              <input type="hidden" name="id" value="{{ resenia.idResenia }}" />
+  
+              <!-- Campo para el comentario -->
+              <div class="mb-3">
+                <label for="comentario" class="form-label">Reseña</label>
+                <input type="text" class="form-control" id="comentario" name="comt" value="{{ resenia.comentario }}" required>
+                <div class="invalid-feedback">
+                  Por favor, ingresa un comentario.
+                </div>
+              </div>
+  
+              <!-- Campo para la calificación -->
+              <div class="mb-3">
+                <label for="calificacion" class="form-label">Calificación</label>
+                <input type="range" class="form-range" id="calificacion" name="calf" min="1" max="5" step="1" value="{{ resenia.calificacion }}" required>
+                <output for="calificacion" id="calificacion-value">{{ resenia.calificacion }}</output>
+                <div class="invalid-feedback">
+                  La calificación debe estar entre 1.0 y 5.0.
+                </div>
+              </div>
+  
+              <!-- Botones -->
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="/admin/resenia/list" class="btn btn-custom btn-secondary">Cancelar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const rangeInput = document.getElementById('calificacion');
+  const output = document.getElementById('calificacion-value');
+
+  rangeInput.addEventListener('input', () => {
+    output.value = rangeInput.value;
+  });
+</script>
+
+<script>
+  function validarResenia() {
+    const comentario = document.getElementById('comentario').value;
+
+    if (/^\d+$/.test(comentario)) {
+      alert("El comentario no puede contener solo números, di algo más.");
+      return false;
+    }
+
+    const groserias = ["nauseas","asco", "basura", "horrible"]; 
+    for (const groseria of groserias) {
+      if (comentario.toLowerCase().includes(groseria)) {
+        alert("El comentario contiene lenguaje inapropiado.");
+        return false;
+      }
+    }
+
+    return true; 
+  }
+
+  // Asignar la función al evento submit del formulario
+  document.querySelector('form').addEventListener('submit', function (event) {
+    if (!validarResenia()) {
+      event.preventDefault(); 
+    }
+  });
+</script>
+
+{% endblock %}
