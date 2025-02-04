@@ -1,0 +1,25 @@
+# Ignorar archivos de caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar el entorno virtual (si lo usas)
+venv/
+.env
+
+# Ignorar archivos de base de datos locales
+*.db
+
+# Ignorar archivos de configuración específicos del entorno
+*.env
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar archivos de configuración de editores de texto (como Visual Studio Code)
+.vscode/
+
+# Ignorar archivos temporales generados por el sistema operativo
+.DS_Store   # (solo en macOS)
+Thumbs.db   # (solo en Windows)
+Thumbs.db   # (solo en Windows)
+Thumbs.db   # (solo en Windows)

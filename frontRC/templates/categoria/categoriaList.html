@@ -1,0 +1,78 @@
+{% extends 'template.html' %}
+{% block content %}
+<div class="pagetitle">
+    <div class="col-12 d-flex flex-column align-items-center">
+        <h2 class="Site-title">Lista Por Categorias </h2>
+
+        <!-- Sección de Búsqueda -->
+        <div class="search-container">
+            <h3>Filtrar por categorias: </h3>
+            <div>
+                <label for="categoria" style="display: none;">Seleccione la categoría:</label>
+                <select id="categoria" class="styled-select">
+                    <option value="SALADO">Salado</option>
+                    <option value="DULCE">Dulce</option>
+                </select>
+            </div>
+            <button id="buscar" class="btn-ordenar">Buscar</button>
+            <a href="/public/receta/list" class="btn btn-primary btn-recetas">Ir a lista de recetas.</a>
+        </div>
+
+        <!-- Tabla de Categorías -->
+        <!-- Contenedor de Categorías -->
+        <div class="category-container">
+           
+            <div id="categorias-grid" class="category-grid">
+                {% if list %}
+                {% for item in list %}
+                <div class="category-card">
+                    <h4 class="category-title">{{ item.nombre }}</h4>
+                    <p><strong style="color: rgb(61, 204, 61);">Porciones:</strong> {{ item.porciones }}</p>
+                    <p><strong style="color: rgb(226, 178, 55);">Preparación:</strong> {{ item.preparacion }}</p>
+                    <p><strong>Tipo:</strong> {{ item.tipo }}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p class="text-center">No hay categorías.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('buscar').addEventListener('click', function () {
+        var categoria = document.getElementById('categoria').value;
+
+        fetch(`/admin/proyecto/list/search/${categoria}`)
+            .then(response => response.json())
+            .then(data => {
+                var grid = document.getElementById('categorias-grid');
+                grid.innerHTML = ''; // Limpiar el contenido actual
+
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        // Crear una tarjeta para cada receta
+                        var card = `
+                            <div class="category-card">
+                                <h4 class="category-title">${item.nombre}</h4>
+                                <p><strong style="color: rgb(61, 204, 61);">Porciones:</strong> ${item.porciones}</p>
+                                <p><strong style="color: rgb(226, 178, 55);">Preparación:</strong> ${item.preparacion}</p>
+                                <p><strong>Tipo:</strong> ${item.tipo}</p>
+                            </div>
+                        `;
+                        grid.innerHTML += card; // Agregar la tarjeta al grid
+                    });
+                } else {
+                    // Mostrar un mensaje si no hay resultados
+                    grid.innerHTML = '<p class="text-center">No hay recetas en esta categoría.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+
+
+{% endblock %}

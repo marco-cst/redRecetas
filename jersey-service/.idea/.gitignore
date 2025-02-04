@@ -1,0 +1,63 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# Ignorar archivos y carpetas generados automáticamente
+/target/
+*.class
+*.log
+*.iml
+
+# Ignorar configuraciones específicas del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar configuraciones de entornos de desarrollo
+/.idea/
+*.swp
+*.swo
+
+# Ignorar archivos relacionados con Maven
+.mvn/
+<<<<<<< HEAD
+.settings/
+=======
+=======
+>>>>>>> feature/Categoria
+# Archivos y carpetas específicas del entorno
+/.idea/
+*.iml
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación y dependencias
+/target/
+*.class
+*.jar
+*.war
+
+# Archivos temporales
+*.tmp
+*.swp
+*.bak
+
+# Configuraciones locales
+/.vscode/
+.env
+<<<<<<< HEAD
+>>>>>>> feature/Ingredientes
+=======
+.settings/
+>>>>>>> feature/Cuenta
+=======
+>>>>>>> feature/Categoria
