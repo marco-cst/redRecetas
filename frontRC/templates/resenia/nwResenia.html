@@ -3,11 +3,11 @@
 {% block content %}
 <style>
   .custom-card-body {
-    background-color: #ffe6e6; /* Rojo claro */
+    background-color: #ffe6e6;
     border-radius: 10px;
     padding: 20px;
-    max-width: 400px; /* Reducimos el ancho máximo */
-    margin: 0 auto; /* Centrar el recuadro */
+    max-width: 400px;
+    margin: 0 auto;
   }
   .btn-primary {
     background-color: #ff4d4d;
@@ -36,7 +36,7 @@
     color: gold;
   }
   .centered-container {
-    max-width: 450px; /* Ajustamos el ancho del contenedor principal */
+    max-width: 450px;
     margin: 0 auto;
   }
   .comentario-box {
@@ -44,15 +44,34 @@
     height: 100px;
     resize: none;
     text-align: center;
-    border: 2px solid #ccc; /* Borde del recuadro */
-    border-radius: 5px; /* Esquinas redondeadas */
-    padding: 10px; /* Espaciado interno */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
   }
   .pagetitle h1 {
-    font-size: 24px; /* Reducimos el tamaño del título */
-    text-align: center; /* Centramos el título */
+    font-size: 24px;
+    text-align: center;
   }
 </style>
+
+<script>
+  function validarFormulario() {
+    var comentario = document.getElementById("comentario").value.trim();
+    var calificacion = document.querySelector("input[name='calf']:checked");
+    
+    if (comentario === "") {
+      alert("Por favor, ingresa un comentario.");
+      return false;
+    }
+    
+    if (!calificacion) {
+      alert("Por favor, selecciona una calificación.");
+      return false;
+    }
+    
+    return true;
+  }
+</script>
 
 <div class="container centered-container">
   <div class="pagetitle">
@@ -67,7 +86,6 @@
             <form class="row g-3 needs-validation" method="POST" action="/admin/resenia/saveResenia" novalidate onsubmit="return validarFormulario()">
               <input type="hidden" name="id" value="{{ resenia.idResenia }}" />
   
-              <!-- Campo para el comentario -->
               <div class="mb-3">
                 <label for="comentario" class="form-label">Reseña</label>
                 <textarea class="form-control comentario-box" id="comentario" name="comt" required>{{ resenia.comentario }}</textarea>
@@ -76,7 +94,6 @@
                 </div>
               </div>
   
-              <!-- Campo para la calificación -->
               <div class="mb-3">
                 <label for="calificacion" class="form-label">Calificación</label>
                 <div class="star-rating">
@@ -90,8 +107,7 @@
                 </div>
               </div>
   
-              <!-- Botones -->
-              <div class="mb-3 text-center"> <!-- Centramos los botones -->
+              <div class="mb-3 text-center">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a href="/public/receta/list" class="btn btn-custom btn-secondary">Cancelar</a>
               </div>
