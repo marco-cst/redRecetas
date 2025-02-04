@@ -12,7 +12,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.Response.StatusType;
+
 
 @Path("ingredientes")
 public class IngredientesApi {
@@ -22,7 +22,7 @@ public class IngredientesApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getType() {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         IngredientesServicies ps = new IngredientesServicies();
         map.put("msg", "Ok");
         map.put("data", ps.getIngredientes());
@@ -33,7 +33,7 @@ public class IngredientesApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllIngre() {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         IngredientesServicies ps = new IngredientesServicies();
         map.put("msg", "Ok");
         map.put("data", ps.listAll().toArray());
@@ -48,7 +48,7 @@ public class IngredientesApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getIngre(@PathParam("id") Integer id) {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         IngredientesServicies ps = new IngredientesServicies();
         try {
             ps.setIngredientes(ps.get(id));
@@ -69,9 +69,9 @@ public class IngredientesApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(HashMap map) {
+    public Response save(HashMap<String, Object>map) {
 
-        HashMap res = new HashMap<>();
+        HashMap<String, Object> res = new HashMap<>();
 
         try {
             IngredientesServicies ps = new IngredientesServicies();
@@ -110,7 +110,7 @@ public class IngredientesApi {
 
         } catch (Exception e) {
             res.put("msg", "Error");
-            res.put("data", e.toString());
+            res.put("data", e.getMessage());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
@@ -119,13 +119,13 @@ public class IngredientesApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap map) {
+    public Response update(HashMap<String, Object> map) {
 
-        HashMap res = new HashMap<>();
+        HashMap<String, Object> res = new HashMap<>();
 
         try {
             IngredientesServicies ps = new IngredientesServicies();
-            ps.setIngredientes(ps.get(Integer.parseInt(map.get("idIngredientes").toString())));
+            ps.setIngredientes(ps.get(Integer.parseInt(map.get("idIngrediente").toString())));
 
             // Validación de campos obligatorios
             if (!map.containsKey("nombre") || map.get("nombre").toString().isEmpty()) {

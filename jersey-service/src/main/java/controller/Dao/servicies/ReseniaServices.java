@@ -2,7 +2,7 @@ package controller.Dao.servicies;
 
 import controller.Dao.ReseniaDao;
 import controller.tda.list.LinkedList;
-import models.Receta;
+
 import models.Resenia;
 
 public class ReseniaServices {

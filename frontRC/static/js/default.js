@@ -78,3 +78,16 @@ submitButton.addEventListener("click", function (event) {
         confirmPasswordError.textContent = "";
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchContainer = document.querySelector(".search-container");
+    searchContainer.style.opacity = "0";
+    searchContainer.style.transform = "translateY(-20px)";
+    
+    setTimeout(() => {
+        searchContainer.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+        searchContainer.style.opacity = "1";
+        searchContainer.style.transform = "translateY(0)";
+    }, 300);
+});

@@ -1,78 +1,78 @@
 {% extends 'template.html' %}
 {% block content %}
 <div class="pagetitle">
-  <div class="col-12 d-flex flex-column align-items-center">
-      <h2 class="mt-4 text-black">Categorías</h2>
+    <div class="col-12 d-flex flex-column align-items-center">
+        <h2 class="Site-title">Lista Por Categorias </h2>
 
-      <!-- Sección de Búsqueda -->
-      <div style="margin-bottom: 20px; width: 90%; background-color: rgba(30, 30, 30, 0.5); padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
-          <h3 style="color: #ff5252; text-align: left; margin-bottom: 20px; font-family: Arial, sans-serif;">Búsqueda Lineal</h3>
+        <!-- Sección de Búsqueda -->
+        <div class="search-container">
+            <h3>Filtrar por categorias: </h3>
+            <div>
+                <label for="categoria" style="display: none;">Seleccione la categoría:</label>
+                <select id="categoria" class="styled-select">
+                    <option value="SALADO">Salado</option>
+                    <option value="DULCE">Dulce</option>
+                </select>
+            </div>
+            <button id="buscar" class="btn-ordenar">Buscar</button>
+            <a href="/public/receta/list" class="btn btn-primary btn-recetas">Ir a lista de recetas.</a>
+        </div>
 
-          <div style="margin-bottom: 15px;">
-              <label for="categoria" style="display: block; color: #fff; font-weight: bold; margin-bottom: 5px;">Seleccione la categoría:</label>
-              <select id="categoria" class="styled-select">
-                  <option value="SALADO">Salado</option>
-                  <option value="DULCE">Dulce</option>
-              </select>
-          </div>
-
-          <button id="buscar" class="btn-ordenar">Buscar</button>
-      </div>
-
-      <!-- Tabla de Categorías -->
-      <div class="table-responsive w-100">
-          <table class="table table-custom text-black custom-table">
-              <thead>
-                  <tr>
-                      <th>Id</th>
-                      <th>Categoría</th>
-                  </tr>
-              </thead>
-              <tbody id="tabla-categorias">
-                  {% if list %}
-                      {% for item in list %}
-                      <tr id="row-{{ item.idCategoria }}">
-                          <td>{{ item.idCategoria }}</td>
-                          <td>{{ item.tipo }}</td>
-                      </tr>
-                      {% endfor %}
-                  {% else %}
-                      <tr>
-                          <td colspan="3" class="text-center">No hay categorías.</td>
-                      </tr>
-                  {% endif %}
-              </tbody>
-          </table>
-      </div>
-  </div>
+        <!-- Tabla de Categorías -->
+        <!-- Contenedor de Categorías -->
+        <div class="category-container">
+           
+            <div id="categorias-grid" class="category-grid">
+                {% if list %}
+                {% for item in list %}
+                <div class="category-card">
+                    <h4 class="category-title">{{ item.nombre }}</h4>
+                    <p><strong style="color: rgb(61, 204, 61);">Porciones:</strong> {{ item.porciones }}</p>
+                    <p><strong style="color: rgb(226, 178, 55);">Preparación:</strong> {{ item.preparacion }}</p>
+                    <p><strong>Tipo:</strong> {{ item.tipo }}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p class="text-center">No hay categorías.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-document.getElementById('buscar').addEventListener('click', function() {
-    var categoria = document.getElementById('categoria').value;
+    document.getElementById('buscar').addEventListener('click', function () {
+        var categoria = document.getElementById('categoria').value;
 
-    fetch(`/admin/proyecto/list/search/${categoria}`)
-        .then(response => response.json())
-        .then(data => {
-            var tbody = document.getElementById('tabla-categorias');
-            tbody.innerHTML = '';
+        fetch(`/admin/proyecto/list/search/${categoria}`)
+            .then(response => response.json())
+            .then(data => {
+                var grid = document.getElementById('categorias-grid');
+                grid.innerHTML = ''; // Limpiar el contenido actual
 
-            if (data.length > 0) {
-                data.forEach(item => {
-                    var row = `<tr id="row-${item.idCategoria}">
-                        <td>${item.idCategoria}</td>
-                        <td>${item.tipo}</td>
-                    </tr>`;
-                    tbody.innerHTML += row;
-                });
-            } else {
-                tbody.innerHTML = '<tr><td colspan="3" class="text-center">No hay categorías.</td></tr>';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        // Crear una tarjeta para cada receta
+                        var card = `
+                            <div class="category-card">
+                                <h4 class="category-title">${item.nombre}</h4>
+                                <p><strong style="color: rgb(61, 204, 61);">Porciones:</strong> ${item.porciones}</p>
+                                <p><strong style="color: rgb(226, 178, 55);">Preparación:</strong> ${item.preparacion}</p>
+                                <p><strong>Tipo:</strong> ${item.tipo}</p>
+                            </div>
+                        `;
+                        grid.innerHTML += card; // Agregar la tarjeta al grid
+                    });
+                } else {
+                    // Mostrar un mensaje si no hay resultados
+                    grid.innerHTML = '<p class="text-center">No hay recetas en esta categoría.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
 </script>
+
 
 {% endblock %}

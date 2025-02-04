@@ -3,7 +3,9 @@ package com.example.rest;
 import java.util.HashMap;
 
 import controller.Dao.servicies.RecetaServicies;
+import controller.tda.list.LinkedList;
 import models.Receta;
+import models.enumedores.TipoCategoria;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,7 +26,7 @@ public class RecetaApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getType() {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         RecetaServicies ps = new RecetaServicies();
         map.put("msg", "Ok");
         map.put("data", ps.getReceta());
@@ -35,14 +37,14 @@ public class RecetaApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response listAllRecetas() {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map= new HashMap<>();
         RecetaServicies ps = new RecetaServicies();
         map.put("msg", "Ok");
         map.put("data", ps.listAll().toArray());
         if (ps.listAll().isEmpty()) {
             map.put("data", new Object[] {});
 
-        }
+        } 
         return Response.ok(map).build();
     }
 
@@ -50,7 +52,7 @@ public class RecetaApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getReceta(@PathParam("id") Integer id) {
-        HashMap map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         RecetaServicies ps = new RecetaServicies();
         try {
             ps.setReceta(ps.get(id));
@@ -71,16 +73,18 @@ public class RecetaApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(HashMap map) {
+    public Response save(HashMap<String, Object>map) {
 
-        HashMap res = new HashMap<>();
+        HashMap<String, Object>  res = new HashMap<>();
 
         try {
             RecetaServicies ps = new RecetaServicies();
             ps.getReceta().setNombre(map.get("nombre").toString());
             ps.getReceta().setPreparacion(map.get("preparacion").toString());
             ps.getReceta().setPorciones(Integer.parseInt(map.get("porciones").toString()));
-
+            ps.getReceta().setTipo(TipoCategoria.valueOf(map.get("tipo").toString()));
+            ps.getReceta().setFavoritos(map.get("favoritos") != null ? Boolean.parseBoolean(map.get("favoritos").toString()) : false);
+            
             ps.validarReceta(ps.getReceta());
             ps.save();
 
@@ -91,18 +95,19 @@ public class RecetaApi {
 
         } catch (Exception e) {
             res.put("msg", "Error");
-            res.put("data", e.toString());
+            res.put("data", e.getMessage());
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
     }
+    
 
     @Path("/update")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap map) {
+    public Response update(HashMap<String, Object>map) {
 
-        HashMap res = new HashMap<>();
+        HashMap<String, Object>res = new HashMap<>();
 
         try {
             RecetaServicies ps = new RecetaServicies();
@@ -158,5 +163,31 @@ public class RecetaApi {
             res.put("error", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
         }
+    }
+
+    @Path("/list/search/lineal/categoria/{texto}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCategoriaReceta(@PathParam("texto") String texto) {
+        HashMap<String, Object> map = new HashMap<>();
+        RecetaServicies cs = new RecetaServicies();
+
+        // Validar que el texto no esté vacío
+        if (texto == null || texto.trim().isEmpty()) {
+            map.put("msg", "Error");
+            map.put("data", "El texto de búsqueda no puede estar vacío");
+            return Response.status(Status.BAD_REQUEST).entity(map).build();
+        }
+
+        LinkedList<Receta> lista = cs.busquedaLinCategoria(texto);
+
+        map.put("msg", "Ok");
+        map.put("data", lista.toArray());
+
+        if (lista.isEmpty()) {
+            map.put("data", new Object[] {}); // Devolver un array vacío si no hay resultados
+        }
+
+        return Response.ok(map).build();
     }
 }

@@ -1,0 +1,111 @@
+{% extends "fragmento/inicial/cuenta/Admin.html" %}
+{% block content %}
+
+<style>
+  /* Estilos generales para la tabla */
+  .table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffe6e6; /* Fondo rojo claro */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+
+  .table-custom th,
+  .table-custom td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ffcccc; /* Borde rojo más claro */
+  }
+
+  .table-custom th {
+    background-color: #ff4d4d; /* Fondo rojo para los encabezados */
+    color: white; /* Texto blanco */
+    font-weight: bold;
+  }
+
+  .table-custom tbody tr:hover {
+    background-color: #ffd9d9; /* Fondo rojo claro al pasar el mouse */
+  }
+
+  .table-custom tbody tr:nth-child(even) {
+    background-color: #fff2f2; /* Fondo rojo muy claro para filas pares */
+  }
+
+  /* Estilos para los botones */
+  .btn-custom {
+    background-color: #ff4d4d; /* Fondo rojo */
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-custom:hover {
+    background-color: #cc0000; /* Fondo rojo oscuro al pasar el mouse */
+  }
+
+  .btn-danger {
+    background-color: #ff1a1a; /* Fondo rojo más intenso */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-danger:hover {
+    background-color: #b30000; /* Fondo rojo oscuro al pasar el mouse */
+  }
+
+  /* Estilos para el mensaje de "No hay inversionistas" */
+  .text-center {
+    color: #ff4d4d; /* Texto rojo */
+    font-weight: bold;
+  }
+</style>
+
+<div class="pagetitle">
+    <div class="col-12 d-flex flex-column align-items-center">
+        <h2 class="mt-4 text-black">Lista de Reseñas</h2>
+
+        <div class="table-responsive w-100">
+            <table class="table table-custom text-black custom-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Reseña</th>
+                        <th>Calificación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if list %}
+                    {% for item in list %}
+                    <tr id="row-{{ item.idResenia }}">
+                        <td>{{ item.idResenia }}</td>
+                        <td>{{ item.comentario }}</td>
+                        <td>{{ item.calificacion }}</td>
+                        <td>
+                            <a href="/admin/resenia/edit/{{ item.idResenia }}" class="btn btn-success">Modificar</a>
+                            <form action="/admin/resenia/eliminar/{{ item.idResenia }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('¿Estás seguro de que deseas eliminar esta reseña?');">ELIMINAR</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">No hay reseñas.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

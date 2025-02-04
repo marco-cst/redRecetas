@@ -2,11 +2,12 @@ package controller.Dao;
 
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
+import controller.tda.list.ListEmptyException;
 import models.Receta;
 
 public class RecetaDao extends AdapterDao<Receta> {
     private Receta receta = new Receta();
-    private LinkedList listAll;
+    private LinkedList<Receta> listAll;
 
     public RecetaDao() {
         super(Receta.class);
@@ -23,7 +24,7 @@ public class RecetaDao extends AdapterDao<Receta> {
         this.receta = receta; // Asigna el objeto Receta a la variable Receta
     }
 
-    public LinkedList getlistAll() { // Obtiene la lista de objetos
+    public LinkedList<Receta> getlistAll() { // Obtiene la lista de objetos
         if (listAll == null) { // Si la lista es nula
             this.listAll = listAll(); // Invoca el método listAll() para obtener la lista de objetos
         }
@@ -54,5 +55,29 @@ public class RecetaDao extends AdapterDao<Receta> {
             }
         }
         return false; // Retorna falso si no se encontró el ID
+    }
+
+    public LinkedList<Receta> busquedaLinCategoria(String texto) {
+        LinkedList<Receta> listaFiltrada = new LinkedList<>();
+        LinkedList<Receta> listaCompleta = getlistAll(); // Obtener todas las recetas
+
+        if (!listaCompleta.isEmpty() && texto != null) {
+            for (int i = 0; i < listaCompleta.getSize(); i++) {
+                try {
+                    Receta receta = listaCompleta.get(i); // Aquí se usa el get de la lista personalizada
+                    if (receta != null && receta.getTipo() != null &&
+                            receta.getTipo().toString().equalsIgnoreCase(texto)) {
+                        listaFiltrada.add(receta);
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    // Maneja la excepción si el índice está fuera de rango
+                    System.out.println("Índice fuera de rango: " + i);
+                } catch (ListEmptyException e) {
+                    // Maneja la excepción si la lista está vacía
+                    System.out.println("La lista está vacía");
+                }
+            }
+        }
+        return listaFiltrada;
     }
 }

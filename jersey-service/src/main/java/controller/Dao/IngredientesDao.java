@@ -1,13 +1,12 @@
 package controller.Dao;
 
 import models.Ingredientes;
-import java.util.List;
 import controller.Dao.implement.AdapterDao;
 import controller.tda.list.LinkedList;
 
 public class IngredientesDao extends AdapterDao<Ingredientes> {
     private Ingredientes ingredientes = new Ingredientes(); 
-    private LinkedList listAll;
+    private LinkedList<Ingredientes> listAll;
     
     public IngredientesDao(){
         super(Ingredientes.class);
@@ -23,19 +22,43 @@ public class IngredientesDao extends AdapterDao<Ingredientes> {
         this.ingredientes = ingredientes; //Asigna el objeto Familia a la variable familia
     }
 
-    public LinkedList getlistAll(){  //Obtiene la lista de objetos
+    public LinkedList<Ingredientes> getlistAll(){  //Obtiene la lista de objetos
         if (listAll == null) { //Si la lista es nula 
             this.listAll = listAll(); //Invoca el método listAll() para obtener la lista de objetos
         }
         return listAll; //Devuelve la lista de objetos de la variable listAll
     }
-    public Boolean save() throws Exception{ //Guarda la variable familia en la lista de objetos
-        Integer id = getlistAll().getSize()+1; //Obtiene el tamagño de la lista y le suma 1 para asignar un nuevo id
-        ingredientes.setIdIngrediente(id); //Asigna el id a familia
-        this.persist(this.ingredientes); //Guarda la familia en la lista de objetos LinkedList y en el archivo JSON
-        this.listAll = listAll(); //Actualiza la lista de objetos
-        return true; //Retorna verdadero si se guardó correctamente
+
+    
+public Boolean save() throws Exception {
+    // Validar el nombre (solo letras y espacios)
+    if (!ingredientes.getNombre().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
+        throw new IllegalArgumentException("El nombre solo puede contener letras y espacios.");
     }
+
+    // Validar la cantidad (solo números)
+    if (ingredientes.getCantidad() <= 0) {
+        throw new IllegalArgumentException("La cantidad debe ser un número mayor a 0.");
+    }
+
+    // Validar la unidad de medida (solo letras)
+    if (!ingredientes.getUnidadMedida().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$")) {
+        throw new IllegalArgumentException("La unidad de medida solo puede contener letras.");
+    }
+
+    // Generar un nuevo ID
+    Integer id = getlistAll().getSize() + 1; // Obtiene el tamaño de la lista y le suma 1 para asignar un nuevo ID
+    ingredientes.setIdIngrediente(id); // Asigna el ID al ingrediente
+
+    // Guardar el ingrediente en la lista de objetos y en el archivo JSON
+    this.persist(this.ingredientes);
+
+    // Actualizar la lista de objetos
+    this.listAll = listAll();
+
+    return true; // Retorna verdadero si se guardó correctamente
+}
+
 
     public Boolean update() throws Exception{ //Actualiza el nodo Familia en la lista de objetos
         this.merge(getIngredientes(), getIngredientes().getIdIngrediente()-1);  //Envia la familia a actualizar con su index 

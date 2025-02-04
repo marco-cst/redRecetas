@@ -11,3 +11,4 @@ def create_app():
         app.register_blueprint(router1)
         app.register_blueprint(router2)
     return app
+

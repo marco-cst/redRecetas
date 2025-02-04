@@ -17,7 +17,6 @@ import javax.ws.rs.core.Response.Status;
 import com.google.gson.Gson;
 
 import controller.Dao.servicies.ReseniaServices;
-import models.Receta;
 import models.Resenia;
 
 
@@ -73,8 +72,8 @@ public class ReseniaApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(HashMap map) {
-        HashMap res = new HashMap<>();
+    public Response save(HashMap<String,Object> map) {
+        HashMap<String,Object>res = new HashMap<>();
         Gson g = new Gson();
         String a = g.toJson(map);
         System.out.println("  " + a);
@@ -160,8 +159,8 @@ public class ReseniaApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap map) {
-        HashMap res = new HashMap<>();
+    public Response update(HashMap<String,Object> map) {
+        HashMap<String,Object>res = new HashMap<>();
 
         try {
             ReseniaServices rs = new ReseniaServices();
@@ -195,7 +194,7 @@ public class ReseniaApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getResenia(@PathParam("id") Integer id) {
-        HashMap map = new HashMap<>();
+        HashMap<String,Object> map = new HashMap<>();
         ReseniaServices rs = new ReseniaServices();
         try {
             rs.setResenia(rs.get(id));
@@ -218,7 +217,7 @@ public class ReseniaApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getType() {
-        HashMap map = new HashMap<>();
+        HashMap<String,Object> map = new HashMap<>();
         ReseniaServices rs = new ReseniaServices();
         map.put("msg", "Ok");
         map.put("data", rs.getResenia());

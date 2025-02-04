@@ -7,7 +7,7 @@ import models.Resenia;
 public class ReseniaDao extends AdapterDao<Resenia> {
 
     private Resenia resenia = new Resenia();
-    private LinkedList listAll;
+    private LinkedList<Resenia> listAll;
 
     public ReseniaDao(){
         super(Resenia.class);
@@ -25,7 +25,7 @@ public class ReseniaDao extends AdapterDao<Resenia> {
         this.resenia = resenia;
     }
 
-    public LinkedList getlistAll(){
+    public LinkedList<Resenia> getlistAll(){
         if (listAll == null) {
             this.listAll = listAll();
         }

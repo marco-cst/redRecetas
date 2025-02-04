@@ -30,7 +30,7 @@ public class AdapterDao<T> implements InterfazDao<T> {
         // LinkedList<T> list = new LinkedList<>();
         try {
             String data = readFile(); //Invoca el método readFile() para leer el archivo JSON y devolverlo en formato String
-            T[] matrix = (T[]) g.fromJson(data, java.lang.reflect.Array.newInstance(clazz, 0).getClass()); //Deserializa el String JSON en un Array de objetos tipo T
+            T[] matrix = g.fromJson(data, com.google.gson.reflect.TypeToken.getArray(clazz).getType()); //Deserializa el String JSON en un Array de objetos tipo T
             list.toList(matrix); //Envia matrix al método toList() de la clase LinkedList
         } catch (Exception e) {
             e.printStackTrace();

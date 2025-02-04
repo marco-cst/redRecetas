@@ -357,6 +357,30 @@ ol {
 	font-style: normal;/* Evita que el texto se parta en varias líneas */
 }
 
+.Site-title {
+    font-size: 70px; /* Tamaño de fuente del título */
+    font-weight: bold; /* Texto en negrita */
+    color: #d44747; /* Color del texto */
+    margin: 0; /* Elimina márgenes del h1 */
+    white-space: nowrap; 
+	font-family: "Playwrite VN", serif;
+    font-weight: 700;
+	font-optical-sizing: auto;
+	font-style: normal;/* Evita que el texto se parta en varias líneas */
+}
+
+.s1tiel{
+	font-size: 20px; /* Tamaño de fuente del título */
+    font-weight: bold; /* Texto en negrita */
+    color: #d44747; /* Color del texto */
+    margin: 0; /* Elimina márgenes del h1 */
+    white-space: nowrap; 
+	font-family: "Playwrite VN", serif;
+    font-weight: 700;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
 .header-section .nav-menu {
     position: relative;
     flex-grow: 10; /* Ocupar espacio restante */

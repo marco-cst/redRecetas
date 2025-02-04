@@ -2,27 +2,47 @@ from flask import Blueprint, abort, request, render_template, redirect, flash, u
 
 import requests  # Asegúrate de que "requests" esté correctamente importado
 from functools import wraps
-import datetime
+
 from urllib.parse import quote
 
 router = Blueprint('router', __name__)
 
 # Decorador para proteger rutas
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Verificar si el usuario está logeado
+        if not session.get('logged_in'):
+            flash("Debes estar logueado para acceder a esta página", category='error')
+            return redirect('/admin/account/login')
+        
+        # Verificar si el usuario es administrador
+        user = session.get('user', {})
+        if user.get("correo") != "admin@gmail.com":
+            flash("Acceso restringido a administradores", category='error')
+            return redirect('/admin/account/login')
+
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not session.get('logged_in'):
-            flash("Esta direccion esta desabilitada", category='error')
+            flash("Solo para usuarios con cuenta", category='error')
             return redirect('/admin/account/login')
         return f(*args, **kwargs)
     return decorated_function
 
 @router.route('/admin/list/account')
-@login_required
+@admin_required
 def account_list():
     r = requests.get("http://localhost:8086/api/account/list")
     data = r.json() 
-    return render_template('fragmento/inicial/cuenta/Admin.html',lista = data["data"])
+    return render_template('fragmento/inicial/cuenta/Admincuentas.html',lista = data["data"])
 
 
 
@@ -34,12 +54,15 @@ def admin():
 # ========= resenia ============
 
 @router.route('/admin/resenia/list')
+@admin_required
 def admin_resenia_list():
     r = requests.get("http://localhost:8086/api/resenia/list")
     data = r.json()
-    return render_template('resenia/reseniaList.html', list=data["data"])
+    # return render_template('resenia/reseniaList.html', list=data["data"]) 
+    return render_template('fragmento/inicial/cuenta/Adminresenias.html', list=data["data"])
 
 @router.route('/admin/resenia/register')
+@login_required
 def view_register_resenia():
     r = requests.get("http://localhost:8086/api/resenia/list")
     data = r.json()
@@ -54,7 +77,7 @@ def save_resenia():
         "comentario": form["comt"], #ape
         "calificacion": form["calf"], #nom
     }
-   
+
     r = requests.post("http://localhost:8086/api/resenia/save", data= json.dumps(dataF), headers=headers)
     dat = r.json()
     
@@ -66,6 +89,7 @@ def save_resenia():
     return redirect(url_for("router.admin_resenia_list"))
 
 @router.route('/admin/resenia/edit/<int:id>', methods=['GET'])
+@admin_required
 def view_edit_resenia(id):
     r = requests.get("http://localhost:8086/api/resenia/list")
     data = r.json()
@@ -86,6 +110,7 @@ def view_edit_resenia(id):
 
 
 @router.route('/admin/resenia/update', methods=['POST'])
+@admin_required
 def update_resenia():
     headers = {'Content-type': 'application/json'}
     form = request.form
@@ -110,6 +135,7 @@ def update_resenia():
         return redirect("/admin/resenia/list")
 
 @router.route('/admin/resenia/eliminar/<int:id>', methods=['POST'])
+@admin_required
 def delete_resenia(id):
     r_receta = requests.delete(f"http://localhost:8086/api/resenia/delete/{id}")
 
@@ -126,7 +152,7 @@ def delete_resenia(id):
 
 @router.route('/admin/categoria/list')
 def admin_categoria_list():
-    r = requests.get("http://localhost:8086/api/categoria/list")
+    r = requests.get("http://localhost:8086/api/receta/list")
     data = r.json()
     return render_template('categoria/categoriaList.html', list=data["data"])
 
@@ -137,7 +163,7 @@ def view_buscar_receta(categoria):
             return jsonify({"error": "Categoría de búsqueda no válida"}), 400
 
         # Construir la URL de la API (corregida)
-        api_url = f"http://localhost:8086/api/categoria/list/search/lineal/categoria/{categoria}"
+        api_url = f"http://localhost:8086/api/receta/list/search/lineal/categoria/{categoria}"
 
         # Hacer la solicitud a la API
         r = requests.get(api_url)
@@ -156,6 +182,7 @@ def view_buscar_receta(categoria):
 # ============ receta ==============
 
 @router.route('/admin/receta/register')
+@login_required
 def rec_register(msg=''):
     r_receta = requests.get("http://localhost:8086/api/receta/list")
     data_receta = r_receta.json()
@@ -163,11 +190,12 @@ def rec_register(msg=''):
     return render_template('receta/registro.html', lista_receta=data_receta["data"])
 
 @router.route('/admin/receta/list')
+@admin_required
 def list_receta():
     r_receta = requests.get("http://localhost:8086/api/receta/list")
     data_receta = r_receta.json()
     print(data_receta)
-    return render_template('receta/lista.html', lista_receta=data_receta["data"])
+    return render_template('fragmento/inicial/cuenta/Adminrecetas.html', lista_receta=data_receta["data"])
 
 @router.route('/admin/receta/save', methods=['POST'])
 def save_receta():
@@ -178,21 +206,21 @@ def save_receta():
         "nombre": form["nom"],
         "preparacion": form["pre"],
         "porciones": int(form["por"]),
+        "tipo": form["tip"],
     }
 
     r_receta = requests.post("http://localhost:8086/api/receta/save", data=json.dumps(data_receta), headers=headers)
     if r_receta.status_code == 200:
-        transaccion = Transaccion("Guardar receta", "Se ha guardado una receta nueva.")
-        guardar_transaccion(transaccion)
 
         flash("Registro guardado correctamente", category='info')
         return redirect('/admin/receta/list')
     else:
         error_msg = r_receta.json().get("data", "Error al guardar la receta")
         flash(error_msg, category='error')
-        return redirect('/admin/receta/list')
+        return redirect('/admin/receta/register')
 
 @router.route('/admin/receta/edit/<int:id>', methods=['GET'])
+@admin_required
 def view_edit_person(id):
     # Obtener la lista de tipos de recetas
     r = requests.get("http://localhost:8086/api/receta/listType")
@@ -208,12 +236,13 @@ def view_edit_person(id):
             return render_template('receta/editar.html', lista=lista_tipos["data"], receta=receta)
         else:
             flash("No se encontraron datos para la receta.", category='error')
-            return redirect("/admin/receta/list")
+            return redirect("/public/receta/list")
     else:
         flash("Error al obtener la receta", category='error')
-        return redirect("/admin/receta/list")
+        return redirect("/public/receta/list")
 
 @router.route('/admin/receta/update', methods=['POST'])
+@login_required
 def update_receta():
     headers = {'Content-Type': 'application/json'}
     form = request.form
@@ -230,32 +259,34 @@ def update_receta():
     r_receta = requests.post("http://localhost:8086/api/receta/update", data=json.dumps(data_receta), headers=headers)
 
     if r_receta.status_code == 200:
-        transaccion = Transaccion("Actualización receta", {"id": form["id"]})
-        guardar_transaccion(transaccion)
+        #transaccion = #transaccion("Actualización receta", {"id": form["id"]})
+        # guardar_transaccion(#transaccion)
 
         flash("Receta actualizada correctamente", category='info')
         return redirect('/admin/receta/list')
     else:
         error_msg = r_receta.json().get("data", "Error al actualizar la receta")
         flash(error_msg, category='error')
-        return redirect('/admin/receta/list')
+        return redirect('/public/receta/list')
 
 @router.route('/admin/receta/eliminar/<int:id>', methods=['POST'])
+@admin_required
 def delete_receta(id):
     r_receta = requests.delete(f"http://localhost:8086/api/receta/delete/{id}")
 
     if r_receta.status_code == 200:
-        transaccion = Transaccion("Eliminar receta", {"id": id})
-        guardar_transaccion(transaccion)
+        #transaccion = #transaccion("Eliminar receta", {"id": id})
+        # guardar_transaccion(#transaccion)
         flash("Receta eliminada correctamente", category='info')
     elif r_receta.status_code == 404:
         flash("Receta no encontrada o no pudo ser eliminada", category='warning')
     else:
         flash("Error al intentar eliminar la receta", category='error')
 
-    return redirect('/admin/receta/list')
+    return redirect('/public/receta/list')
 
 @router.route('/admin/receta/favoritos/<int:id>', methods=['POST'])
+@login_required
 def toggle_favoritos(id):
     # Obtener la receta actual por ID
     r_receta = requests.get(f"http://localhost:8086/api/receta/get/{id}")
@@ -280,11 +311,12 @@ def toggle_favoritos(id):
     else:
         flash("Error al obtener la receta", category='error')
     
-    return redirect('/admin/receta/list')
+    return redirect('/public/receta/list')
 
 # =========== ingredientes ===========
 
 @router.route('/admin/ingre/register')
+@login_required
 def ingre_register(msg=''):
     r_ingre = requests.get("http://localhost:8086/api/ingredientes/list")
     data_ingre = r_ingre.json()
@@ -292,6 +324,7 @@ def ingre_register(msg=''):
     return render_template('ingredientes/registro.html', lista_ingre=data_ingre["data"])
 
 @router.route('/admin/ingre/list')
+@login_required
 def list_ingre():
     r_ingre = requests.get("http://localhost:8086/api/ingredientes/list")
     data_ingre = r_ingre.json()
@@ -299,13 +332,14 @@ def list_ingre():
     return render_template('ingredientes/lista.html', lista_ingre=data_ingre["data"])
 
 @router.route('/admin/ingre/save', methods=['POST'])
+@login_required
 def save_person():
     headers = {'Content-Type': 'application/json'}
     form = request.form
 
     data_ingre = {
         "nombre": form["nom"],
-        "cantidad": float(form["can"]),
+        "cantidad": form["can"],
         "medida": form["med"],
     }
 
@@ -314,32 +348,44 @@ def save_person():
     if r_ingre.status_code == 200:
 
         flash("Registro guardado correctamente", category='info')
-        return redirect('/admin/ingre/list')
+        return redirect('/admin/receta/register')
     else:
         flash(r_ingre.json().get("data", "Error"), category='error')
-        return redirect('/admin/ingre/list')
+        return redirect('/admin/ingre/register')
 
 
 @router.route('/admin/ingre/edit/<int:id>', methods=['GET'])
-def view_edit_person(id):
-    r = requests.get("http://localhost:8086/api/ingredientes/listType")
-    lista_tipos = r.json()
-
-    r1 = requests.get(f"http://localhost:8086/api/ingredientes/get/{id}")
-
-    if r1.status_code == 200:
-        data_ingre = r1.json()
-        if "data" in data_ingre and data_ingre["data"]:
-            ingre = data_ingre["data"]
-            return render_template('ingredientes/editar.html', lista=lista_tipos["data"], ingre=ingre)
-        else:
-            flash("No se encontraron datos para la ingre.", category='error')
+@login_required
+def view_edit_ingre(id):
+    try:
+        # Obtener los tipos de ingredientes
+        r = requests.get("http://localhost:8086/api/ingredientes/listType")
+        if r.status_code != 200:
+            flash("Error al obtener la lista de tipos de ingredientes.", category='error')
             return redirect("/admin/ingre/list")
-    else:
-        flash("Error al obtener la ingre", category='error')
+        
+        lista_tipos = r.json().get("data", [])
+
+        # Obtener los datos del ingrediente por ID
+        r1 = requests.get(f"http://localhost:8086/api/ingredientes/get/{id}")
+        if r1.status_code != 200:
+            flash("Error al obtener los datos del ingrediente.", category='error')
+            return redirect("/admin/ingre/list")
+
+        data_ingre = r1.json().get("data")
+        if not data_ingre:
+            flash("No se encontraron datos para el ingrediente.", category='error')
+            return redirect("/admin/ingre/list")
+
+        return render_template('ingredientes/editar.html', lista=lista_tipos, ingre=data_ingre)
+    
+    except requests.RequestException as e:
+        flash(f"Error de conexión: {str(e)}", category='error')
         return redirect("/admin/ingre/list")
 
+
 @router.route('/admin/ingre/update', methods=['POST'])
+@login_required
 def update_ingre():
     headers = {'Content-Type': 'application/json'}
     form = request.form
@@ -361,6 +407,7 @@ def update_ingre():
         return redirect('/admin/ingre/list')
 
 @router.route('/admin/ingre/eliminar/<int:id>', methods=['POST'])
+@admin_required
 def delete_ingre(id):
     r_ingre = requests.delete(f"http://localhost:8086/api/ingredientes/delete/{id}")
 

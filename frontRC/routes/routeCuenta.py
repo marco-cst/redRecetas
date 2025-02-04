@@ -39,6 +39,8 @@ def account_register():
 
 @router2.route('/admin/account/login')
 def account_login():
+    if session.get('logged_in'):
+        return redirect('/admin/account/data')
     return render_template('fragmento/inicial/cuenta/login.html')
 
 
@@ -172,8 +174,26 @@ def delete_account(id):
 
 
 
+@router2.route('/public/receta/list')
+def list_receta():
+    try:
+        # Obtener recetas
+        r_receta = requests.get("http://localhost:8086/api/receta/list")
+        data_receta = r_receta.json()
 
+        # Obtener reseñas
+        r_resenia = requests.get("http://localhost:8086/api/resenia/list")
+        data_resenia = r_resenia.json()
 
+        # Pasar la data al template sin asociar recetas con reseñas
+        return render_template(
+            'receta/lista.html',
+            lista_receta=data_receta["data"],
+            lista_resenias=data_resenia["data"]  # Se pasa como lista sin agrupar
+        )
+
+    except requests.RequestException as e:
+        return f"Error al obtener datos: {str(e)}", 500
 
 
 @router2.route('/logout')

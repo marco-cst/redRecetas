@@ -38,27 +38,49 @@ public class PersonaDao extends AdapterDao<Persona> {
         if (persona.getApodo().trim().isEmpty()) {
             throw new Exception("El apodo no puede estar vacío o contener solo espacios.");
         }
+        if (persona.getNombre().trim().isEmpty()) {
+            throw new Exception("El nombre no puede estar vacío o contener solo espacios.");
+        }
+        if (persona.getApellido().trim().isEmpty()) {
+            throw new Exception("El apellido no puede estar vacío o contener solo espacios.");
+        }
+    
+        // Validar formato de nombre (solo letras)
+        if (!persona.getNombre().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+(\\s[a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*$")) {
+            throw new Exception("El nombre solo puede contener letras y espacios.");
+        }
+    
+        // Validar formato de apellido (solo letras)
+        if (!persona.getApellido().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+(\\s[a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*$")) {
+            throw new Exception("El apellido solo puede contener letras y espacios.");
+        }
+    
+        // Validar que el DNI sea solo números sin espacios
+        if (!persona.getDNI().matches("^\\d+$")) {
+            throw new Exception("El DNI solo puede contener números y no debe tener espacios.");
+        }
+    
         // Validar que no existan duplicados en el DNI y el Apodo
         LinkedList<Persona> allRecords = (LinkedList<Persona>) listAll(); // Lanzará una excepción si el tipo no coincide
-
+    
         for (int i = 0; i < allRecords.getSize(); i++) {
             Object record = allRecords.get(i); // Obtener el registro actual
-        
+    
             if (record instanceof Persona) { // Verificar si es una instancia de Persona
                 Persona existingPersona = (Persona) record;
-        
+    
                 // Validar duplicado de DNI
                 if (existingPersona.getDNI().equalsIgnoreCase(persona.getDNI())) {
                     throw new Exception("El DNI ya está registrado.");
                 }
-        
+    
                 // Validar duplicado de Apodo
                 if (existingPersona.getApodo().equalsIgnoreCase(persona.getApodo())) {
                     throw new Exception("El apodo ya está registrado.");
                 }
             }
         }
-        
+    
         // Asignar ID y guardar el registro
         Integer id = listAll().getSize() + 1; // Obtener el tamaño de la lista actual y sumarle 1 para el nuevo ID
         persona.setIdPersona(id); // Asignar el ID único
@@ -66,6 +88,7 @@ public class PersonaDao extends AdapterDao<Persona> {
     
         return true; // Retornar verdadero si se guardó correctamente
     }
+    
 
     
     public Boolean update() throws Exception{ //Actualiza el nodo Persona en la lista de objetos

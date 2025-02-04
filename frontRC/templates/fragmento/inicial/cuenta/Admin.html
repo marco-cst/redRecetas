@@ -58,8 +58,8 @@
 <header class="header-section-other">
     <div class="container-fluid">
         <!-- Logo -->
-        <div class="logo2">
-            <img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="logo2">
+        <div class="logo1">
+            <img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="logo1">
 
         </div>
         <!-- Menú de navegación -->
@@ -76,53 +76,143 @@
 <!-- Header End -->
 
 
-<div>
-    <div class="container">
+<div class="d-flex">
+    <!-- Contenido principal -->
+    <div class="container flex-grow-1">
         <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body p-4">
+            {% block content %}
 
-                        <div class="col-lg-12">
-                            <table id="tabla" class="table-bordered table-red">
-                                <thead>
-                                    <tr>
-                                        <th>Nro</th>
-                                        <th>DNI</th>
-                                        <th>Correo</th>
-                                        <th>Apodo</th>
-                                        <th>Nombres</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in lista %}
-                                    <tr>
-                                        <td>{{ item.id }}</td>
-                                        <td>{{ item.persona.DNI }}</td>
-                                        <td>{{ item.correo }}</td>
-                                        <td>{{ item.persona.apodo }}</td>
-                                        <td>{{ item.persona.nombre }} {{item.persona.apellido}}</td>
-                                        <td>
-                                            <a href="/admin/account/delete/{{ item.id }}" class="btn btn-outline-danger">Eliminar</a>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            <div class="text-center mt-4">
-                                <a href="/logout" class="btn-cerrar-sesion d-inline-flex align-items-center">
-                                    <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endblock %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="/logout" class="btn-cerrar-sesion d-inline-flex align-items-center">
+                <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
+            </a>
         </div>
     </div>
-                        
+
+    <!-- Botón para abrir menú -->
+    <div class="menu-icon" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <!-- Menú lateral desplegable -->
+    <div id="side-panel" class="side-panel shadow-lg bg-dark text-white p-3">
+        <h5 class="text-center border-bottom pb-2" style="color: #c82333;">Menú </h5>
+        <ul class="list-unstyled">
+            
+            <li><a href="/admin/list/account" class="text-white d-block py-2">👤 Usuarios</a></li>
+            <li><a href="/admin/receta/list" class="text-white d-block py-2">🍽️ Recetas</a></li>
+            <li><a href="#" class="text-white d-block py-2">Comentarios</a></li>
+        </ul>
+    </div>
 </div>
+
+<style>
+    /* Botón menú */
+    .menu-icon {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #dc3545;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: 0.3s;
+    }
+    .menu-icon:hover {
+        background: #c82333;
+    }
+
+    /* Menú lateral */
+ /* Menú lateral */
+#side-panel {
+    width: 250px;
+    position: fixed;
+    top: 60px;
+    right: -260px; /* Oculto por defecto */
+    transition: 0.4s ease-in-out;
+    border-radius: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #e4878f !important; /* Rojo claro con !important */
+    
+}
+
+    .side-panel ul li a {
+        text-decoration: none;
+        transition: 0.3s;
+        display: block;
+        
+    }
+    .side-panel ul li a:hover {
+        background: rgb(235, 42, 42);
+        padding-left: 10px;
+        border-radius: 5px;
+    }
+
+    /* Logo */
+.logo1 img {
+    width: 360px; /* Ajusta el tamaño según lo necesites */
+    height: auto; /* Mantiene la proporción del logo */
+    position: absolute; /* Lo posicionamos de forma absoluta */
+    top: 20px; /* Puedes ajustar la distancia desde la parte superior */
+    left: 10px; /* Mueve el logo hacia la izquierda */
+}
+
+/* Centrado de las tarjetas de recetas */
+.recipe-list {
+    display: flex;
+    justify-content: center;  /* Centra los elementos horizontalmente */
+    flex-wrap: wrap;  /* Permite que los elementos se ajusten en varias filas si es necesario */
+    gap: 20px;  /* Espacio entre las tarjetas */
+}
+
+/* Estilo para cada tarjeta de receta */
+.recipe-card {
+    width: 300px;  /* Tamaño fijo para cada tarjeta */
+    margin: 10px;  /* Espacio entre las tarjetas */
+}
+
+/* Estilo de la lista de pasos (preparación) */
+ol {
+    padding-left: 20px;  /* Asegura que la lista tenga el margen adecuado */
+    line-height: 1.6;  /* Espacio entre cada línea de la lista */
+}
+
+/* Estilo de cada paso (item de la lista) */
+li {
+    margin-bottom: 10px;  /* Espacio entre cada punto de la lista */
+    font-size: 1rem;  /* Tamaño de texto adecuado */
+}
+
+/* Estilo de la tarjeta */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de la fuente del título de la receta */
+.card-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+</style>
+
+<script>
+    function toggleMenu() {
+        let menu = document.getElementById("side-panel");
+        if (menu.style.right === "0px") {
+            menu.style.right = "-260px";
+        } else {
+            menu.style.right = "0px";
+        }
+    }
+</script>
+
 <!-- Hero Search Section End -->
 
 <!-- Contact Section Begin -->

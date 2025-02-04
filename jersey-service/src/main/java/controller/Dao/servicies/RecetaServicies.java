@@ -70,4 +70,8 @@ public class RecetaServicies {
     public Boolean delete(int id) throws Exception { // Elimina un objeto Receta por su índice
         return obj.delete(id); // Invoca el método delete() de la clase RecetaDao y envía el índice
     }
+
+    public LinkedList<Receta> busquedaLinCategoria(String texto) { 
+        return obj.busquedaLinCategoria(texto); // Invoca el método busquedaLinCategoria() de la clase RecetaDao
+    }
 }

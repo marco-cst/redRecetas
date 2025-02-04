@@ -34,6 +34,7 @@ public class Main { //El main inicializa el servidor y lo mantiene en ejecución
      * @param args
      * @throws IOException
      */
+    @SuppressWarnings("deprecation")
     public static void main(String[] args) throws IOException {
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "

@@ -99,8 +99,8 @@ public class CategoriaApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(HashMap map) {
-        HashMap res = new HashMap<>();
+    public Response update(HashMap<String,Object> map) {
+        HashMap<String,Object> res = new HashMap<>();
 
         try {
             CategoriaServices cs = new CategoriaServices();

@@ -8,7 +8,7 @@ import models.Categoria;
 public class CategoriaDao extends AdapterDao<Categoria> {
 
     private Categoria categoria = new Categoria(); 
-    private LinkedList listAll;
+    private LinkedList<Categoria> listAll;
     
     public CategoriaDao(){
         super(Categoria.class);

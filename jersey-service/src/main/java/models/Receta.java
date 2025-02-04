@@ -2,6 +2,8 @@ package models;
 
 import java.util.Date;
 
+import models.enumedores.TipoCategoria;
+
 public class Receta {
 
     private Integer idReceta;
@@ -11,7 +13,20 @@ public class Receta {
     private Integer porciones;
     private Boolean favoritos;
 
+    private TipoCategoria tipo;
+
+    
+    
+
     public Receta() {
+    }
+
+    public TipoCategoria getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoCategoria tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getidReceta() {
@@ -62,4 +77,9 @@ public class Receta {
         this.favoritos = favoritos;
     }
 
+    @Override
+    public String toString() {
+        return "Receta [idReceta=" + idReceta + ", nombre=" + nombre + ", fechaPublicacion=" + fechaPublicacion
+                + ", preparacion=" + preparacion + ", porciones=" + porciones + ", favoritos=" + favoritos + "]";
+    }
 }
